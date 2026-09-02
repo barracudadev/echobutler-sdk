@@ -98,7 +98,7 @@ export interface AnalyticsConfig {
   transport: AnalyticsTransport
   storage?: AnalyticsStorage
   storageKey?: string
-  /** Storage key for the purge audit log. Defaults to `'echomirror.analytics.audit.v1'`. */
+  /** Storage key for the purge audit log. Defaults to `'echobutler.analytics.audit.v1'`. */
   auditStorageKey?: string
   batchSize?: number
   /** Set to 0 to disable timed flushing. Defaults to 10 seconds. */

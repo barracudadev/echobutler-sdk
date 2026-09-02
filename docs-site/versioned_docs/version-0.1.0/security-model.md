@@ -1,6 +1,6 @@
 # Key Custody & Security Model
 
-> How EchoMirror SDK handles (and deliberately does **not** handle) Stellar
+> How EchoButler SDK handles (and deliberately does **not** handle) Stellar
 > secret keys across every language binding and wallet adapter. Read this
 > before embedding the SDK in a browser app, a mobile app, or a backend
 > service — the right choice is different in each case.
@@ -8,7 +8,7 @@
 This document is the authoritative reference for **key custody** in the SDK. It
 audits, per binding, whether raw secret material ever enters the process, what
 guarantees each signing path provides, and what remains the integrator's
-responsibility. It complements [SECURITY.md](https://github.com/Echo-Mirror-Butler/echomirror-sdk/blob/main/SECURITY.md), which covers
+responsibility. It complements [SECURITY.md](https://github.com/Echo-Mirror-Butler/echobutler-sdk/blob/main/SECURITY.md), which covers
 vulnerability reporting and supported versions.
 
 ---
@@ -49,7 +49,7 @@ entry point is explicit about it.
 
 ---
 
-## JS / TypeScript — `@echomirror/stellar`
+## JS / TypeScript — `@echobutler/stellar`
 
 Source: `packages/js/stellar/src/wallets/`.
 
@@ -101,9 +101,9 @@ and the integrator's risk. Keep that secret in a server-side secret manager
 
 ---
 
-## Rust — `echomirror-stellar`
+## Rust — `echobutler-stellar`
 
-Source: `crates/echomirror-stellar/src/transaction.rs`.
+Source: `crates/echobutler-stellar/src/transaction.rs`.
 
 The Rust crate deliberately returns an **`UnsignedTransaction`** (XDR envelope)
 from builders such as `build_echo_transfer`. Its own doc comment states the
@@ -116,9 +116,9 @@ by your infrastructure.
 
 ---
 
-## Python — `echomirror-sdk` (PyPI)
+## Python — `echobutler-sdk` (PyPI)
 
-Source: `crates/echomirror-python/src/stellar.rs` (PyO3 bindings over the Rust
+Source: `crates/echobutler-python/src/stellar.rs` (PyO3 bindings over the Rust
 crate).
 
 The Python API mirrors the Rust one: `build_echo_transfer` returns an unsigned
@@ -135,8 +135,8 @@ These bindings currently delegate signing to the same models described above:
 
 - Where a platform wallet or the browser `freighter`/`xbull`/Ledger flow is
   reachable, prefer the wallet-adapter path so the secret never enters the app.
-- The WASM build (`@echomirror/wasm`, `echomirror-wasm` crate) and the
-  `echomirror-sync` sync primitives operate on **public** data only (balances,
+- The WASM build (`@echobutler/wasm`, `echobutler-wasm` crate) and the
+  `echobutler-sync` sync primitives operate on **public** data only (balances,
   transaction history, mood logs) and do not require a secret to read.
 - For mobile (Flutter/Swift), confirm whether your target platform exposes a
   wallet or Ledger transport before assuming the no-secret path is available.
@@ -162,7 +162,7 @@ than exists:
 - **Transaction authorization / intent.** The SDK signs exactly the XDR you
   hand it. It does not second-guess amounts, destinations, or memo fields.
   Validate transaction parameters in your app before signing.
-- **Transport security.** Network calls (Horizon, Friendbot, the EchoMirror
+- **Transport security.** Network calls (Horizon, Friendbot, the EchoButler
   API) rely on TLS like any HTTPS client; the SDK adds no additional channel
   security beyond what the platform provides.
 - **Malicious wallet / compromised device.** A compromised extension or a

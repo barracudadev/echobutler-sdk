@@ -1,17 +1,17 @@
-# @echomirror/analytics
+# @echobutler/analytics
 
 Privacy-safe emotional UX event tracking, persistent batching, identity stitching, and local mood rollups.
 
 ## Installation
 
 ```bash
-npm install @echomirror/analytics
+npm install @echobutler/analytics
 ```
 
 ## Track events
 
 ```ts
-import { AnalyticsClient, createWebhookTransport } from '@echomirror/analytics'
+import { AnalyticsClient, createWebhookTransport } from '@echobutler/analytics'
 
 const analytics = new AnalyticsClient({
   transport: createWebhookTransport({ url: '/api/analytics' }),
@@ -65,7 +65,7 @@ The transport must reject on delivery failure. The batch then remains persisted 
 Raw tags and mood metrics can be aggregated locally without entering the outbound event queue. Output aggregates use **Differential Privacy (DP)** noise injection and small-cohort suppression to prevent statistical re-identification:
 
 ```ts
-import { aggregateMood, aggregateMoodThisWeek } from '@echomirror/analytics'
+import { aggregateMood, aggregateMoodThisWeek } from '@echobutler/analytics'
 
 // Aggregation with default privacy protection (epsilon = 1.0, minCohortSize = 5)
 const rollup = aggregateMoodThisWeek(moodEntries)

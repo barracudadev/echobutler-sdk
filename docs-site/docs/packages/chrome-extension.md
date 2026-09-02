@@ -3,9 +3,9 @@ sidebar_position: 2
 title: Chrome Extension
 ---
 
-# EchoMirror Chrome Extension
+# EchoButler Chrome Extension
 
-The EchoMirror Chrome extension is a browser companion that lets you check Stellar balances, inject mood-logging widgets into any page, and monitor Stellar transactions from the browser toolbar.
+The EchoButler Chrome extension is a browser companion that lets you check Stellar balances, inject mood-logging widgets into any page, and monitor Stellar transactions from the browser toolbar.
 
 ## Install
 
@@ -24,7 +24,7 @@ The EchoMirror Chrome extension is a browser companion that lets you check Stell
 
 ### Chrome Web Store
 
-_once published, search "EchoMirror SDK Companion" in the Chrome Web Store._
+_once published, search "EchoButler SDK Companion" in the Chrome Web Store._
 
 ## Features
 
@@ -71,11 +71,11 @@ The extension declares a content script (`content.js`) injected on all pages at 
 |---|---|
 | `https://horizon.stellar.org/*` | Mainnet Horizon API |
 | `https://horizon-testnet.stellar.org/*` | Testnet Horizon API |
-| `https://api.echomirror.dev/*` | EchoMirror API (reserved for future use) |
+| `https://api.echobutler.dev/*` | EchoButler API (reserved for future use) |
 
 ## Known Limitations
 
 - **No build pipeline**: The extension has TypeScript source but no compilation step, `tsconfig.json`, or bundler configuration. The `popup.html`, `background.js`, and `content.js` files referenced in `manifest.json` do not yet exist on disk. To load the extension, these must be compiled from the TypeScript sources.
 - **Missing icons**: The `icons/` directory with `icon16.png`, `icon48.png`, and `icon128.png` is not present.
-- **Mood widget is local-only**: The injected mood widget logs moods to the UI but does not persist them or send them to an EchoMirror backend.
-- **No Stripe/SDK integration**: The popup and background worker use raw `fetch()` against Horizon rather than `@echomirror/core` or `@echomirror/stellar`.
+- **Mood widget is local-only**: The injected mood widget logs moods to the UI but does not persist them or send them to an EchoButler backend.
+- **No Stripe/SDK integration**: The popup and background worker use raw `fetch()` against Horizon rather than `@echobutler/core` or `@echobutler/stellar`.

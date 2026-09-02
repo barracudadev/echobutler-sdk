@@ -21,25 +21,25 @@ const SIMD_BUDGET_BYTES = 260 * 1024
 
 const required = [
   {
-    file: path.join(pkgRoot, 'wasm-web/echomirror_wasm_bg.wasm'),
+    file: path.join(pkgRoot, 'wasm-web/echobutler_wasm_bg.wasm'),
     label: 'wasm-web   [scalar]',
     budget: SCALAR_BUDGET_BYTES,
     required: true,
   },
   {
-    file: path.join(pkgRoot, 'wasm-node/echomirror_wasm_bg.wasm'),
+    file: path.join(pkgRoot, 'wasm-node/echobutler_wasm_bg.wasm'),
     label: 'wasm-node  [scalar]',
     budget: SCALAR_BUDGET_BYTES,
     required: true,
   },
   {
-    file: path.join(pkgRoot, 'wasm-web-simd/echomirror_wasm_bg.wasm'),
+    file: path.join(pkgRoot, 'wasm-web-simd/echobutler_wasm_bg.wasm'),
     label: 'wasm-web   [simd]  ',
     budget: SIMD_BUDGET_BYTES,
     required: false,
   },
   {
-    file: path.join(pkgRoot, 'wasm-node-simd/echomirror_wasm_bg.wasm'),
+    file: path.join(pkgRoot, 'wasm-node-simd/echobutler_wasm_bg.wasm'),
     label: 'wasm-node  [simd]  ',
     budget: SIMD_BUDGET_BYTES,
     required: false,

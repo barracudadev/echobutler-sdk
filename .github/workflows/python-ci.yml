@@ -4,15 +4,15 @@ on:
   push:
     branches: [main]
     paths:
-      - "crates/echomirror-python/**"
-      - "crates/echomirror-core/**"
-      - "crates/echomirror-stellar/**"
+      - "crates/echobutler-python/**"
+      - "crates/echobutler-core/**"
+      - "crates/echobutler-stellar/**"
       - ".github/workflows/python-ci.yml"
   pull_request:
     paths:
-      - "crates/echomirror-python/**"
-      - "crates/echomirror-core/**"
-      - "crates/echomirror-stellar/**"
+      - "crates/echobutler-python/**"
+      - "crates/echobutler-core/**"
+      - "crates/echobutler-stellar/**"
       - ".github/workflows/python-ci.yml"
 
 jobs:
@@ -42,7 +42,7 @@ jobs:
         run: python -m venv .venv
 
       - name: Build and install (develop mode)
-        working-directory: crates/echomirror-python
+        working-directory: crates/echobutler-python
         shell: bash
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then
@@ -54,7 +54,7 @@ jobs:
           maturin develop --release
 
       - name: Run tests
-        working-directory: crates/echomirror-python
+        working-directory: crates/echobutler-python
         shell: bash
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then
@@ -62,12 +62,12 @@ jobs:
           else
             source ../../.venv/bin/activate
           fi
-          pytest -v --cov=echomirror --cov-report=term-missing --cov-fail-under=50
+          pytest -v --cov=echobutler --cov-report=term-missing --cov-fail-under=50
 
       - name: Upload coverage artifact
         if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
         uses: actions/upload-artifact@v4
         with:
           name: python-coverage
-          path: crates/echomirror-python/htmlcov/
+          path: crates/echobutler-python/htmlcov/
           retention-days: 7

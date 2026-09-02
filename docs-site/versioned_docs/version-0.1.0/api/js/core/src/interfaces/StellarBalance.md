@@ -1,6 +1,6 @@
 # Interface: StellarBalance
 
-Defined in: [packages/js/core/src/types.ts:75](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L75)
+Defined in: [packages/js/core/src/types.ts:75](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L75)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/js/core/src/types.ts:75](https://github.com/karanjadavi/ec
 
 > **echo**: `string`
 
-Defined in: [packages/js/core/src/types.ts:77](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L77)
+Defined in: [packages/js/core/src/types.ts:77](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L77)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [packages/js/core/src/types.ts:77](https://github.com/karanjadavi/ec
 
 > **lastFetched**: `string`
 
-Defined in: [packages/js/core/src/types.ts:80](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L80)
+Defined in: [packages/js/core/src/types.ts:80](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L80)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [packages/js/core/src/types.ts:80](https://github.com/karanjadavi/ec
 
 > **network**: `"mainnet"` \| `"testnet"`
 
-Defined in: [packages/js/core/src/types.ts:79](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L79)
+Defined in: [packages/js/core/src/types.ts:79](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L79)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [packages/js/core/src/types.ts:79](https://github.com/karanjadavi/ec
 
 > **publicKey**: `string`
 
-Defined in: [packages/js/core/src/types.ts:78](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L78)
+Defined in: [packages/js/core/src/types.ts:78](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L78)
 
 ***
 
@@ -40,4 +40,4 @@ Defined in: [packages/js/core/src/types.ts:78](https://github.com/karanjadavi/ec
 
 > **xlm**: `string`
 
-Defined in: [packages/js/core/src/types.ts:76](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L76)
+Defined in: [packages/js/core/src/types.ts:76](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L76)

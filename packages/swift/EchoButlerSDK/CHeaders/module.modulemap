@@ -1,0 +1,4 @@
+module EchoButlerFFI {
+    header "EchoButlerFFI.h"
+    export *
+}

@@ -1,10 +1,10 @@
-"""Python contract-test runner for echomirror-python.
+"""Python contract-test runner for echobutler-python.
 
-Exercises the Python bindings (``echomirror-sdk`` / PyO3 extension module)
-against the shared EchoMirror fixture server, asserting the same canonical
+Exercises the Python bindings (``echobutler-sdk`` / PyO3 extension module)
+against the shared EchoButler fixture server, asserting the same canonical
 operations the Rust / JS / Flutter / Swift runners already cover.
 
-Self-skips when ``ECHOMIRROR_CONTRACT_SPEC`` is not set (normal ``pytest``
+Self-skips when ``ECHOBUTLER_CONTRACT_SPEC`` is not set (normal ``pytest``
 run without the docker-compose fixture), hard-fails on unreachable fixtures
 when the env var *is* set (CI mode).
 
@@ -18,9 +18,9 @@ contract spec on the first pass:
 Contract spec ``get_social_feed`` expects:
     GET /social/feed?limit=10
 
-``social::get_global_feed`` in ``crates/echomirror-python/src/social.rs``
+``social::get_global_feed`` in ``crates/echobutler-python/src/social.rs``
 calls ``social::get_global_feed(&inner, limit)`` which delegates to
-``echomirror_core::social::get_global_feed``. Inspection of the core
+``echobutler_core::social::get_global_feed``. Inspection of the core
 implementation shows it builds the URL as ``/social/feed`` and appends
 ``?limit={n}`` — the Python binding passes the limit value down correctly,
 so the route ``/social/feed?limit=10`` should match.
@@ -81,18 +81,18 @@ import pytest
 
 from conftest import navigate, op_by_id
 
-# Guard: the import of echomirror itself is deferred to each test so that a
+# Guard: the import of echobutler itself is deferred to each test so that a
 # missing native extension (module not yet built with maturin) gives a
 # clear skip message rather than an ImportError at collection time.
 try:
-    import echomirror
-    _ECHOMIRROR_AVAILABLE = True
+    import echobutler
+    _ECHOBUTLER_AVAILABLE = True
 except ImportError:
-    _ECHOMIRROR_AVAILABLE = False
+    _ECHOBUTLER_AVAILABLE = False
 
 _SKIP_NO_MODULE = pytest.mark.skipif(
-    not _ECHOMIRROR_AVAILABLE,
-    reason="echomirror native module not installed — run `maturin develop` first",
+    not _ECHOBUTLER_AVAILABLE,
+    reason="echobutler native module not installed — run `maturin develop` first",
 )
 
 
@@ -104,22 +104,22 @@ _SKIP_NO_MODULE = pytest.mark.skipif(
 def make_api_client(
     api_base: str,
     fixture_config: dict,
-) -> "echomirror.EchoMirrorClient":
-    return echomirror.EchoMirrorClient(
+) -> "echobutler.EchoButlerClient":
+    return echobutler.EchoButlerClient(
         api_key=fixture_config["api_key"],
         base_url=api_base,
-        network=echomirror.StellarNetwork.Testnet,
+        network=echobutler.StellarNetwork.Testnet,
     )
 
 
 def make_horizon_client(
     horizon_base: str,
     fixture_config: dict,
-) -> "echomirror.EchoMirrorClient":
+) -> "echobutler.EchoButlerClient":
     """A client whose *Horizon* URL points at the fixture horizon server."""
-    return echomirror.EchoMirrorClient(
+    return echobutler.EchoButlerClient(
         api_key=fixture_config["api_key"],
-        network=echomirror.StellarNetwork.Testnet,
+        network=echobutler.StellarNetwork.Testnet,
         horizon_url=horizon_base,
     )
 
@@ -137,7 +137,7 @@ async def test_fetch_mood_streak(spec, fixture_config, api_base):
     expected = op["response"]["body"]
 
     client = make_api_client(api_base, fixture_config)
-    mood = echomirror.MoodClient(client)
+    mood = echobutler.MoodClient(client)
 
     streak = await mood.get_streak()
 
@@ -157,7 +157,7 @@ async def test_fetch_mood_summary(spec, fixture_config, api_base):
     op = op_by_id(spec, "fetch_mood_summary")
 
     client = make_api_client(api_base, fixture_config)
-    mood = echomirror.MoodClient(client)
+    mood = echobutler.MoodClient(client)
 
     summary = await mood.get_summary(period="week")
 
@@ -178,7 +178,7 @@ async def test_log_mood(spec, fixture_config, api_base):
     req_body = op["request"]["body"]
 
     client = make_api_client(api_base, fixture_config)
-    mood = echomirror.MoodClient(client)
+    mood = echobutler.MoodClient(client)
 
     entry = await mood.log(
         score=req_body["score"],
@@ -212,7 +212,7 @@ async def test_get_social_feed(spec, fixture_config, api_base):
     op = op_by_id(spec, "get_social_feed")
 
     client = make_api_client(api_base, fixture_config)
-    social = echomirror.SocialClient(client)
+    social = echobutler.SocialClient(client)
 
     # The contract spec uses limit=10 — match it exactly so the fixture route
     # resolves to the spec path rather than the default (limit=50).
@@ -253,7 +253,7 @@ async def test_get_leaderboard(spec, fixture_config, api_base):
     op = op_by_id(spec, "get_leaderboard")
 
     client = make_api_client(api_base, fixture_config)
-    social = echomirror.SocialClient(client)
+    social = echobutler.SocialClient(client)
 
     leaderboard = await social.get_leaderboard(limit=10)
 
@@ -290,7 +290,7 @@ async def test_build_echo_transfer(spec, fixture_config, api_base):
     req_body = op["request"]["body"]
 
     client = make_api_client(api_base, fixture_config)
-    stellar = echomirror.StellarClient(client)
+    stellar = echobutler.StellarClient(client)
 
     unsigned = await stellar.build_transfer(
         from_address=req_body["from"],
@@ -328,7 +328,7 @@ async def test_submit_payment_transaction(spec, fixture_config, api_base):
     req_body = op["request"]["body"]
 
     client = make_api_client(api_base, fixture_config)
-    stellar = echomirror.StellarClient(client)
+    stellar = echobutler.StellarClient(client)
 
     tx = await stellar.submit_transaction(signed_xdr=req_body["xdr"])
 
@@ -359,7 +359,7 @@ async def test_get_transaction_history(spec, fixture_config, api_base):
     public_key = spec["fixture"]["users"]["stellar"]["public_key"]
 
     client = make_api_client(api_base, fixture_config)
-    stellar = echomirror.StellarClient(client)
+    stellar = echobutler.StellarClient(client)
 
     page = await stellar.get_transaction_history(public_key=public_key, limit=10)
 
@@ -410,7 +410,7 @@ async def test_get_stellar_balance_horizon(spec, fixture_config, horizon_base):
     public_key = spec["fixture"]["users"]["stellar"]["public_key"]
 
     client = make_horizon_client(horizon_base, fixture_config)
-    stellar = echomirror.StellarClient(client)
+    stellar = echobutler.StellarClient(client)
 
     balance = await stellar.get_balance(public_key=public_key)
 
@@ -442,9 +442,9 @@ async def test_horizon_account_not_found(spec, fixture_config, horizon_base):
     missing_key = "GDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
 
     client = make_horizon_client(horizon_base, fixture_config)
-    stellar = echomirror.StellarClient(client)
+    stellar = echobutler.StellarClient(client)
 
-    with pytest.raises(echomirror.NotFoundError):
+    with pytest.raises(echobutler.NotFoundError):
         await stellar.get_balance(public_key=missing_key)
 
 
@@ -463,23 +463,23 @@ async def test_api_request_to_unknown_route_must_fail(spec, fixture_config, api_
     # The Python binding passes ``public_key`` and ``limit`` but there is no
     # built-in way to add a spurious ``unknown=1`` param through the typed API.
     # Instead, we directly test that an operation routed to a non-existent path
-    # surfaces as EchoMirrorException (any 4xx error). We use the fixture's
+    # surfaces as EchoButlerException (any 4xx error). We use the fixture's
     # canonical 404 endpoint: GET /mood/streak on the *Horizon* base, which
     # has no fixture route and therefore returns a fixture 404 listing.
     client = make_horizon_client(api_base, fixture_config)  # Horizon port but API path
     # Deliberately hit a path that has no fixture route on the API server:
     # use get_balance against api_base (not horizon_base) — the API server
     # has no /accounts/{key} route, so it will 404.
-    stellar_wrong_base = echomirror.StellarClient(
-        echomirror.EchoMirrorClient(
+    stellar_wrong_base = echobutler.StellarClient(
+        echobutler.EchoButlerClient(
             api_key=fixture_config["api_key"],
-            network=echomirror.StellarNetwork.Testnet,
+            network=echobutler.StellarNetwork.Testnet,
             # Intentionally point horizon_url at API base — api has no Horizon routes
             horizon_url=api_base,
         )
     )
 
-    with pytest.raises(echomirror.EchoMirrorException):
+    with pytest.raises(echobutler.EchoButlerException):
         await stellar_wrong_base.get_balance(
             public_key=spec["fixture"]["users"]["stellar"]["public_key"]
         )

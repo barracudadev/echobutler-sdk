@@ -1,5 +1,5 @@
-import type { EchoMirrorClient } from '@echomirror/core'
-import type { GlobalFeedEntry } from '@echomirror/core'
+import type { EchoButlerClient } from '@echobutler/core'
+import type { GlobalFeedEntry } from '@echobutler/core'
 import type { FeedFetchOptions, FeedResponse, CacheConfig } from './types'
 import { TtlCache } from './cache'
 
@@ -12,12 +12,12 @@ import { TtlCache } from './cache'
  * clients get separate caches.
  */
 export class GlobalFeedClient {
-  private _client: EchoMirrorClient
+  private _client: EchoButlerClient
   private _cache: TtlCache<FeedResponse>
   private _basePath: string
 
   constructor(
-    client: EchoMirrorClient,
+    client: EchoButlerClient,
     options?: { basePath?: string; cache?: CacheConfig },
   ) {
     this._client = client

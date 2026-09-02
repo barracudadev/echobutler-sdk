@@ -30,9 +30,9 @@ export interface RealtimeTransport {
  * ║  ASSUMPTION — NOT CONFIRMED                                    ║
  * ║                                                                  ║
  * ║  This transport assumes WebSocket at:                           ║
- * ║    wss://api.echomirror.dev/v1/social/ws                        ║
+ * ║    wss://api.echobutler.dev/v1/social/ws                        ║
  * ║                                                                  ║
- * ║  The actual EchoMirror backend may use SSE instead, or a        ║
+ * ║  The actual EchoButler backend may use SSE instead, or a        ║
  * ║  different WebSocket URL/path. The RealtimeTransport interface  ║
  * ║  exists so switching to SSE requires only a new implementation  ║
  * ║  and a one-line swap in SocialSubscription.                     ║
@@ -150,7 +150,7 @@ export class SocialSubscription {
   private _lastFeedEntryId: string | null = null
 
   /**
-   * @param options.baseUrl    API base URL. Defaults to 'wss://api.echomirror.dev/v1'
+   * @param options.baseUrl    API base URL. Defaults to 'wss://api.echobutler.dev/v1'
    *                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    *                           ASSUMPTION — NOT CONFIRMED (see WebSocketTransport docs)
    * @param options.transport  RealtimeTransport implementation. Defaults to WebSocketTransport.
@@ -167,7 +167,7 @@ export class SocialSubscription {
     feedClient?: GlobalFeedClient
   }) {
     // ASSUMPTION — NOT CONFIRMED: path /social/ws and protocol wss://
-    this._url = options?.baseUrl ?? 'wss://api.echomirror.dev/v1/social/ws'
+    this._url = options?.baseUrl ?? 'wss://api.echobutler.dev/v1/social/ws'
     this._transport = options?.transport ?? new WebSocketTransport()
     this._feedClient = options?.feedClient
 

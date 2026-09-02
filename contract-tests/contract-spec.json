@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "description": "Language-agnostic contract for EchoMirror SDK bindings. Every field below is the canonical (snake_case) wire shape served by the shared fixture; each binding runner maps these to its own naming via the per-binding field_map and asserts the same logical values.",
+  "description": "Language-agnostic contract for EchoButler SDK bindings. Every field below is the canonical (snake_case) wire shape served by the shared fixture; each binding runner maps these to its own naming via the per-binding field_map and asserts the same logical values.",
   "fixture": {
     "api": {
       "host": "127.0.0.1",

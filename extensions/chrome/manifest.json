@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "EchoMirror SDK Companion",
+  "name": "EchoButler SDK Companion",
   "version": "0.1.0",
-  "description": "EchoMirror SDK browser companion — inject mood widgets into any site, monitor Stellar transactions, and preview SDK integrations live",
+  "description": "EchoButler SDK browser companion — inject mood widgets into any site, monitor Stellar transactions, and preview SDK integrations live",
   "permissions": [
     "storage",
     "activeTab",
@@ -12,7 +12,7 @@
   "host_permissions": [
     "https://horizon.stellar.org/*",
     "https://horizon-testnet.stellar.org/*",
-    "https://api.echomirror.dev/*"
+    "https://api.echobutler.dev/*"
   ],
   "action": {
     "default_popup": "popup.html",

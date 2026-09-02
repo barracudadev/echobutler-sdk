@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { connectWallet, LedgerWalletAdapter } from '@echomirror/stellar'
+import { connectWallet, LedgerWalletAdapter } from '@echobutler/stellar'
 
 /**
  * Soroban demo — placeholder pending #103 (Soroban invocation support).
@@ -31,7 +31,7 @@ export default function App() {
   return (
     <main style={{ fontFamily: 'system-ui', maxWidth: 600, margin: '2rem auto', padding: '0 1rem' }}>
       <h1>Soroban Demo</h1>
-      <p>This example demonstrates Soroban smart-contract interaction using the EchoMirror SDK.</p>
+      <p>This example demonstrates Soroban smart-contract interaction using the EchoButler SDK.</p>
       <p style={{ color: '#e67e22', fontWeight: 600 }}>
         Blocked on #103 — Soroban invocation support has not landed yet.
         Contract calls below are placeholders.

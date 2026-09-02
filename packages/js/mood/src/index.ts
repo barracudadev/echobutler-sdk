@@ -1,4 +1,4 @@
-import type { EchoMirrorClient } from '@echomirror/core'
+import type { EchoButlerClient } from '@echobutler/core'
 import type {
   MoodEntry,
   MoodScore,
@@ -6,7 +6,7 @@ import type {
   MoodStreak,
   MoodSummary,
   AIReflection,
-} from '@echomirror/core'
+} from '@echobutler/core'
 
 export interface LogMoodPayload {
   score: MoodScore
@@ -31,7 +31,7 @@ export interface GetMoodHistoryOptions {
  * const entry = await logMood(client, { score: 7, note: 'Great day', tags: ['work'] })
  */
 export async function logMood(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   payload: LogMoodPayload,
 ): Promise<MoodEntry> {
   const entry = await client.request<MoodEntry>('POST', '/mood/entries', payload)
@@ -43,7 +43,7 @@ export async function logMood(
  * Get paginated mood history for the authenticated user.
  */
 export async function getMoodHistory(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   options: GetMoodHistoryOptions = {},
 ): Promise<{ entries: MoodEntry[]; total: number }> {
   const params = new URLSearchParams()
@@ -61,7 +61,7 @@ export async function getMoodHistory(
  * Get a single mood entry by ID.
  */
 export async function getMoodEntry(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   entryId: string,
 ): Promise<MoodEntry> {
   return client.request('GET', `/mood/entries/${entryId}`)
@@ -71,7 +71,7 @@ export async function getMoodEntry(
  * Delete a mood entry.
  */
 export async function deleteMoodEntry(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   entryId: string,
 ): Promise<void> {
   return client.request('DELETE', `/mood/entries/${entryId}`)
@@ -86,7 +86,7 @@ export async function deleteMoodEntry(
  *   showCheckInPrompt()
  * }
  */
-export async function getMoodStreak(client: EchoMirrorClient): Promise<MoodStreak> {
+export async function getMoodStreak(client: EchoButlerClient): Promise<MoodStreak> {
   return client.request('GET', '/mood/streak')
 }
 
@@ -94,7 +94,7 @@ export async function getMoodStreak(client: EchoMirrorClient): Promise<MoodStrea
  * Get aggregated mood statistics for a time period.
  */
 export async function getMoodSummary(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   period: 'week' | 'month' | 'year' | 'all' = 'week',
 ): Promise<MoodSummary> {
   return client.request('GET', `/mood/summary?period=${period}`)
@@ -105,7 +105,7 @@ export async function getMoodSummary(
  * Reflections are generated asynchronously — poll or use webhooks.
  */
 export async function requestAIReflection(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   entryId: string,
 ): Promise<AIReflection> {
   return client.request('POST', `/mood/entries/${entryId}/reflect`)
@@ -115,7 +115,7 @@ export async function requestAIReflection(
  * Get the AI reflection for a mood entry (once generated).
  */
 export async function getAIReflection(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   entryId: string,
 ): Promise<AIReflection | null> {
   return client.request('GET', `/mood/entries/${entryId}/reflection`)

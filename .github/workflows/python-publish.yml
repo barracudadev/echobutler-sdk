@@ -21,7 +21,7 @@ jobs:
       - name: Build wheels
         uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
-          working-directory: crates/echomirror-python
+          working-directory: crates/echobutler-python
           target: ${{ matrix.os == 'macos-latest' && 'universal2-apple-darwin' || '' }}
           args: --release --out dist -i 3.9 3.10 3.11 3.12
           manylinux: auto
@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: wheels-${{ matrix.os }}
-          path: crates/echomirror-python/dist
+          path: crates/echobutler-python/dist
 
   build-sdist:
     name: build sdist
@@ -41,14 +41,14 @@ jobs:
       - name: Build sdist
         uses: PyO3/maturin-action@e83996d129638aa358a18fbd1dfb82f0b0fb5d3b # v1.51.0
         with:
-          working-directory: crates/echomirror-python
+          working-directory: crates/echobutler-python
           command: sdist
           args: --out dist
 
       - uses: actions/upload-artifact@v7
         with:
           name: wheels-sdist
-          path: crates/echomirror-python/dist
+          path: crates/echobutler-python/dist
 
   publish:
     name: publish to PyPI

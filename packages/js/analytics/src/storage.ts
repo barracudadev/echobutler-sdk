@@ -1,7 +1,7 @@
 import type { AnalyticsEvent, AnalyticsStorage, PurgeAuditRecord } from './types.js'
 
-export const DEFAULT_STORAGE_KEY = 'echomirror.analytics.v1'
-export const DEFAULT_AUDIT_KEY = 'echomirror.analytics.audit.v1'
+export const DEFAULT_STORAGE_KEY = 'echobutler.analytics.v1'
+export const DEFAULT_AUDIT_KEY = 'echobutler.analytics.audit.v1'
 
 export interface PersistedAnalyticsState {
   version: 1

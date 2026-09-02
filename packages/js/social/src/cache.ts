@@ -10,7 +10,7 @@ interface CacheEntry<T> {
  *
  * The cache is owned by the client instance that creates it, so two
  * `GlobalFeedClient` or `LeaderboardClient` instances sharing the same
- * `EchoMirrorClient` will each have their own cache. This means cache
+ * `EchoButlerClient` will each have their own cache. This means cache
  * invalidation on one instance does not affect another.
  */
 export class TtlCache<T> {

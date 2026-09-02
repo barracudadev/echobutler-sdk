@@ -1,4 +1,4 @@
-# @echomirror/social
+# @echobutler/social
 
 ## Unreleased
 
@@ -9,7 +9,7 @@
 
 ### Added
 
-- Initial release of `@echomirror/social`
+- Initial release of `@echobutler/social`
 - `getGlobalFeed(client, options)` — paginated global mood feed
 - `getLeaderboard(client, period)` — weekly / monthly / all-time streak leaderboard
 - `followUser(client, userId)` / `unfollowUser(client, userId)` — social graph management

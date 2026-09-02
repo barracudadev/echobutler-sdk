@@ -1,0 +1,158 @@
+import Foundation
+import EchoButlerFFI
+
+private final class CallbackBox {
+    let continuation: CheckedContinuation<String, Error>
+
+    init(_ continuation: CheckedContinuation<String, Error>) {
+        self.continuation = continuation
+    }
+}
+
+private let echoButlerCallback: EchoButlerAsyncCallback = { userData, code, payload in
+    guard let userData else {
+        if let payload {
+            echobutler_free_string(payload)
+        }
+        return
+    }
+
+    let box = Unmanaged<CallbackBox>.fromOpaque(userData).takeRetainedValue()
+    let text: String
+    if let payload {
+        text = String(validatingUTF8: payload) ?? ""
+        echobutler_free_string(payload)
+    } else {
+        text = ""
+    }
+
+    if code == 0 {
+        box.continuation.resume(returning: text)
+        return
+    }
+
+    let payloadMessage = (try? JSONDecoder().decode(FFIErrorPayload.self, from: Data(text.utf8)).message)
+    box.continuation.resume(
+        throwing: EchoButlerError(
+            code: code,
+            message: payloadMessage ?? text
+        )
+    )
+}
+
+/// Handle to a cancellation token that can signal an in-flight FFI operation
+/// to abort. Wraps the C-ABI `EchoButlerCancellationHandle`.
+public final class CancellationHandle {
+    fileprivate var pointer: UnsafeMutablePointer<EchoButlerCancellationHandle>?
+
+    public init() {
+        pointer = echobutler_cancellation_new()
+    }
+
+    /// Signal the associated async operation to cancel.
+    public func cancel() {
+        guard let pointer else { return }
+        echobutler_cancellation_cancel(pointer)
+    }
+
+    /// Whether cancellation has been signalled.
+    public var isCancelled: Bool {
+        guard let pointer else { return false }
+        return echobutler_cancellation_is_cancelled(pointer) != 0
+    }
+
+    deinit {
+        if let pointer {
+            echobutler_cancellation_free(pointer)
+        }
+    }
+}
+
+enum FFIAsync {
+    /// Perform an FFI async call without cancellation or timeout.
+    static func perform(
+        _ start: (EchoButlerAsyncCallback?, UnsafeMutableRawPointer?) -> Int32
+    ) async throws -> String {
+        try await withCheckedThrowingContinuation { continuation in
+            let box = Unmanaged.passRetained(CallbackBox(continuation)).toOpaque()
+            let code = start(echoButlerCallback, box)
+
+            if code != 0 {
+                Unmanaged<CallbackBox>.fromOpaque(box).release()
+                continuation.resume(
+                    throwing: EchoButlerError(
+                        code: code,
+                        message: "FFI call failed before async dispatch"
+                    )
+                )
+            }
+        }
+    }
+
+    /// Perform an FFI async call with cancellation and optional timeout.
+    ///
+    /// - Parameters:
+    ///   - cancellationHandle: An optional cancellation handle. Pass `nil` for
+    ///     no cancellation support.
+    ///   - timeoutMs: Per-call timeout in milliseconds. 0 means no timeout.
+    ///   - start: The FFI function to call, receiving the callback and user data.
+    static func perform(
+        cancellationHandle: CancellationHandle? = nil,
+        timeoutMs: UInt32 = 0,
+        _ start: (
+            EchoButlerAsyncCallback?,
+            UnsafeMutableRawPointer?,
+            UnsafePointer<EchoButlerCancellationHandle>?,
+            UInt32
+        ) -> Int32
+    ) async throws -> String {
+        let cancellationPtr = cancellationHandle?.pointer
+        return try await withCheckedThrowingContinuation { continuation in
+            let box = Unmanaged.passRetained(CallbackBox(continuation)).toOpaque()
+            let code = start(echoButlerCallback, box, cancellationPtr, timeoutMs)
+
+            if code != 0 {
+                Unmanaged<CallbackBox>.fromOpaque(box).release()
+                continuation.resume(
+                    throwing: EchoButlerError(
+                        code: code,
+                        message: "FFI call failed before async dispatch"
+                    )
+                )
+            }
+        }
+    }
+}
+
+enum FFIDecode {
+    static let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom { decoder in
+            let container = try decoder.singleValueContainer()
+            let value = try container.decode(String.self)
+
+            let fractional = ISO8601DateFormatter()
+            fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+            if let date = fractional.date(from: value) {
+                return date
+            }
+
+            let standard = ISO8601DateFormatter()
+            standard.formatOptions = [.withInternetDateTime]
+            if let date = standard.date(from: value) {
+                return date
+            }
+
+            throw EchoButlerError.serialization("Invalid RFC3339 date: \(value)")
+        }
+        return decoder
+    }()
+
+    static func decode<T: Decodable>(_ type: T.Type, from payload: String) throws -> T {
+        do {
+            return try decoder.decode(type, from: Data(payload.utf8))
+        } catch {
+            throw EchoButlerError.serialization("Failed to decode \(T.self): \(error)")
+        }
+    }
+}

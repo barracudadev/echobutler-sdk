@@ -1,5 +1,5 @@
-export { EchoMirrorClient } from './client'
-export { EchoMirrorError, AuthError, NetworkError, RateLimitError } from './errors'
+export { EchoButlerClient } from './client'
+export { EchoButlerError, AuthError, NetworkError, RateLimitError } from './errors'
 export {
   LoggingMiddleware,
   MAX_MIDDLEWARE_RETRIES,
@@ -14,7 +14,7 @@ export type {
   RetryConfig,
 } from './middleware'
 export type {
-  EchoMirrorConfig,
+  EchoButlerConfig,
   MoodEntry,
   MoodScore,
   MoodTag,

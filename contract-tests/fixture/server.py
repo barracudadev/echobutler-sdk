@@ -1,7 +1,7 @@
-"""EchoMirror contract-test fixture.
+"""EchoButler contract-test fixture.
 
 Reads ``contract-spec.json`` and serves the exact canned responses declared
-there. One process serves either the EchoMirror API routes or the Horizon
+there. One process serves either the EchoButler API routes or the Horizon
 routes depending on the ``FIXTURE_ROLE`` env var (``api`` | ``horizon``),
 so every binding tested by ``contract-tests`` talks to the *same* spec file
 instead of its own bespoke mocks.

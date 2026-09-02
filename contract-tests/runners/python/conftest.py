@@ -1,21 +1,21 @@
-"""Pytest configuration for the EchoMirror Python contract-test runner.
+"""Pytest configuration for the EchoButler Python contract-test runner.
 
 Reads the shared ``contract-spec.json`` and wires up fixtures that the
 ``test_contract.py`` tests consume. Follows the same conventions the
 Rust / JS / Flutter / Swift runners already establish:
 
-* When ``ECHOMIRROR_CONTRACT_SPEC`` is set (as in CI), a missing spec file or
+* When ``ECHOBUTLER_CONTRACT_SPEC`` is set (as in CI), a missing spec file or
   an unreachable fixture server is a **hard failure** — tests cannot vacuously
   pass by silently skipping.
-* When ``ECHOMIRROR_CONTRACT_SPEC`` is *not* set (normal local test run
+* When ``ECHOBUTLER_CONTRACT_SPEC`` is *not* set (normal local test run
   without the docker-compose fixture), all contract tests are skipped so the
   regular ``pytest`` invocation stays green.
 
 Environment variables:
 
-    ECHOMIRROR_CONTRACT_SPEC        Path to contract-spec.json (required in CI)
-    ECHOMIRROR_CONTRACT_API_BASE    Default: http://127.0.0.1:18080
-    ECHOMIRROR_CONTRACT_HORIZON_BASE Default: http://127.0.0.1:18081
+    ECHOBUTLER_CONTRACT_SPEC        Path to contract-spec.json (required in CI)
+    ECHOBUTLER_CONTRACT_API_BASE    Default: http://127.0.0.1:18080
+    ECHOBUTLER_CONTRACT_HORIZON_BASE Default: http://127.0.0.1:18081
 """
 from __future__ import annotations
 
@@ -31,16 +31,16 @@ import pytest
 # Env / spec loading
 # ---------------------------------------------------------------------------
 
-_SPEC_PATH = os.environ.get("ECHOMIRROR_CONTRACT_SPEC")
-_API_BASE = os.environ.get("ECHOMIRROR_CONTRACT_API_BASE", "http://127.0.0.1:18080")
-_HORIZON_BASE = os.environ.get("ECHOMIRROR_CONTRACT_HORIZON_BASE", "http://127.0.0.1:18081")
+_SPEC_PATH = os.environ.get("ECHOBUTLER_CONTRACT_SPEC")
+_API_BASE = os.environ.get("ECHOBUTLER_CONTRACT_API_BASE", "http://127.0.0.1:18080")
+_HORIZON_BASE = os.environ.get("ECHOBUTLER_CONTRACT_HORIZON_BASE", "http://127.0.0.1:18081")
 
 # When the spec env var is present we are running in contract mode.  Any
 # configuration or connectivity problem is a hard failure.
 _CONTRACT_MODE = _SPEC_PATH is not None
 
 _SKIP_REASON = (
-    "ECHOMIRROR_CONTRACT_SPEC not set — contract tests require the shared fixture "
+    "ECHOBUTLER_CONTRACT_SPEC not set — contract tests require the shared fixture "
     "(docker compose -f contract-tests/docker-compose.yml up -d --build)"
 )
 
@@ -56,7 +56,7 @@ def _load_spec() -> dict[str, Any]:
             return json.load(fh)
     except FileNotFoundError:
         pytest.fail(
-            f"ECHOMIRROR_CONTRACT_SPEC is set to {_SPEC_PATH!r} but the file "
+            f"ECHOBUTLER_CONTRACT_SPEC is set to {_SPEC_PATH!r} but the file "
             "does not exist. Ensure the path is correct and the repo is checked out."
         )
     except json.JSONDecodeError as exc:
@@ -91,7 +91,7 @@ def _check_fixture_reachable() -> None:
 
 @pytest.fixture(scope="session")
 def contract_mode() -> bool:
-    """True when running in CI contract mode (ECHOMIRROR_CONTRACT_SPEC is set)."""
+    """True when running in CI contract mode (ECHOBUTLER_CONTRACT_SPEC is set)."""
     return _CONTRACT_MODE
 
 

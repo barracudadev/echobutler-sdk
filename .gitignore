@@ -8,13 +8,13 @@ npm-debug.log*
 /target/
 Cargo.lock
 
-# Python (crates/echomirror-python), created by scripts/bootstrap.sh
-crates/echomirror-python/.venv/
-crates/echomirror-python/**/__pycache__/
-crates/echomirror-python/**/*.so
-crates/echomirror-python/**/*.pyd
-crates/echomirror-python/**/*.pdb
-crates/echomirror-python/.pytest_cache/
+# Python (crates/echobutler-python), created by scripts/bootstrap.sh
+crates/echobutler-python/.venv/
+crates/echobutler-python/**/__pycache__/
+crates/echobutler-python/**/*.so
+crates/echobutler-python/**/*.pyd
+crates/echobutler-python/**/*.pdb
+crates/echobutler-python/.pytest_cache/
 contract-tests/fixture/__pycache__/
 
 # JS/TS build output

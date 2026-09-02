@@ -59,7 +59,7 @@ export async function poll() {
       chrome.notifications.create(`echo-tx-${record.hash}`, {
         type: 'basic',
         iconUrl: 'icons/icon48.png',
-        title: 'EchoMirror: Stellar Transaction',
+        title: 'EchoButler: Stellar Transaction',
         message: `Ledger ${record.ledger} • ${record.hash.slice(0, 16)}…${record.memo ? ` • ${record.memo}` : ''}`,
         priority: 1,
       })

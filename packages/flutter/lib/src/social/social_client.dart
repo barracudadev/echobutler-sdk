@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../echo_mirror.dart';
+import '../echo_butler.dart';
 import 'social_models.dart';
 import '../errors.dart';
 
@@ -10,18 +10,18 @@ class SocialClient {
 
   Map<String, String> get _headers => {
         'x-api-key': config.apiKey,
-        'x-echomirror-network': config.network.name,
+        'x-echobutler-network': config.network.name,
         if (config.authToken != null)
           'authorization': 'Bearer ${config.authToken}',
       };
 
-  /// Get the global mood feed — anonymized entries from across the EchoMirror network.
+  /// Get the global mood feed — anonymized entries from across the EchoButler network.
   Future<List<GlobalFeedEntry>> getGlobalFeed({int limit = 50}) async {
     final res = await config.httpClient.get(
       Uri.parse('${config.baseUrl}/social/feed?limit=$limit'),
       headers: _headers,
     );
-    if (res.statusCode != 200) throw EchoMirrorError('HTTP ${res.statusCode}');
+    if (res.statusCode != 200) throw EchoButlerError('HTTP ${res.statusCode}');
     final body = jsonDecode(res.body) as Map<String, dynamic>;
     return (body['entries'] as List<dynamic>)
         .cast<Map<String, dynamic>>()
@@ -35,7 +35,7 @@ class SocialClient {
       Uri.parse('${config.baseUrl}/social/leaderboard?limit=$limit'),
       headers: _headers,
     );
-    if (res.statusCode != 200) throw EchoMirrorError('HTTP ${res.statusCode}');
+    if (res.statusCode != 200) throw EchoButlerError('HTTP ${res.statusCode}');
     final body = jsonDecode(res.body) as Map<String, dynamic>;
     return (body['entries'] as List<dynamic>)
         .cast<Map<String, dynamic>>()

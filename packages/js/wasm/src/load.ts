@@ -59,7 +59,7 @@ let readyPromise: Promise<void> | null = null
  * different — the switch is transparent.
  *
  * @example
- * import { init, verifyMoodScore } from '@echomirror/wasm'
+ * import { init, verifyMoodScore } from '@echobutler/wasm'
  * await init()
  * verifyMoodScore(7)
  */
@@ -114,7 +114,7 @@ export function assertReady(fnName: string): void {
 
 export class WasmNotInitializedError extends Error {
   constructor(fnName: string) {
-    super(`@echomirror/wasm: call init() before using ${fnName}()`)
+    super(`@echobutler/wasm: call init() before using ${fnName}()`)
     this.name = 'WasmNotInitializedError'
   }
 }

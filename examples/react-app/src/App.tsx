@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
-import { EchoMirrorProvider, useProfile, useMoodStreak } from '@echomirror/react'
-import { logMood } from '@echomirror/mood'
-import { connectFreighter, getBalance } from '@echomirror/stellar'
-import { useEchoMirrorClient } from '@echomirror/react'
-import { init as initWasm, hashPublicKey, MoodBuffer } from '@echomirror/wasm'
-import { useGlobalFeed, useLeaderboard } from '@echomirror/social'
+import { EchoButlerProvider, useProfile, useMoodStreak } from '@echobutler/react'
+import { logMood } from '@echobutler/mood'
+import { connectFreighter, getBalance } from '@echobutler/stellar'
+import { useEchoButlerClient } from '@echobutler/react'
+import { init as initWasm, hashPublicKey, MoodBuffer } from '@echobutler/wasm'
+import { useGlobalFeed, useLeaderboard } from '@echobutler/social'
 
 function MoodLogger() {
-  const client = useEchoMirrorClient()
+  const client = useEchoButlerClient()
   const { streak } = useMoodStreak()
   const [score, setScore] = useState(7)
   const [note, setNote] = useState('')
@@ -27,7 +27,7 @@ function MoodLogger() {
 
   return (
     <div style={{ padding: 24, maxWidth: 480, margin: '0 auto', fontFamily: 'sans-serif' }}>
-      <h1 style={{ color: '#0c1a2e' }}>EchoMirror SDK — React Example</h1>
+      <h1 style={{ color: '#0c1a2e' }}>EchoButler SDK — React Example</h1>
 
       {streak && (
         <p style={{ color: '#6366f1', fontWeight: 600 }}>
@@ -84,7 +84,7 @@ function MoodLogger() {
 }
 
 function WalletConnector() {
-  const client = useEchoMirrorClient()
+  const client = useEchoButlerClient()
   const [balance, setBalance] = useState<{ xlm: string; echo: string } | null>(null)
   const [connecting, setConnecting] = useState(false)
 
@@ -126,12 +126,12 @@ function WalletConnector() {
 }
 
 function GlobalFeedView() {
-  const client = useEchoMirrorClient()
+  const client = useEchoButlerClient()
   const { entries, isLoading, fetchMore, hasMore, refresh } = useGlobalFeed(client)
 
   return (
     <div style={{ padding: '0 24px', maxWidth: 480, margin: '24px auto 0', fontFamily: 'sans-serif' }}>
-      <h2>@echomirror/social — Global Feed</h2>
+      <h2>@echobutler/social — Global Feed</h2>
       <button onClick={refresh} disabled={isLoading} style={{ marginBottom: 12, padding: '6px 16px', background: '#6366f1', color: 'white', border: 'none', borderRadius: 6, cursor: 'pointer' }}>
         {isLoading ? 'Loading…' : 'Refresh'}
       </button>
@@ -153,13 +153,13 @@ function GlobalFeedView() {
 }
 
 function LeaderboardView() {
-  const client = useEchoMirrorClient()
+  const client = useEchoButlerClient()
   const [window, setWindow] = useState<'daily' | 'weekly' | 'all-time'>('weekly')
   const { entries, isLoading, refresh } = useLeaderboard(client, window)
 
   return (
     <div style={{ padding: '0 24px', maxWidth: 480, margin: '24px auto 0', fontFamily: 'sans-serif' }}>
-      <h2>@echomirror/social — Leaderboard</h2>
+      <h2>@echobutler/social — Leaderboard</h2>
       <div style={{ marginBottom: 12 }}>
         {(['daily', 'weekly', 'all-time'] as const).map((w) => (
           <button
@@ -223,7 +223,7 @@ function WasmInsights() {
 
   return (
     <div style={{ padding: '0 24px', maxWidth: 480, margin: '24px auto 0', fontFamily: 'sans-serif' }}>
-      <h2>@echomirror/wasm — client-side helpers</h2>
+      <h2>@echobutler/wasm — client-side helpers</h2>
       <p style={{ color: '#16a34a' }}>Anonymized wallet id: {anonymizedId}…</p>
       <p style={{ color: '#16a34a' }}>Local 5-entry average (computed in wasm): {localAverage?.toFixed(1)}/10</p>
     </div>
@@ -232,12 +232,12 @@ function WasmInsights() {
 
 export default function App() {
   return (
-    <EchoMirrorProvider apiKey={import.meta.env.VITE_ECHOMIRROR_API_KEY ?? 'demo'}>
+    <EchoButlerProvider apiKey={import.meta.env.VITE_ECHOBUTLER_API_KEY ?? 'demo'}>
       <MoodLogger />
       <WalletConnector />
       <GlobalFeedView />
       <LeaderboardView />
       <WasmInsights />
-    </EchoMirrorProvider>
+    </EchoButlerProvider>
   )
 }

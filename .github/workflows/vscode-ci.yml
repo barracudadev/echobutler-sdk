@@ -28,7 +28,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      # The extension imports @echomirror/core and @echomirror/mood, whose
+      # The extension imports @echobutler/core and @echobutler/mood, whose
       # `exports` point at built dist/ output — build those workspace deps
       # first so vitest/esbuild resolve them.
       - run: npm run build --workspace=packages/js/core --workspace=packages/js/mood

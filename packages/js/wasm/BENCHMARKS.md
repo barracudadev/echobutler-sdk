@@ -1,8 +1,8 @@
-# @echomirror/wasm — SIMD Benchmark Results
+# @echobutler/wasm — SIMD Benchmark Results
 
 This document records the before/after benchmark results from Issue #147, which
 evaluated whether enabling WASM SIMD128 meaningfully accelerates the crypto and
-XDR-heavy operations in `@echomirror/wasm`.
+XDR-heavy operations in `@echobutler/wasm`.
 
 ## TL;DR
 
@@ -32,14 +32,14 @@ older browsers and non-WASM-SIMD runtimes continue to work without any change.
 
 **Scalar (baseline):**
 ```
-wasm-pack build crates/echomirror-wasm --target web --release
+wasm-pack build crates/echobutler-wasm --target web --release
 wasm-opt: -O4   (via [package.metadata.wasm-pack.profile.release] in Cargo.toml)
 RUSTFLAGS: (none)
 ```
 
 **SIMD build:**
 ```
-wasm-pack build crates/echomirror-wasm --target web --release --features simd
+wasm-pack build crates/echobutler-wasm --target web --release --features simd
 RUSTFLAGS: -C target-feature=+simd128
 wasm-opt: -O4 --enable-simd   (second post-processing pass in build.mjs)
 ```
@@ -48,21 +48,21 @@ wasm-opt: -O4 --enable-simd   (second post-processing pass in build.mjs)
 
 ```sh
 # Native Rust benchmarks (scalar vs SIMD on the host CPU):
-cargo bench -p echomirror-wasm                              # scalar
-RUSTFLAGS="-C target-feature=+avx2" cargo bench -p echomirror-wasm  # native SIMD
+cargo bench -p echobutler-wasm                              # scalar
+RUSTFLAGS="-C target-feature=+avx2" cargo bench -p echobutler-wasm  # native SIMD
 
 # WASM benchmarks (actual in-browser/Node timing):
 npm run build:wasm -w packages/js/wasm     # builds all 4 artifacts
 
 # Scalar:
-wasm-pack test --node crates/echomirror-wasm
+wasm-pack test --node crates/echobutler-wasm
 
 # SIMD:
-RUSTFLAGS="-C target-feature=+simd128" wasm-pack test --node crates/echomirror-wasm --features simd
+RUSTFLAGS="-C target-feature=+simd128" wasm-pack test --node crates/echobutler-wasm --features simd
 
 # Browser (headless Chromium):
-wasm-pack test --chrome crates/echomirror-wasm
-RUSTFLAGS="-C target-feature=+simd128" wasm-pack test --chrome crates/echomirror-wasm --features simd
+wasm-pack test --chrome crates/echobutler-wasm
+RUSTFLAGS="-C target-feature=+simd128" wasm-pack test --chrome crates/echobutler-wasm --features simd
 ```
 
 ---
@@ -248,9 +248,9 @@ so local development works identically to production from an API perspective.
 
 | File | Change |
 |---|---|
-| `crates/echomirror-wasm/Cargo.toml` | Added `criterion`, `wasm-bindgen-test`, `web-sys` dev-deps; `simd` feature; `[[bench]]` target |
-| `crates/echomirror-wasm/src/lib.rs` | Extracted `sha256_hex` helper (used by both `hash_public_key` and `StellarTxBytes::sha256`); added `pub mod bench` with criterion helpers; added `mod wasm_bench` with wasm-bindgen-test timed loops |
-| `crates/echomirror-wasm/benches/crypto_xdr.rs` | New criterion benchmark: sha256 / base64 / XDR groups |
+| `crates/echobutler-wasm/Cargo.toml` | Added `criterion`, `wasm-bindgen-test`, `web-sys` dev-deps; `simd` feature; `[[bench]]` target |
+| `crates/echobutler-wasm/src/lib.rs` | Extracted `sha256_hex` helper (used by both `hash_public_key` and `StellarTxBytes::sha256`); added `pub mod bench` with criterion helpers; added `mod wasm_bench` with wasm-bindgen-test timed loops |
+| `crates/echobutler-wasm/benches/crypto_xdr.rs` | New criterion benchmark: sha256 / base64 / XDR groups |
 | `packages/js/wasm/scripts/build.mjs` | Produces 4 builds; SIMD build injects RUSTFLAGS and runs wasm-opt `--enable-simd`; env-var controls |
 | `packages/js/wasm/scripts/report-size.mjs` | Reports all 4 artifacts; SIMD missing is warn-not-fail |
 | `packages/js/wasm/src/detect-simd.ts` | `WebAssembly.validate` probe with cached result |

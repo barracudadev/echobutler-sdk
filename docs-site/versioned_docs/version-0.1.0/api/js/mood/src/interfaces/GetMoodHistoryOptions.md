@@ -1,6 +1,6 @@
 # Interface: GetMoodHistoryOptions
 
-Defined in: [packages/js/mood/src/index.ts:17](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L17)
+Defined in: [packages/js/mood/src/index.ts:17](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L17)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/js/mood/src/index.ts:17](https://github.com/karanjadavi/ec
 
 > `optional` **from?**: `string`
 
-Defined in: [packages/js/mood/src/index.ts:20](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L20)
+Defined in: [packages/js/mood/src/index.ts:20](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L20)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [packages/js/mood/src/index.ts:20](https://github.com/karanjadavi/ec
 
 > `optional` **limit?**: `number`
 
-Defined in: [packages/js/mood/src/index.ts:18](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L18)
+Defined in: [packages/js/mood/src/index.ts:18](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L18)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [packages/js/mood/src/index.ts:18](https://github.com/karanjadavi/ec
 
 > `optional` **maxScore?**: [`MoodScore`](../type-aliases/MoodScore.md)
 
-Defined in: [packages/js/mood/src/index.ts:24](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L24)
+Defined in: [packages/js/mood/src/index.ts:24](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L24)
 
 ***
 
@@ -32,7 +32,7 @@ Defined in: [packages/js/mood/src/index.ts:24](https://github.com/karanjadavi/ec
 
 > `optional` **minScore?**: [`MoodScore`](../type-aliases/MoodScore.md)
 
-Defined in: [packages/js/mood/src/index.ts:23](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L23)
+Defined in: [packages/js/mood/src/index.ts:23](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L23)
 
 ***
 
@@ -40,7 +40,7 @@ Defined in: [packages/js/mood/src/index.ts:23](https://github.com/karanjadavi/ec
 
 > `optional` **offset?**: `number`
 
-Defined in: [packages/js/mood/src/index.ts:19](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L19)
+Defined in: [packages/js/mood/src/index.ts:19](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L19)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [packages/js/mood/src/index.ts:19](https://github.com/karanjadavi/ec
 
 > `optional` **tags?**: `string`[]
 
-Defined in: [packages/js/mood/src/index.ts:22](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L22)
+Defined in: [packages/js/mood/src/index.ts:22](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L22)
 
 ***
 
@@ -56,4 +56,4 @@ Defined in: [packages/js/mood/src/index.ts:22](https://github.com/karanjadavi/ec
 
 > `optional` **to?**: `string`
 
-Defined in: [packages/js/mood/src/index.ts:21](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L21)
+Defined in: [packages/js/mood/src/index.ts:21](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L21)

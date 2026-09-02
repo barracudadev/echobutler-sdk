@@ -1,7 +1,7 @@
 {
-  "name": "@echomirror/core",
+  "name": "@echobutler/core",
   "version": "0.1.0",
-  "description": "EchoMirror SDK core — API client, auth, and shared TypeScript types",
+  "description": "EchoButler SDK core — API client, auth, and shared TypeScript types",
   "publishConfig": {
     "access": "public"
   },
@@ -24,7 +24,7 @@
     "size-limit": "size-limit"
   },
   "keywords": [
-    "echomirror",
+    "echobutler",
     "wellness",
     "sdk",
     "stellar",
@@ -38,7 +38,7 @@
   },
   "size-limit": [
     {
-      "name": "@echomirror/core",
+      "name": "@echobutler/core",
       "path": "dist/index.js",
       "limit": "850 B"
     }

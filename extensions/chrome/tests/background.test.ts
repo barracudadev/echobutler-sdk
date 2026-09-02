@@ -71,7 +71,7 @@ describe('background service worker', () => {
 
     expect(chromeMock.notifications.create).toHaveBeenCalledWith(
       'echo-tx-abc123def456',
-      expect.objectContaining({ title: 'EchoMirror: Stellar Transaction' }),
+      expect.objectContaining({ title: 'EchoButler: Stellar Transaction' }),
     )
     expect(fetchMock.mock.calls[1][0]).toContain('cursor=cursor-1')
   })

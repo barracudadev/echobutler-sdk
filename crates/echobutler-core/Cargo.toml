@@ -1,0 +1,24 @@
+[package]
+name = "echobutler-core"
+description = "EchoButler SDK core — types, API client, error handling"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+reqwest.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+chrono.workspace = true
+async-trait.workspace = true
+rand.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+wiremock.workspace = true
+
+[features]
+default = []

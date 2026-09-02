@@ -1,5 +1,5 @@
-echomirror:
-  name: EchoMirror SDK
+echobutler:
+  name: EchoButler SDK
   title: Release Bot
-  url: https://github.com/Echo-Mirror-Butler/echomirror-sdk
+  url: https://github.com/Echo-Mirror-Butler/echobutler-sdk
   image_url: https://github.com/Echo-Mirror-Butler.png

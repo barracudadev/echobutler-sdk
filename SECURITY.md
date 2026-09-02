@@ -12,21 +12,21 @@ Pre-release (`0.x`) and older major versions are **not** patched.
 
 | Component | Supported |
 |---|---|
-| `echomirror-core` (crates.io) | ✅ latest |
-| `echomirror-stellar` (crates.io) | ✅ latest |
-| `echomirror-sync` (crates.io) | ✅ latest |
-| `echomirror-ffi` (crates.io) | ✅ latest |
-| `echomirror-wasm` (crates.io) | ✅ latest |
-| `@echomirror/core` (npm) | ✅ latest |
-| `@echomirror/mood` (npm) | ✅ latest |
-| `@echomirror/stellar` (npm) | ✅ latest |
-| `@echomirror/social` (npm) | ✅ latest |
-| `@echomirror/analytics` (npm) | ✅ latest |
-| `@echomirror/react` (npm) | ✅ latest |
-| `@echomirror/wasm` (npm) | ✅ latest |
-| `echomirror_sdk` (pub.dev) | ✅ latest |
-| `echomirror-sdk` (PyPI) | ✅ latest |
-| `EchoMirrorSDK` (Swift / SPM) | ✅ latest |
+| `echobutler-core` (crates.io) | ✅ latest |
+| `echobutler-stellar` (crates.io) | ✅ latest |
+| `echobutler-sync` (crates.io) | ✅ latest |
+| `echobutler-ffi` (crates.io) | ✅ latest |
+| `echobutler-wasm` (crates.io) | ✅ latest |
+| `@echobutler/core` (npm) | ✅ latest |
+| `@echobutler/mood` (npm) | ✅ latest |
+| `@echobutler/stellar` (npm) | ✅ latest |
+| `@echobutler/social` (npm) | ✅ latest |
+| `@echobutler/analytics` (npm) | ✅ latest |
+| `@echobutler/react` (npm) | ✅ latest |
+| `@echobutler/wasm` (npm) | ✅ latest |
+| `echobutler_sdk` (pub.dev) | ✅ latest |
+| `echobutler-sdk` (PyPI) | ✅ latest |
+| `EchoButlerSDK` (Swift / SPM) | ✅ latest |
 | Any `0.x` release | ❌ not supported |
 | Older major releases (if any) | ❌ not supported |
 
@@ -34,7 +34,7 @@ Pre-release (`0.x`) and older major versions are **not** patched.
 
 **Please do not file a public GitHub issue for security vulnerabilities.**
 
-Use GitHub's [private vulnerability reporting](https://github.com/Echo-Mirror-Butler/echomirror-sdk/security/advisories/new)
+Use GitHub's [private vulnerability reporting](https://github.com/Echo-Mirror-Butler/echobutler-sdk/security/advisories/new)
 to report a vulnerability confidentially. This is the preferred channel — it
 keeps the report private until a fix is ready, lets us coordinate a disclosure
 timeline with you, and lets us credit you in the published advisory.
@@ -44,7 +44,7 @@ timeline with you, and lets us credit you in the published advisory.
 > This setting must be on for the link above to work in *your* repo.
 
 If for some reason the GitHub advisory flow is unavailable, email
-**security@echomirror.dev** with:
+**security@echobutler.dev** with:
 
 - A description of the vulnerability and the affected component(s)
 - Reproduction steps or proof-of-concept (can be a private Gist)
@@ -52,7 +52,7 @@ If for some reason the GitHub advisory flow is unavailable, email
 - Any mitigations you are aware of
 
 **Please encrypt sensitive details** using our PGP key (key ID published in the
-[GitHub advisory page](https://github.com/Echo-Mirror-Butler/echomirror-sdk/security/advisories)).
+[GitHub advisory page](https://github.com/Echo-Mirror-Butler/echobutler-sdk/security/advisories)).
 
 ## Response Timeline
 
@@ -79,7 +79,7 @@ The following are **in scope**:
 
 The following are **out of scope** for this policy:
 
-- The EchoMirror backend API (report via the platform's own security channel)
+- The EchoButler backend API (report via the platform's own security channel)
 - Third-party dependencies themselves — report those upstream and we will
   update our dependency once a fix is available
 - Vulnerabilities in unsupported versions (see table above)

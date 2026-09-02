@@ -35,7 +35,7 @@ $('pay').addEventListener('click', async () => {
       source: publicKey,
       destination: ($('destination') as HTMLInputElement).value,
       amount: ($('amount') as HTMLInputElement).value,
-      memo: 'echomirror e2e',
+      memo: 'echobutler e2e',
     })
     const result = await client.signAndSubmit(adapter, tx, { address: publicKey })
     $('tx-hash').textContent = result.hash

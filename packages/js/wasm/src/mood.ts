@@ -4,7 +4,7 @@ import { toWasmError } from './errors.js'
 
 /**
  * Check whether a mood score (1–10) is valid — matches the range enforced
- * server-side and by `@echomirror/core`'s `MoodScore` type.
+ * server-side and by `@echobutler/core`'s `MoodScore` type.
  */
 export function verifyMoodScore(score: number): boolean {
   assertReady('verifyMoodScore')

@@ -1,0 +1,48 @@
+[package]
+name = "echobutler-sync"
+description = "EchoButler blockchain sync engine — real-time Stellar SSE streaming with resumable cursors and gap backfill"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+# benches/support.rs is shared helper code (via #[path]), not a bench target.
+autobenches = false
+
+[features]
+default = []
+postgres = ["dep:sqlx"]
+redis = ["dep:redis"]
+# Exposes SyncEngine::crash_for_test, which aborts sync tasks without
+# releasing their leadership lease, to simulate an unclean process crash in
+# leader-election tests.
+test-util = []
+
+[dependencies]
+echobutler-core = { path = "../echobutler-core" }
+echobutler-stellar = { path = "../echobutler-stellar" }
+tokio.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+reqwest = { workspace = true, features = ["stream"] }
+thiserror.workspace = true
+chrono.workspace = true
+async-trait.workspace = true
+rand.workspace = true
+futures = "0.3"
+tokio-stream = { version = "0.1", features = ["time"] }
+eventsource-stream.workspace = true
+tokio-util.workspace = true
+tracing.workspace = true
+sqlx = { workspace = true, optional = true }
+redis = { workspace = true, optional = true }
+
+[dev-dependencies]
+wiremock.workspace = true
+criterion = { version = "0.5", features = ["async_tokio"] }
+
+[[bench]]
+name = "pipeline_bench"
+harness = false
+
+[[bench]]
+name = "cursor_store_bench"
+harness = false

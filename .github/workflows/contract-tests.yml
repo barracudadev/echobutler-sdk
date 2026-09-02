@@ -9,12 +9,12 @@ on:
 env:
   # Runners point at the shared fixture by default, but the workflow sets them
   # explicitly so a renamed port/host can never silently change what is tested.
-  # Setting ECHOMIRROR_CONTRACT_SPEC also flips every runner from self-skip
+  # Setting ECHOBUTLER_CONTRACT_SPEC also flips every runner from self-skip
   # into fail-if-unreachable mode — a mis-wired fixture is a red check, never
   # a green skip.
-  ECHOMIRROR_CONTRACT_SPEC: ${{ github.workspace }}/contract-tests/contract-spec.json
-  ECHOMIRROR_CONTRACT_API_BASE: http://127.0.0.1:18080
-  ECHOMIRROR_CONTRACT_HORIZON_BASE: http://127.0.0.1:18081
+  ECHOBUTLER_CONTRACT_SPEC: ${{ github.workspace }}/contract-tests/contract-spec.json
+  ECHOBUTLER_CONTRACT_API_BASE: http://127.0.0.1:18080
+  ECHOBUTLER_CONTRACT_HORIZON_BASE: http://127.0.0.1:18081
 
 jobs:
   rust:
@@ -47,8 +47,8 @@ jobs:
           docker compose -f contract-tests/docker-compose.yml logs
           echo "fixture did not become ready" >&2
           exit 1
-      - run: cargo test -p echomirror-core --test contract
-      - run: cargo test -p echomirror-stellar --test contract
+      - run: cargo test -p echobutler-core --test contract
+      - run: cargo test -p echobutler-stellar --test contract
       - name: Tear down fixture
         if: always()
         run: docker compose -f contract-tests/docker-compose.yml down --volumes
@@ -153,8 +153,8 @@ jobs:
           source .venv/bin/activate
           pip install maturin pytest pytest-asyncio
 
-      - name: Build and install echomirror-python (develop mode)
-        working-directory: crates/echomirror-python
+      - name: Build and install echobutler-python (develop mode)
+        working-directory: crates/echobutler-python
         run: |
           source ../../.venv/bin/activate
           maturin develop --release
@@ -191,7 +191,7 @@ jobs:
     name: Swift contract
     runs-on: macos-14
     env:
-      ECHOMIRROR_CONTRACT_SPEC: ${{ github.workspace }}/contract-tests/contract-spec.json
+      ECHOBUTLER_CONTRACT_SPEC: ${{ github.workspace }}/contract-tests/contract-spec.json
     steps:
       - uses: actions/checkout@v7
       - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
@@ -201,9 +201,9 @@ jobs:
         with:
           toolchain: stable
           targets: aarch64-apple-ios,x86_64-apple-ios,aarch64-apple-ios-sim,aarch64-apple-darwin,x86_64-apple-darwin
-      - name: Build EchoMirrorFFI XCFramework
-        run: bash packages/swift/EchoMirrorSDK/Scripts/build-xcframework.sh
+      - name: Build EchoButlerFFI XCFramework
+        run: bash packages/swift/EchoButlerSDK/Scripts/build-xcframework.sh
       # Swift contract tests are FFI-local (no HTTP), so they do not need the
       # docker fixture and therefore do not start one on this macOS runner.
       - name: Run Swift tests (incl. contract)
-        run: swift test --package-path packages/swift/EchoMirrorSDK
+        run: swift test --package-path packages/swift/EchoButlerSDK

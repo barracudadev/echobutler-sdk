@@ -1,14 +1,14 @@
 {
-  "name": "echomirror-sdk-vscode",
-  "displayName": "EchoMirror SDK",
-  "description": "EchoMirror SDK developer tools — Stellar address validation, mood log snippets, blockchain sync explorer, and live ECHO balance in the status bar",
+  "name": "echobutler-sdk-vscode",
+  "displayName": "EchoButler SDK",
+  "description": "EchoButler SDK developer tools — Stellar address validation, mood log snippets, blockchain sync explorer, and live ECHO balance in the status bar",
   "version": "0.1.0",
-  "publisher": "EchoMirrorButler",
+  "publisher": "EchoButlerButler",
   "engines": {
     "vscode": "^1.88.0"
   },
   "categories": ["Other", "Snippets", "Debuggers"],
-  "keywords": ["stellar", "blockchain", "wellness", "echomirror", "web3"],
+  "keywords": ["stellar", "blockchain", "wellness", "echobutler", "web3"],
   "activationEvents": [
     "onStartupFinished"
   ],
@@ -16,62 +16,62 @@
   "contributes": {
     "commands": [
       {
-        "command": "echomirror.checkBalance",
-        "title": "EchoMirror: Check Stellar Balance"
+        "command": "echobutler.checkBalance",
+        "title": "EchoButler: Check Stellar Balance"
       },
       {
-        "command": "echomirror.validateAddress",
-        "title": "EchoMirror: Validate Stellar Address"
+        "command": "echobutler.validateAddress",
+        "title": "EchoButler: Validate Stellar Address"
       },
       {
-        "command": "echomirror.fundTestnet",
-        "title": "EchoMirror: Fund Testnet Account (Friendbot)"
+        "command": "echobutler.fundTestnet",
+        "title": "EchoButler: Fund Testnet Account (Friendbot)"
       },
       {
-        "command": "echomirror.openSyncExplorer",
-        "title": "EchoMirror: Open Blockchain Sync Explorer"
+        "command": "echobutler.openSyncExplorer",
+        "title": "EchoButler: Open Blockchain Sync Explorer"
       },
       {
-        "command": "echomirror.insertMoodLogSnippet",
-        "title": "EchoMirror: Insert Mood Log Code Snippet"
+        "command": "echobutler.insertMoodLogSnippet",
+        "title": "EchoButler: Insert Mood Log Code Snippet"
       },
       {
-        "command": "echomirror.logMood",
-        "title": "EchoMirror: Log Mood"
+        "command": "echobutler.logMood",
+        "title": "EchoButler: Log Mood"
       },
       {
-        "command": "echomirror.viewStreak",
-        "title": "EchoMirror: View Streak"
+        "command": "echobutler.viewStreak",
+        "title": "EchoButler: View Streak"
       },
       {
-        "command": "echomirror.signIn",
-        "title": "EchoMirror: Sign In"
+        "command": "echobutler.signIn",
+        "title": "EchoButler: Sign In"
       },
       {
-        "command": "echomirror.signOut",
-        "title": "EchoMirror: Sign Out"
+        "command": "echobutler.signOut",
+        "title": "EchoButler: Sign Out"
       }
     ],
     "configuration": {
-      "title": "EchoMirror SDK",
+      "title": "EchoButler SDK",
       "properties": {
-        "echomirror.apiKey": {
+        "echobutler.apiKey": {
           "type": "string",
           "default": "",
-          "description": "Your EchoMirror API key (echomirror.dev/developers)"
+          "description": "Your EchoButler API key (echobutler.dev/developers)"
         },
-        "echomirror.network": {
+        "echobutler.network": {
           "type": "string",
           "enum": ["mainnet", "testnet"],
           "default": "testnet",
           "description": "Stellar network to connect to"
         },
-        "echomirror.statusBarPublicKey": {
+        "echobutler.statusBarPublicKey": {
           "type": "string",
           "default": "",
           "description": "Stellar public key to show live ECHO balance in status bar"
         },
-        "echomirror.showStatusBar": {
+        "echobutler.showStatusBar": {
           "type": "boolean",
           "default": true,
           "description": "Show live ECHO balance in the VS Code status bar"
@@ -81,33 +81,33 @@
     "snippets": [
       {
         "language": "typescript",
-        "path": "./snippets/echomirror.code-snippets"
+        "path": "./snippets/echobutler.code-snippets"
       },
       {
         "language": "javascript",
-        "path": "./snippets/echomirror.code-snippets"
+        "path": "./snippets/echobutler.code-snippets"
       },
       {
         "language": "dart",
-        "path": "./snippets/echomirror-dart.code-snippets"
+        "path": "./snippets/echobutler-dart.code-snippets"
       }
     ],
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "echomirror",
-          "title": "EchoMirror SDK"
+          "id": "echobutler",
+          "title": "EchoButler SDK"
         }
       ]
     },
     "views": {
-      "echomirror": [
+      "echobutler": [
         {
-          "id": "echomirror.syncExplorer",
+          "id": "echobutler.syncExplorer",
           "name": "Blockchain Sync Explorer"
         },
         {
-          "id": "echomirror.walletView",
+          "id": "echobutler.walletView",
           "name": "Stellar Wallet"
         }
       ]
@@ -125,8 +125,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@echomirror/core": "*",
-    "@echomirror/mood": "*"
+    "@echobutler/core": "*",
+    "@echobutler/mood": "*"
   },
   "devDependencies": {
     "@types/vscode": "^1.88.0",
@@ -138,7 +138,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Echo-Mirror-Butler/echomirror-sdk"
+    "url": "https://github.com/Echo-Mirror-Butler/echobutler-sdk"
   },
   "license": "MIT"
 }

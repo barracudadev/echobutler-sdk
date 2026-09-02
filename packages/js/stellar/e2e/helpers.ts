@@ -14,7 +14,7 @@ import { join } from 'node:path'
 
 // Playwright transpiles specs to CJS, so __dirname is available here.
 export const EXTENSION_DIR = join(__dirname, '.freighter')
-export const WALLET_PASSWORD = 'EchoMirror-e2e-passw0rd!'
+export const WALLET_PASSWORD = 'EchoButler-e2e-passw0rd!'
 
 export async function launchWithFreighter(): Promise<{ context: BrowserContext; extensionId: string }> {
   if (!existsSync(join(EXTENSION_DIR, 'manifest.json'))) {

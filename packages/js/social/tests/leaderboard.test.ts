@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { LeaderboardClient } from '../src/leaderboard'
-import type { EchoMirrorClient } from '@echomirror/core'
-import type { LeaderboardEntry } from '@echomirror/core'
+import type { EchoButlerClient } from '@echobutler/core'
+import type { LeaderboardEntry } from '@echobutler/core'
 
-function createMockClient(): EchoMirrorClient {
+function createMockClient(): EchoButlerClient {
   return {
     request: vi.fn(),
     config: {} as never,
@@ -11,11 +11,11 @@ function createMockClient(): EchoMirrorClient {
     off: vi.fn(),
     emit: vi.fn(),
     setAuthToken: vi.fn(),
-  } as unknown as EchoMirrorClient
+  } as unknown as EchoButlerClient
 }
 
 describe('LeaderboardClient', () => {
-  let client: EchoMirrorClient
+  let client: EchoButlerClient
   let leaderboard: LeaderboardClient
 
   const mockEntries: LeaderboardEntry[] = [

@@ -1,9 +1,9 @@
 // ─── Config ───────────────────────────────────────────────────────────────────
 
-export interface EchoMirrorConfig {
-  /** Your EchoMirror API key — get one at echomirror.dev/developers */
+export interface EchoButlerConfig {
+  /** Your EchoButler API key — get one at echobutler.dev/developers */
   apiKey: string
-  /** API base URL. Defaults to https://api.echomirror.dev/v1 */
+  /** API base URL. Defaults to https://api.echobutler.dev/v1 */
   baseUrl?: string
   /** Stellar network. Defaults to 'mainnet' */
   network?: 'mainnet' | 'testnet'

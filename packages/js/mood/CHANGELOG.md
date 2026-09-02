@@ -1,10 +1,10 @@
-# @echomirror/mood
+# @echobutler/mood
 
 ## 0.1.0 — 2026-08-19
 
 ### Added
 
-- Initial release of `@echomirror/mood`
+- Initial release of `@echobutler/mood`
 - `logMood(client, entry)` — record a mood entry (score 1–10, optional note and tags)
 - `getMoodHistory(client, options)` — paginated mood history with date-range filtering
 - `getMoodStreak(client)` — current and longest daily-logging streak

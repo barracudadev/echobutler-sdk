@@ -21,13 +21,13 @@ const typedocSidebar = {
                 },
                 {
                   type: "doc",
-                  id: "api/js/core/src/classes/EchoMirrorClient",
-                  label: "EchoMirrorClient"
+                  id: "api/js/core/src/classes/EchoButlerClient",
+                  label: "EchoButlerClient"
                 },
                 {
                   type: "doc",
-                  id: "api/js/core/src/classes/EchoMirrorError",
-                  label: "EchoMirrorError"
+                  id: "api/js/core/src/classes/EchoButlerError",
+                  label: "EchoButlerError"
                 },
                 {
                   type: "doc",
@@ -52,8 +52,8 @@ const typedocSidebar = {
                 },
                 {
                   type: "doc",
-                  id: "api/js/core/src/interfaces/EchoMirrorConfig",
-                  label: "EchoMirrorConfig"
+                  id: "api/js/core/src/interfaces/EchoButlerConfig",
+                  label: "EchoButlerConfig"
                 },
                 {
                   type: "doc",
@@ -264,8 +264,8 @@ const typedocSidebar = {
               items: [
                 {
                   type: "doc",
-                  id: "api/js/react/src/interfaces/EchoMirrorProviderProps",
-                  label: "EchoMirrorProviderProps"
+                  id: "api/js/react/src/interfaces/EchoButlerProviderProps",
+                  label: "EchoButlerProviderProps"
                 }
               ]
             },
@@ -275,13 +275,13 @@ const typedocSidebar = {
               items: [
                 {
                   type: "doc",
-                  id: "api/js/react/src/functions/EchoMirrorProvider",
-                  label: "EchoMirrorProvider"
+                  id: "api/js/react/src/functions/EchoButlerProvider",
+                  label: "EchoButlerProvider"
                 },
                 {
                   type: "doc",
-                  id: "api/js/react/src/functions/useEchoMirrorClient",
-                  label: "useEchoMirrorClient"
+                  id: "api/js/react/src/functions/useEchoButlerClient",
+                  label: "useEchoButlerClient"
                 },
                 {
                   type: "doc",

@@ -7,23 +7,23 @@ sidebar_position: 1
 ## Install
 
 ```bash
-npm install @echomirror/core
+npm install @echobutler/core
 ```
 
 ## Initialize the client
 
 ```typescript
-import { EchoMirrorClient } from '@echomirror/core'
+import { EchoButlerClient } from '@echobutler/core'
 
-const client = new EchoMirrorClient({
-  apiKey: process.env.ECHOMIRROR_API_KEY,
+const client = new EchoButlerClient({
+  apiKey: process.env.ECHOBUTLER_API_KEY,
 })
 ```
 
 ## Log a mood entry
 
 ```typescript
-import { logMood } from '@echomirror/mood'
+import { logMood } from '@echobutler/mood'
 
 const entry = await logMood(client, {
   mood: 'grateful',
@@ -37,7 +37,7 @@ console.log(entry.streak) // current mood-logging streak
 ## Connect a Stellar wallet and send an echo
 
 ```typescript
-import { connectFreighter, sendEcho } from '@echomirror/stellar'
+import { connectFreighter, sendEcho } from '@echobutler/stellar'
 
 const wallet = await connectFreighter()
 

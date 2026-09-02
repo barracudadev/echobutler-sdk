@@ -31,15 +31,15 @@ reviews:
   path_instructions:
     - path: "crates/**/*.rs"
       instructions: >
-        This is a Rust workspace shared across native, WASM (echomirror-wasm),
-        Python bindings (echomirror-python, via PyO3), and an FFI layer
-        (echomirror-ffi) consumed by the Swift and Flutter packages. Flag any
-        change to public function signatures in echomirror-core without
+        This is a Rust workspace shared across native, WASM (echobutler-wasm),
+        Python bindings (echobutler-python, via PyO3), and an FFI layer
+        (echobutler-ffi) consumed by the Swift and Flutter packages. Flag any
+        change to public function signatures in echobutler-core without
         checking whether the FFI/WASM/Python bindings need a matching update.
         Pay close attention to unsafe blocks, panic-on-error paths that cross
         an FFI boundary (these should return typed errors instead), and
         anything touching Stellar transaction signing or cursor persistence
-        in echomirror-sync — mistakes there have real financial or
+        in echobutler-sync — mistakes there have real financial or
         data-integrity consequences.
     - path: "packages/js/**/*.ts"
       instructions: >
@@ -57,7 +57,7 @@ reviews:
         Browser/editor extension code (chrome, vscode) runs with elevated
         permissions in the user's browser or editor — flag anything that
         reads more data than the stated feature needs, or that could leak
-        the user's EchoMirror auth token to a third-party host.
+        the user's EchoButler auth token to a third-party host.
     - path: ".github/workflows/**"
       instructions: >
         This repo has per-language CI (rust-ci, js-ci, flutter-ci,

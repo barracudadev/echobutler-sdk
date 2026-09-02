@@ -1,6 +1,6 @@
 name: Stellar Live
 
-# Runs @echomirror/stellar's tests that need real external infrastructure: the
+# Runs @echobutler/stellar's tests that need real external infrastructure: the
 # public Stellar testnet (Horizon + Friendbot) and the real Freighter browser
 # extension. Kept off the PR path deliberately, matching sync-live-testnet.yml
 # — public testnet infra can be slow or flaky, and the Freighter build is

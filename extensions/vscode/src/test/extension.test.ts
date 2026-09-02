@@ -99,13 +99,13 @@ vi.mock('vscode', () => {
   }
 })
 
-vi.mock('@echomirror/core', () => ({
-  EchoMirrorClient: class {
+vi.mock('@echobutler/core', () => ({
+  EchoButlerClient: class {
     constructor(public opts: unknown) {}
   },
 }))
 
-vi.mock('@echomirror/mood', () => ({
+vi.mock('@echobutler/mood', () => ({
   logMood: vi.fn(async () => ({ id: 'x' })),
   getMoodStreak: vi.fn(async () => ({ current: 4, longest: 12 })),
   MoodScore: class {},
@@ -224,7 +224,7 @@ describe('insertMoodLogSnippetCommand', () => {
     mocks.activeTextEditor.document.languageId = 'dart'
     await ext.insertMoodLogSnippetCommand()
     const snippet = (mocks.activeTextEditor.insertSnippet.mock.calls[0][0] as any).value
-    expect(snippet).toContain('EchoMirror.instance.mood.log')
+    expect(snippet).toContain('EchoButler.instance.mood.log')
   })
 
   it('does nothing without an active editor', async () => {
@@ -243,7 +243,7 @@ describe('signIn / signOut', () => {
     const ctx = makeContext()
     mocks.showInputBox.mockResolvedValue('em_live_secret123')
     await ext.signInCommand(ctx)
-    expect(mocks.secrets.store).toHaveBeenCalledWith('echomirror.apiKey', 'em_live_secret123')
+    expect(mocks.secrets.store).toHaveBeenCalledWith('echobutler.apiKey', 'em_live_secret123')
   })
 
   it('signOut deletes the api key and resets the mood status bar', async () => {
@@ -251,7 +251,7 @@ describe('signIn / signOut', () => {
     ext.activate(ctx)
     ext.moodStatusBarItem!.text = '🟢 Mood: 9/10'
     await ext.signOutCommand(ctx)
-    expect(mocks.secrets.delete).toHaveBeenCalledWith('echomirror.apiKey')
+    expect(mocks.secrets.delete).toHaveBeenCalledWith('echobutler.apiKey')
     expect(ext.moodStatusBarItem!.text).toBe('$(pulse) Log Mood')
   })
 })
@@ -262,7 +262,7 @@ describe('getClient', () => {
     mocks.secrets.get.mockResolvedValue(undefined)
     const client = await ext.getClient(ctx)
     expect(client).toBeUndefined()
-    expect(mocks.executeCommand).toHaveBeenCalledWith('echomirror.signIn')
+    expect(mocks.executeCommand).toHaveBeenCalledWith('echobutler.signIn')
   })
 
   it('constructs a client when an api key is stored', async () => {

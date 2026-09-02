@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>EchoMirror SDK — Vanilla JS Example</title>
+  <title>EchoButler SDK — Vanilla JS Example</title>
   <style>
     body { font-family: system-ui, sans-serif; max-width: 480px; margin: 48px auto; padding: 0 24px; color: #0c1a2e; }
     h1 { font-size: 1.5rem; margin-bottom: 24px; }
@@ -15,7 +15,7 @@
   </style>
 </head>
 <body>
-  <h1>EchoMirror SDK — Vanilla JS</h1>
+  <h1>EchoButler SDK — Vanilla JS</h1>
 
   <label for="score">Mood score: <span id="score-value">7</span>/10</label>
   <input type="range" id="score" min="1" max="10" value="7" />
@@ -26,12 +26,12 @@
 
   <div id="result" style="display:none" class="result"></div>
 
-  <h1 style="margin-top: 48px">@echomirror/wasm — client-side helpers</h1>
+  <h1 style="margin-top: 48px">@echobutler/wasm — client-side helpers</h1>
   <p id="wasm-hash" class="result" style="display:none"></p>
   <p id="wasm-avg" class="result" style="display:none"></p>
 
   <script type="module">
-    // In production: import { EchoMirrorClient } from 'https://cdn.jsdelivr.net/npm/@echomirror/core/+esm'
+    // In production: import { EchoButlerClient } from 'https://cdn.jsdelivr.net/npm/@echobutler/core/+esm'
     // This example uses a mock for demonstration.
 
     const scoreEl = document.getElementById('score')
@@ -58,10 +58,10 @@
       logBtn.textContent = 'Log Mood'
     })
 
-    // @echomirror/wasm: crypto + local aggregation that runs entirely in
+    // @echobutler/wasm: crypto + local aggregation that runs entirely in
     // the browser, no server round-trip. `init()` fetches and instantiates
     // the .wasm binary once — call it before anything else.
-    import { init, hashPublicKey, MoodBuffer } from '@echomirror/wasm'
+    import { init, hashPublicKey, MoodBuffer } from '@echobutler/wasm'
 
     await init()
 

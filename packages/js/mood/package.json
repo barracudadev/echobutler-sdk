@@ -1,7 +1,7 @@
 {
-  "name": "@echomirror/mood",
+  "name": "@echobutler/mood",
   "version": "0.1.0",
-  "description": "EchoMirror SDK mood tracking module",
+  "description": "EchoButler SDK mood tracking module",
   "publishConfig": {
     "access": "public"
   },
@@ -24,13 +24,13 @@
     "size-limit": "size-limit"
   },
   "keywords": [
-    "echomirror",
+    "echobutler",
     "mood",
     "wellness"
   ],
   "license": "MIT",
   "dependencies": {
-    "@echomirror/core": "*"
+    "@echobutler/core": "*"
   },
   "devDependencies": {
     "typescript": "*",
@@ -39,7 +39,7 @@
   },
   "size-limit": [
     {
-      "name": "@echomirror/mood",
+      "name": "@echobutler/mood",
       "path": "dist/index.js",
       "limit": "350 B"
     }

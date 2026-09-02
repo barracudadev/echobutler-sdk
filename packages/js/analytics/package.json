@@ -1,7 +1,7 @@
 {
-  "name": "@echomirror/analytics",
+  "name": "@echobutler/analytics",
   "version": "0.1.0",
-  "description": "Privacy-safe emotional UX analytics for EchoMirror applications",
+  "description": "Privacy-safe emotional UX analytics for EchoButler applications",
   "publishConfig": {
     "access": "public"
   },
@@ -26,7 +26,7 @@
     "lint": "eslint src tests"
   },
   "keywords": [
-    "echomirror",
+    "echobutler",
     "analytics",
     "privacy",
     "wellness",

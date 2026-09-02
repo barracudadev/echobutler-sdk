@@ -1,43 +1,43 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react'
-import { EchoMirrorClient } from '@echomirror/core'
-import type { EchoMirrorConfig, MoodStreak, UserProfile } from '@echomirror/core'
+import { EchoButlerClient } from '@echobutler/core'
+import type { EchoButlerConfig, MoodStreak, UserProfile } from '@echobutler/core'
 
 // ─── Context ──────────────────────────────────────────────────────────────────
 
-interface EchoMirrorContextValue {
-  client: EchoMirrorClient
+interface EchoButlerContextValue {
+  client: EchoButlerClient
   profile: UserProfile | null
   isLoading: boolean
   error: Error | null
 }
 
-const EchoMirrorContext = createContext<EchoMirrorContextValue | null>(null)
+const EchoButlerContext = createContext<EchoButlerContextValue | null>(null)
 
 // ─── Provider ─────────────────────────────────────────────────────────────────
 
-export interface EchoMirrorProviderProps {
+export interface EchoButlerProviderProps {
   apiKey: string
-  config?: Omit<EchoMirrorConfig, 'apiKey'>
+  config?: Omit<EchoButlerConfig, 'apiKey'>
   authToken?: string
   children: React.ReactNode
 }
 
 /**
- * Wrap your app with this provider to access all EchoMirror hooks.
+ * Wrap your app with this provider to access all EchoButler hooks.
  *
  * @example
- * <EchoMirrorProvider apiKey="your_api_key">
+ * <EchoButlerProvider apiKey="your_api_key">
  *   <App />
- * </EchoMirrorProvider>
+ * </EchoButlerProvider>
  */
-export function EchoMirrorProvider({
+export function EchoButlerProvider({
   apiKey,
   config,
   authToken,
   children,
-}: EchoMirrorProviderProps) {
+}: EchoButlerProviderProps) {
   const [client] = useState(
-    () => new EchoMirrorClient({ apiKey, ...config }),
+    () => new EchoButlerClient({ apiKey, ...config }),
   )
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -59,27 +59,27 @@ export function EchoMirrorProvider({
   }, [client, authToken])
 
   return (
-    <EchoMirrorContext.Provider value={{ client, profile, isLoading, error }}>
+    <EchoButlerContext.Provider value={{ client, profile, isLoading, error }}>
       {children}
-    </EchoMirrorContext.Provider>
+    </EchoButlerContext.Provider>
   )
 }
 
 // ─── Hooks ────────────────────────────────────────────────────────────────────
 
-function useEchoMirror() {
-  const ctx = useContext(EchoMirrorContext)
+function useEchoButler() {
+  const ctx = useContext(EchoButlerContext)
   if (!ctx) {
-    throw new Error('useEchoMirror must be used inside <EchoMirrorProvider>')
+    throw new Error('useEchoButler must be used inside <EchoButlerProvider>')
   }
   return ctx
 }
 
 /**
- * Access the raw EchoMirrorClient for direct API calls.
+ * Access the raw EchoButlerClient for direct API calls.
  */
-export function useEchoMirrorClient(): EchoMirrorClient {
-  return useEchoMirror().client
+export function useEchoButlerClient(): EchoButlerClient {
+  return useEchoButler().client
 }
 
 /**
@@ -89,7 +89,7 @@ export function useEchoMirrorClient(): EchoMirrorClient {
  * const { profile, isLoading } = useProfile()
  */
 export function useProfile() {
-  const { profile, isLoading, error } = useEchoMirror()
+  const { profile, isLoading, error } = useEchoButler()
   return { profile, isLoading, error }
 }
 
@@ -101,7 +101,7 @@ export function useProfile() {
  * return <p>{streak?.current} day streak 🔥</p>
  */
 export function useMoodStreak() {
-  const { client } = useEchoMirror()
+  const { client } = useEchoButler()
   const [streak, setStreak] = useState<MoodStreak | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<Error | null>(null)
@@ -131,11 +131,11 @@ export function useMoodStreak() {
  *   toast(`Mood logged: ${event.entry.score}/10`)
  * })
  */
-export function useSDKEvent<T extends Parameters<typeof EchoMirrorClient.prototype.on>[0]>(
+export function useSDKEvent<T extends Parameters<typeof EchoButlerClient.prototype.on>[0]>(
   eventType: T,
-  handler: Parameters<typeof EchoMirrorClient.prototype.on<{ type: T } & Parameters<typeof EchoMirrorClient.prototype.emit>[0]>>[1],
+  handler: Parameters<typeof EchoButlerClient.prototype.on<{ type: T } & Parameters<typeof EchoButlerClient.prototype.emit>[0]>>[1],
 ) {
-  const { client } = useEchoMirror()
+  const { client } = useEchoButler()
   useEffect(() => {
     return client.on(eventType as never, handler as never)
   }, [client, eventType, handler])

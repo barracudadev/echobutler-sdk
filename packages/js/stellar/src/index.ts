@@ -83,7 +83,7 @@ export type {
   SubscribeContractEventsOptions,
 } from './soroban-events'
 
-// ─── EchoMirror API helpers (backwards-compatible surface) ────────────────────
+// ─── EchoButler API helpers (backwards-compatible surface) ────────────────────
 export {
   connectFreighter,
   fundTestnetAccount,
@@ -92,6 +92,6 @@ export {
   sendEcho,
   signWithFreighter,
   submitTransaction,
-} from './echomirror'
-export type { FreighterConnection } from './echomirror'
-export type { StellarBalance, StellarTransaction, EchoTransfer } from './echomirror'
+} from './echobutler'
+export type { FreighterConnection } from './echobutler'
+export type { StellarBalance, StellarTransaction, EchoTransfer } from './echobutler'

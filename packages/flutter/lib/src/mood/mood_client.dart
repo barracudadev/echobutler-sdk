@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../echo_mirror.dart';
+import '../echo_butler.dart';
 import 'mood_models.dart';
 import '../errors.dart';
 
@@ -11,7 +11,7 @@ class MoodClient {
 
   Map<String, String> get _headers => {
         'x-api-key': config.apiKey,
-        'x-echomirror-network': config.network.name,
+        'x-echobutler-network': config.network.name,
         'content-type': 'application/json',
         if (config.authToken != null)
           'authorization': 'Bearer ${config.authToken}',
@@ -40,13 +40,13 @@ class MoodClient {
           throw ArgumentError('Unsupported method: $method');
       }
     } catch (e) {
-      throw EchoMirrorNetworkError(e.toString());
+      throw EchoButlerNetworkError(e.toString());
     }
 
-    if (res.statusCode == 401) throw const EchoMirrorAuthError();
-    if (res.statusCode == 429) throw const EchoMirrorRateLimitError();
+    if (res.statusCode == 401) throw const EchoButlerAuthError();
+    if (res.statusCode == 429) throw const EchoButlerRateLimitError();
     if (res.statusCode < 200 || res.statusCode >= 300) {
-      throw EchoMirrorError('HTTP ${res.statusCode}: ${res.body}');
+      throw EchoButlerError('HTTP ${res.statusCode}: ${res.body}');
     }
 
     final json = jsonDecode(res.body) as Map<String, dynamic>;
@@ -56,7 +56,7 @@ class MoodClient {
   /// Log a mood entry for the authenticated user.
   ///
   /// ```dart
-  /// final entry = await EchoMirror.instance.mood.log(
+  /// final entry = await EchoButler.instance.mood.log(
   ///   score: 8,
   ///   note: 'Great day!',
   ///   tags: ['work', 'proud'],

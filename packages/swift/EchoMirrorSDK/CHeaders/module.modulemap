@@ -1,4 +1,0 @@
-module EchoMirrorFFI {
-    header "EchoMirrorFFI.h"
-    export *
-}

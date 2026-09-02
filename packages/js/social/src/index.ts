@@ -10,7 +10,7 @@ export { TtlCache } from './cache'
 export type {
   GlobalFeedEntry,
   LeaderboardEntry,
-} from '@echomirror/core'
+} from '@echobutler/core'
 export type {
   LeaderboardWindow,
   LeaderboardFetchOptions,

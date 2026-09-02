@@ -45,7 +45,7 @@ describe.skipIf(!enabled)('Stellar testnet integration', () => {
       source: alice.publicKey(),
       destination: issuer.publicKey(),
       amount: '25.5',
-      memo: 'echomirror it',
+      memo: 'echobutler it',
     })
     tx.sign(alice)
     const result = await client.submitTransaction(tx)

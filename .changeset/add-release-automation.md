@@ -1,10 +1,10 @@
 ---
-"@echomirror/core": patch
-"@echomirror/mood": patch
-"@echomirror/react": patch
-"@echomirror/social": patch
-"@echomirror/stellar": patch
-"@echomirror/analytics": patch
+"@echobutler/core": patch
+"@echobutler/mood": patch
+"@echobutler/react": patch
+"@echobutler/social": patch
+"@echobutler/stellar": patch
+"@echobutler/analytics": patch
 ---
 
 Configure Changesets release automation and publishing path to npm.

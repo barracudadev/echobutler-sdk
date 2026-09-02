@@ -1,5 +1,5 @@
 {
-  "name": "@echomirror/soroban-demo",
+  "name": "@echobutler/soroban-demo",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@echomirror/stellar": "workspace:*",
+    "@echobutler/stellar": "workspace:*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },

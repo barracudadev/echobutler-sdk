@@ -1,4 +1,4 @@
-name: echomirror-contract-fixture
+name: echobutler-contract-fixture
 
 services:
   fixture-api:

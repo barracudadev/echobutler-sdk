@@ -1,6 +1,6 @@
 # Contract-Test Harness
 
-Shared, language-agnostic contract tests for the EchoMirror SDK bindings
+Shared, language-agnostic contract tests for the EchoButler SDK bindings
 (Rust, JS, Flutter, Swift). One fixture serves the *same* canned responses to
 every binding; each binding runs its own small runner against it and asserts
 the same logical values, so a field rename or path change in any language's
@@ -20,7 +20,7 @@ contract-tests/
 
 `contract-spec.json` declares every operation a binding must satisfy:
 
-- `target`: `api` (EchoMirror API, port 18080) or `horizon` (port 18081)
+- `target`: `api` (EchoButler API, port 18080) or `horizon` (port 18081)
 - `method` + `path`: the **exact** request line the fixture matches
   (query string is significant)
 - `request.body`: optional JSON payload sent on `POST`
@@ -54,7 +54,7 @@ path is immediately diagnosable.
 ## Runners
 
 Each runner reads the shared spec and asserts the typed binding's output against
-it. When `ECHOMIRROR_CONTRACT_SPEC` is set (as in CI), a missing spec or
+it. When `ECHOBUTLER_CONTRACT_SPEC` is set (as in CI), a missing spec or
 unreachable fixture is a **hard failure** (panic/throw), so CI cannot pass
 vacuously by skipping. Without that env var, runners self-skip so local test
 runs stay green without the fixture. The contract workflow starts the fixture
@@ -62,33 +62,33 @@ first and waits for it.
 
 | Binding | Runner | Exercises |
 |---|---|---|
-| Rust | `crates/echomirror-core/tests/contract.rs`, `crates/echomirror-stellar/tests/contract.rs` | mood + social + stellar bindings incl. typed deserialization and error mapping |
-| JS | `packages/js/core/tests/contract.test.ts` | `EchoMirrorClient` transport + spec-compliant mood/stellar wrappers |
-| Flutter | `packages/flutter/test/contract_test.dart` | `EchoMirror.initialize` + Mood/Social/Stellar clients |
-| Swift | `packages/swift/EchoMirrorSDK/Tests/EchoMirrorSDKTests/ContractTests.swift` | FFI validation/bridging semantics (no HTTP) |
+| Rust | `crates/echobutler-core/tests/contract.rs`, `crates/echobutler-stellar/tests/contract.rs` | mood + social + stellar bindings incl. typed deserialization and error mapping |
+| JS | `packages/js/core/tests/contract.test.ts` | `EchoButlerClient` transport + spec-compliant mood/stellar wrappers |
+| Flutter | `packages/flutter/test/contract_test.dart` | `EchoButler.initialize` + Mood/Social/Stellar clients |
+| Swift | `packages/swift/EchoButlerSDK/Tests/EchoButlerSDKTests/ContractTests.swift` | FFI validation/bridging semantics (no HTTP) |
 | Python | `contract-tests/runners/python/test_contract.py` | PyO3 async bindings — mood streak/summary/log, social feed/leaderboard, Stellar build-transfer/submit/history/balance |
 
 Environment overrides (all default to the CI values):
 
-- `ECHOMIRROR_CONTRACT_SPEC` — path to `contract-spec.json`
-- `ECHOMIRROR_CONTRACT_API_BASE` — default `http://127.0.0.1:18080`
-- `ECHOMIRROR_CONTRACT_HORIZON_BASE` — default `http://127.0.0.1:18081`
+- `ECHOBUTLER_CONTRACT_SPEC` — path to `contract-spec.json`
+- `ECHOBUTLER_CONTRACT_API_BASE` — default `http://127.0.0.1:18080`
+- `ECHOBUTLER_CONTRACT_HORIZON_BASE` — default `http://127.0.0.1:18081`
 
 ## Known drift (surfaced by this harness, not yet fixed upstream)
 
 The harness intentionally asserts the **canonical** wire shape. Two JS
 higher-level wrappers currently diverge from it and are therefore exercised at
-the `EchoMirrorClient.request` level instead:
+the `EchoButlerClient.request` level instead:
 
-1. `@echomirror/stellar` `getTransactionHistory` sends the query param
+1. `@echobutler/stellar` `getTransactionHistory` sends the query param
    `publicKey` (camelCase); Rust and Flutter both send `public_key`.
-2. `@echomirror/social` `LeaderboardClient.fetchLeaderboard` requests
+2. `@echobutler/social` `LeaderboardClient.fetchLeaderboard` requests
    `?window=weekly` and expects a **bare array**, while the canonical route is
    `?limit=` returning `{ "entries": [...] }`.
 
 Swift's FFI fixtures are also a known divergence: mood/social payloads are
-generated inside `echomirror-ffi` rather than fetched over HTTP, and
-`echomirror_stellar_get_balance_async` targets the real testnet Horizon because
+generated inside `echobutler-ffi` rather than fetched over HTTP, and
+`echobutler_stellar_get_balance_async` targets the real testnet Horizon because
 there is no FFI hook to override the Horizon base URL. That op is documented as
 out of scope until an FFI `horizon_url` override exists.
 

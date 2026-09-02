@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the echomirror-wasm crate for both wasm-pack targets — `web`
+// Builds the echobutler-wasm crate for both wasm-pack targets — `web`
 // (browser ESM, fetch-based instantiation) and `nodejs` (CJS, sync
 // require-based instantiation) — in two build variants:
 //
@@ -27,7 +27,7 @@ import { fileURLToPath } from 'node:url'
 
 const pkgRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)))
 const repoRoot = path.resolve(pkgRoot, '../../..')
-const crateDir = path.join(repoRoot, 'crates/echomirror-wasm')
+const crateDir = path.join(repoRoot, 'crates/echobutler-wasm')
 
 const dev = process.env.WASM_BUILD_DEV === '1'
 const simdOnly = process.env.WASM_BUILD_SIMD_ONLY === '1'
@@ -89,7 +89,7 @@ for (const { wasmPackTarget, outDir, simd } of variants) {
       '--out-dir',
       outDir,
       '--out-name',
-      'echomirror_wasm',
+      'echobutler_wasm',
       // profileArgs (--release/--dev) must come before --features: once
       // wasm-pack's clap parser hits an option it doesn't recognize (like
       // --features, which is cargo's, not wasm-pack's own), everything
@@ -147,7 +147,7 @@ for (const { wasmPackTarget, outDir, simd } of variants) {
   // --enable-simd added. The -O4 is repeated so the combined optimization
   // level matches the scalar build.
   if (simd && !dev) {
-    const wasmFile = path.join(outDir, 'echomirror_wasm_bg.wasm')
+    const wasmFile = path.join(outDir, 'echobutler_wasm_bg.wasm')
     console.log(`\n> wasm-opt --enable-simd -O4 (in-place) on ${path.relative(pkgRoot, wasmFile)}`)
 
     const optResult = spawnSync(

@@ -1,5 +1,5 @@
-import type { EchoMirrorClient } from '@echomirror/core'
-import type { LeaderboardEntry } from '@echomirror/core'
+import type { EchoButlerClient } from '@echobutler/core'
+import type { LeaderboardEntry } from '@echobutler/core'
 import type { LeaderboardFetchOptions, CacheConfig } from './types'
 import { TtlCache } from './cache'
 
@@ -14,12 +14,12 @@ interface LeaderboardResponse {
  * Cache behavior: each `LeaderboardClient` instance owns its own `TtlCache`.
  */
 export class LeaderboardClient {
-  private _client: EchoMirrorClient
+  private _client: EchoButlerClient
   private _cache: TtlCache<LeaderboardEntry[]>
   private _basePath: string
 
   constructor(
-    client: EchoMirrorClient,
+    client: EchoButlerClient,
     options?: { basePath?: string; cache?: CacheConfig },
   ) {
     this._client = client

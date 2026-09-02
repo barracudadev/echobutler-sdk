@@ -1,6 +1,6 @@
 # Interface: FreighterConnection
 
-Defined in: [packages/js/stellar/src/index.ts:6](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/stellar/src/index.ts#L6)
+Defined in: [packages/js/stellar/src/index.ts:6](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/stellar/src/index.ts#L6)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/js/stellar/src/index.ts:6](https://github.com/karanjadavi/
 
 > **network**: `"mainnet"` \| `"testnet"`
 
-Defined in: [packages/js/stellar/src/index.ts:8](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/stellar/src/index.ts#L8)
+Defined in: [packages/js/stellar/src/index.ts:8](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/stellar/src/index.ts#L8)
 
 ***
 
@@ -16,4 +16,4 @@ Defined in: [packages/js/stellar/src/index.ts:8](https://github.com/karanjadavi/
 
 > **publicKey**: `string`
 
-Defined in: [packages/js/stellar/src/index.ts:7](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/stellar/src/index.ts#L7)
+Defined in: [packages/js/stellar/src/index.ts:7](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/stellar/src/index.ts#L7)

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../echo_mirror.dart';
+import '../echo_butler.dart';
 import 'stellar_models.dart';
 import '../errors.dart';
 
@@ -11,7 +11,7 @@ class StellarClient {
 
   Map<String, String> get _headers => {
         'x-api-key': config.apiKey,
-        'x-echomirror-network': config.network.name,
+        'x-echobutler-network': config.network.name,
         'content-type': 'application/json',
         if (config.authToken != null)
           'authorization': 'Bearer ${config.authToken}',
@@ -20,7 +20,7 @@ class StellarClient {
   /// Get XLM and ECHO token balance for a Stellar public key.
   ///
   /// ```dart
-  /// final balance = await EchoMirror.instance.stellar.getBalance(publicKey);
+  /// final balance = await EchoButler.instance.stellar.getBalance(publicKey);
   /// print('${balance.xlm} XLM  •  ${balance.echo} ECHO');
   /// ```
   Future<StellarBalance> getBalance(String publicKey) async {
@@ -37,11 +37,11 @@ class StellarClient {
   /// Only works on testnet.
   ///
   /// ```dart
-  /// await EchoMirror.instance.stellar.fundTestnetAccount(publicKey);
+  /// await EchoButler.instance.stellar.fundTestnetAccount(publicKey);
   /// ```
   Future<void> fundTestnetAccount(String publicKey) async {
     if (config.network != StellarNetwork.testnet) {
-      throw const EchoMirrorError(
+      throw const EchoButlerError(
           'fundTestnetAccount is only available on testnet');
     }
     final res = await config.httpClient.post(
@@ -72,10 +72,10 @@ class StellarClient {
   }
 
   void _checkStatus(http.Response res) {
-    if (res.statusCode == 401) throw const EchoMirrorAuthError();
-    if (res.statusCode == 429) throw const EchoMirrorRateLimitError();
+    if (res.statusCode == 401) throw const EchoButlerAuthError();
+    if (res.statusCode == 429) throw const EchoButlerRateLimitError();
     if (res.statusCode < 200 || res.statusCode >= 300) {
-      throw EchoMirrorError('HTTP ${res.statusCode}: ${res.body}');
+      throw EchoButlerError('HTTP ${res.statusCode}: ${res.body}');
     }
   }
 }

@@ -1,11 +1,11 @@
-# @echomirror/wasm
+# @echobutler/wasm
 
-The `echomirror-wasm` Rust crate compiled to WebAssembly, wrapped in a hand-written,
+The `echobutler-wasm` Rust crate compiled to WebAssembly, wrapped in a hand-written,
 ergonomic TypeScript API — dual-target for the browser and Node.js from a single
 `wasm-pack` build pipeline.
 
 ```ts
-import { init, verifyMoodScore, hashPublicKey, MoodBuffer } from '@echomirror/wasm'
+import { init, verifyMoodScore, hashPublicKey, MoodBuffer } from '@echobutler/wasm'
 
 await init() // instantiates the wasm module (no-op in Node, fetches in browser)
 

@@ -499,7 +499,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1aaf95b3e5c8f23aa320147307562d361db0ae0d51242340f558153b4eb2439b"
 
 [[package]]
-name = "echomirror-core"
+name = "echobutler-core"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -516,11 +516,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "echomirror-ffi"
+name = "echobutler-ffi"
 version = "0.1.0"
 dependencies = [
- "echomirror-core",
- "echomirror-stellar",
+ "echobutler-core",
+ "echobutler-stellar",
  "hex",
  "serde_json",
  "sha2 0.11.0",
@@ -528,12 +528,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "echomirror-python"
+name = "echobutler-python"
 version = "0.1.0"
 dependencies = [
  "chrono",
- "echomirror-core",
- "echomirror-stellar",
+ "echobutler-core",
+ "echobutler-stellar",
  "pyo3",
  "pyo3-async-runtimes",
  "serde_json",
@@ -541,12 +541,12 @@ dependencies = [
 ]
 
 [[package]]
-name = "echomirror-stellar"
+name = "echobutler-stellar"
 version = "0.1.0"
 dependencies = [
  "base64",
  "chrono",
- "echomirror-core",
+ "echobutler-core",
  "hex",
  "reqwest",
  "serde",
@@ -558,14 +558,14 @@ dependencies = [
 ]
 
 [[package]]
-name = "echomirror-sync"
+name = "echobutler-sync"
 version = "0.1.0"
 dependencies = [
  "async-trait",
  "chrono",
  "criterion",
- "echomirror-core",
- "echomirror-stellar",
+ "echobutler-core",
+ "echobutler-stellar",
  "eventsource-stream",
  "futures",
  "rand",
@@ -583,7 +583,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "echomirror-wasm"
+name = "echobutler-wasm"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",

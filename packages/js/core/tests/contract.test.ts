@@ -1,17 +1,17 @@
 /**
- * EchoMirror contract-test runner (TypeScript).
+ * EchoButler contract-test runner (TypeScript).
  *
  * Reads the shared `contract-tests/contract-spec.json` and drives the real
- * `@echomirror/core` HTTP binding (`EchoMirrorClient.request`) against the
+ * `@echobutler/core` HTTP binding (`EchoButlerClient.request`) against the
  * docker-compose fixture (`fixture-api` on 127.0.0.1:18080). The mood and
- * stellar high-level wrappers that are already spec-compliant (`@echomirror/mood`,
- * `@echomirror/stellar`) are exercised too.
+ * stellar high-level wrappers that are already spec-compliant (`@echobutler/mood`,
+ * `@echobutler/stellar`) are exercised too.
  *
  * Known wrapper drift (documented in contract-tests/README.md and intentionally
  * NOT asserted as passing):
- *   - `@echomirror/stellar` getTransactionHistory sends `publicKey` as the query
+ *   - `@echobutler/stellar` getTransactionHistory sends `publicKey` as the query
  *     param (canonical wire param is `public_key`).
- *   - `@echomirror/social` LeaderboardClient requests `?window=weekly` and expects
+ *   - `@echobutler/social` LeaderboardClient requests `?window=weekly` and expects
  *     a bare array; canonical is `?limit=` + `{ "entries": [...] }`.
  * The runner exercises those two endpoints at the transport level so the command
  * surface stays covered without masking the drift.
@@ -19,16 +19,16 @@
  * The suite self-skips when the fixture is not reachable.
  *
  * Env overrides:
- *   ECHOMIRROR_CONTRACT_SPEC       path to contract-spec.json
- *   ECHOMIRROR_CONTRACT_API_BASE   e.g. http://127.0.0.1:18080
+ *   ECHOBUTLER_CONTRACT_SPEC       path to contract-spec.json
+ *   ECHOBUTLER_CONTRACT_API_BASE   e.g. http://127.0.0.1:18080
  */
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { EchoMirrorClient, EchoMirrorError } from '../src'
-import type { EchoMirrorClient as CoreClient } from '@echomirror/core'
+import { EchoButlerClient, EchoButlerError } from '../src'
+import type { EchoButlerClient as CoreClient } from '@echobutler/core'
 import { getMoodStreak, getMoodSummary, logMood } from '../../mood/src/index'
-import { getBalance, submitTransaction } from '../../stellar/src/echomirror'
+import { getBalance, submitTransaction } from '../../stellar/src/echobutler'
 import { GlobalFeedClient } from '../../social/src/feed'
 
 type Spec = {
@@ -45,11 +45,11 @@ type Spec = {
 const defaultSpecPath = fileURLToPath(
   new URL('../../../../contract-tests/contract-spec.json', import.meta.url),
 )
-const spec = JSON.parse(readFileSync(process.env.ECHOMIRROR_CONTRACT_SPEC ?? defaultSpecPath, 'utf8')) as Spec
+const spec = JSON.parse(readFileSync(process.env.ECHOBUTLER_CONTRACT_SPEC ?? defaultSpecPath, 'utf8')) as Spec
 
-const apiBase = process.env.ECHOMIRROR_CONTRACT_API_BASE ?? 'http://127.0.0.1:18080'
+const apiBase = process.env.ECHOBUTLER_CONTRACT_API_BASE ?? 'http://127.0.0.1:18080'
 const publicKey = 'GDKUJHNOCQ6NOFJCSPE5IZMFFRZ6U4VO3EEFJQKJSDK5B4VZTH4XKSKD'
-const client = new EchoMirrorClient({
+const client = new EchoButlerClient({
   apiKey: 'contract-test-key',
   baseUrl: apiBase,
   network: 'testnet',
@@ -86,17 +86,17 @@ const enabled = await (async () => {
     const res = await fetch(`${apiBase}/mood/streak`, { signal: AbortSignal.timeout(2000) })
     return res.ok || res.status !== 0
   } catch (err) {
-    if (process.env.ECHOMIRROR_CONTRACT_SPEC) {
+    if (process.env.ECHOBUTLER_CONTRACT_SPEC) {
       throw new Error(
         `contract fixture not reachable at ${apiBase} — contract tests are required because ` +
-          `ECHOMIRROR_CONTRACT_SPEC is set: ${(err as Error).message}`,
+          `ECHOBUTLER_CONTRACT_SPEC is set: ${(err as Error).message}`,
       )
     }
     return false
   }
 })()
 
-describe.skipIf(!enabled)('EchoMirror contract (JS binding)', () => {
+describe.skipIf(!enabled)('EchoButler contract (JS binding)', () => {
   it('fetch_mood_streak matches the contract', async () => {
     const streak = await getMoodStreak(client)
     assertWire(streak, op('fetch_mood_streak').assertions, 'fetch_mood_streak')
@@ -162,7 +162,7 @@ describe.skipIf(!enabled)('EchoMirror contract (JS binding)', () => {
     } catch (err) {
       caught = err
     }
-    expect(caught).toBeInstanceOf(EchoMirrorError)
-    expect((caught as EchoMirrorError).statusCode).toBe(404)
+    expect(caught).toBeInstanceOf(EchoButlerError)
+    expect((caught as EchoButlerError).statusCode).toBe(404)
   })
 })

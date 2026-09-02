@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { GlobalFeedClient } from '../src/feed'
-import type { EchoMirrorClient } from '@echomirror/core'
+import type { EchoButlerClient } from '@echobutler/core'
 import type { FeedResponse } from '../src/types'
 
-function createMockClient(): EchoMirrorClient {
+function createMockClient(): EchoButlerClient {
   return {
     request: vi.fn(),
     config: {} as never,
@@ -11,11 +11,11 @@ function createMockClient(): EchoMirrorClient {
     off: vi.fn(),
     emit: vi.fn(),
     setAuthToken: vi.fn(),
-  } as unknown as EchoMirrorClient
+  } as unknown as EchoButlerClient
 }
 
 describe('GlobalFeedClient', () => {
-  let client: EchoMirrorClient
+  let client: EchoButlerClient
   let feed: GlobalFeedClient
 
   const mockResponse: FeedResponse = {

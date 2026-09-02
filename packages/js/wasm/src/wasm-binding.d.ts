@@ -8,8 +8,8 @@
 // the appropriate physical artifact. This declaration exists purely so
 // TypeScript can type-check src/*.ts against a stable shape regardless of
 // which physical build artifact backs the import at the consumer's resolution
-// time. It intentionally mirrors the generated wasm-web/echomirror_wasm.d.ts
-// / wasm-node/echomirror_wasm.d.ts files; regenerate this by hand if the
+// time. It intentionally mirrors the generated wasm-web/echobutler_wasm.d.ts
+// / wasm-node/echobutler_wasm.d.ts files; regenerate this by hand if the
 // Rust crate's public API changes.
 
 // ── Shared interface ─────────────────────────────────────────────────────────

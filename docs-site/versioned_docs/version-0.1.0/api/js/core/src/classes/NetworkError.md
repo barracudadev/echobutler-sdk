@@ -1,10 +1,10 @@
 # Class: NetworkError
 
-Defined in: [packages/js/core/src/errors.ts:18](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/errors.ts#L18)
+Defined in: [packages/js/core/src/errors.ts:18](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/errors.ts#L18)
 
 ## Extends
 
-- [`EchoMirrorError`](EchoMirrorError.md)
+- [`EchoButlerError`](EchoButlerError.md)
 
 ## Constructors
 
@@ -12,7 +12,7 @@ Defined in: [packages/js/core/src/errors.ts:18](https://github.com/karanjadavi/e
 
 > **new NetworkError**(`message?`): `NetworkError`
 
-Defined in: [packages/js/core/src/errors.ts:19](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/errors.ts#L19)
+Defined in: [packages/js/core/src/errors.ts:19](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/errors.ts#L19)
 
 #### Parameters
 
@@ -26,7 +26,7 @@ Defined in: [packages/js/core/src/errors.ts:19](https://github.com/karanjadavi/e
 
 #### Overrides
 
-[`EchoMirrorError`](EchoMirrorError.md).[`constructor`](EchoMirrorError.md#constructor)
+[`EchoButlerError`](EchoButlerError.md).[`constructor`](EchoButlerError.md#constructor)
 
 ## Properties
 
@@ -38,7 +38,7 @@ Defined in: docs-site/node\_modules/typescript/lib/lib.es5.d.ts:1075
 
 #### Inherited from
 
-[`EchoMirrorError`](EchoMirrorError.md).[`message`](EchoMirrorError.md#message)
+[`EchoButlerError`](EchoButlerError.md).[`message`](EchoButlerError.md#message)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: docs-site/node\_modules/typescript/lib/lib.es5.d.ts:1074
 
 #### Inherited from
 
-[`EchoMirrorError`](EchoMirrorError.md).[`name`](EchoMirrorError.md#name)
+[`EchoButlerError`](EchoButlerError.md).[`name`](EchoButlerError.md#name)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: docs-site/node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 #### Inherited from
 
-[`EchoMirrorError`](EchoMirrorError.md).[`stack`](EchoMirrorError.md#stack)
+[`EchoButlerError`](EchoButlerError.md).[`stack`](EchoButlerError.md#stack)
 
 ***
 
@@ -70,8 +70,8 @@ Defined in: docs-site/node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 > `readonly` `optional` **statusCode?**: `number`
 
-Defined in: [packages/js/core/src/errors.ts:4](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/errors.ts#L4)
+Defined in: [packages/js/core/src/errors.ts:4](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/errors.ts#L4)
 
 #### Inherited from
 
-[`EchoMirrorError`](EchoMirrorError.md).[`statusCode`](EchoMirrorError.md#statuscode)
+[`EchoButlerError`](EchoButlerError.md).[`statusCode`](EchoButlerError.md#statuscode)

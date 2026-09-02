@@ -2,7 +2,7 @@
 
 > **requestAIReflection**(`client`, `entryId`): `Promise`\<[`AIReflection`](../interfaces/AIReflection.md)\>
 
-Defined in: [packages/js/mood/src/index.ts:107](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L107)
+Defined in: [packages/js/mood/src/index.ts:107](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L107)
 
 Request an AI reflection for a specific mood entry.
 Reflections are generated asynchronously — poll or use webhooks.
@@ -11,7 +11,7 @@ Reflections are generated asynchronously — poll or use webhooks.
 
 ### client
 
-`EchoMirrorClient`
+`EchoButlerClient`
 
 ### entryId
 

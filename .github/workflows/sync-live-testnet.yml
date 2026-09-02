@@ -1,6 +1,6 @@
 name: Sync Live Testnet
 
-# Runs the echomirror-sync integration tests against the real public Stellar
+# Runs the echobutler-sync integration tests against the real public Stellar
 # Horizon testnet (SSE streaming + Friendbot funding + backfill). Kept off the
 # PR path deliberately: public testnet infrastructure can be slow or flaky.
 on:
@@ -24,6 +24,6 @@ jobs:
       - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2.9.2
         with:
           key: ${{ hashFiles('Cargo.lock') }}
-      - run: cargo test -p echomirror-sync --test testnet_live_tests -- --ignored --test-threads=1
+      - run: cargo test -p echobutler-sync --test testnet_live_tests -- --ignored --test-threads=1
         env:
-          ECHOMIRROR_LIVE_TESTS: "1"
+          ECHOBUTLER_LIVE_TESTS: "1"

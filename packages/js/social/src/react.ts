@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState, useRef } from 'react'
 import { GlobalFeedClient } from './feed'
 import { LeaderboardClient } from './leaderboard'
 import { SocialSubscription } from './realtime'
-import type { EchoMirrorClient } from '@echomirror/core'
-import type { GlobalFeedEntry } from '@echomirror/core'
-import type { LeaderboardEntry } from '@echomirror/core'
+import type { EchoButlerClient } from '@echobutler/core'
+import type { GlobalFeedEntry } from '@echobutler/core'
+import type { LeaderboardEntry } from '@echobutler/core'
 import type { LeaderboardWindow, FeedResponse, CacheConfig, SocialLiveEvent } from './types'
 
 /**
@@ -12,7 +12,7 @@ import type { LeaderboardWindow, FeedResponse, CacheConfig, SocialLiveEvent } fr
  *
  * Cache behavior: the hook creates a `GlobalFeedClient` internally, which
  * owns its own `TtlCache`. All instances of `useGlobalFeed()` within the
- * same component tree that share the same `EchoMirrorClient` **will NOT**
+ * same component tree that share the same `EchoButlerClient` **will NOT**
  * share cache — each hook call creates its own `GlobalFeedClient`. If you
  * need cache sharing, create a `GlobalFeedClient` externally, pass it via
  * context, and use `useGlobalFeedWithClient()`.
@@ -21,7 +21,7 @@ import type { LeaderboardWindow, FeedResponse, CacheConfig, SocialLiveEvent } fr
  * const { entries, isLoading, fetchMore, hasMore, refresh } = useGlobalFeed(client)
  */
 export function useGlobalFeed(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   options?: { limit?: number; cache?: CacheConfig },
 ): {
   entries: GlobalFeedEntry[]
@@ -108,7 +108,7 @@ export function useGlobalFeed(
  * const { entries, isLoading, refresh } = useLeaderboard(client, 'daily')
  */
 export function useLeaderboard(
-  client: EchoMirrorClient,
+  client: EchoButlerClient,
   window: LeaderboardWindow = 'weekly',
   options?: { cache?: CacheConfig; limit?: number },
 ): {

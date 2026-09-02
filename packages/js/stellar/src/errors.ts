@@ -1,7 +1,7 @@
 import type { WalletId } from './wallets/types'
 
 /**
- * Machine-readable error codes for every failure mode in @echomirror/stellar.
+ * Machine-readable error codes for every failure mode in @echobutler/stellar.
  * Branch on `error.code` (or use `instanceof`) instead of parsing messages.
  */
 export type StellarErrorCode =
@@ -29,7 +29,7 @@ export type StellarErrorCode =
   | 'HORIZON_UNAVAILABLE'
 
 /**
- * Base class for all errors thrown by @echomirror/stellar.
+ * Base class for all errors thrown by @echobutler/stellar.
  *
  * `retryable` tells you whether resubmitting the *same* operation can succeed:
  * transient Horizon failures (timeout, 429, 5xx) are retryable; permanent

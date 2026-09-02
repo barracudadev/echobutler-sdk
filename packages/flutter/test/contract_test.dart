@@ -1,7 +1,7 @@
-// EchoMirror contract-test runner (Flutter).
+// EchoButler contract-test runner (Flutter).
 //
 // Reads the shared `contract-tests/contract-spec.json` and drives the real
-// Flutter bindings (`EchoMirror.initialize` + MoodClient/SocialClient/
+// Flutter bindings (`EchoButler.initialize` + MoodClient/SocialClient/
 // StellarClient) against the docker-compose fixture (`fixture-api` on
 // 127.0.0.1:18080). Expected values come straight from the spec — this file
 // contains no hard-coded numbers, so it can't drift away from the contract.
@@ -10,8 +10,8 @@
 // no Flutter SDK method yet, so it is exercised at the transport level.
 //
 // Env overrides:
-//   ECHOMIRROR_CONTRACT_SPEC       path to contract-spec.json
-//   ECHOMIRROR_CONTRACT_API_BASE   e.g. http://127.0.0.1:18080
+//   ECHOBUTLER_CONTRACT_SPEC       path to contract-spec.json
+//   ECHOBUTLER_CONTRACT_API_BASE   e.g. http://127.0.0.1:18080
 library;
 
 import 'dart:convert';
@@ -19,10 +19,10 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:echomirror_sdk/echomirror_sdk.dart';
+import 'package:echobutler_sdk/echobutler_sdk.dart';
 
 Map<String, dynamic> _spec() {
-  final path = Platform.environment['ECHOMIRROR_CONTRACT_SPEC'] ??
+  final path = Platform.environment['ECHOBUTLER_CONTRACT_SPEC'] ??
       '../../contract-tests/contract-spec.json';
   return jsonDecode(File(path).readAsStringSync()) as Map<String, dynamic>;
 }
@@ -48,13 +48,13 @@ Future<bool> _fixtureReachable(String base) async {
 
 void main() async {
   final spec = _spec();
-  final apiBase = Platform.environment['ECHOMIRROR_CONTRACT_API_BASE'] ??
+  final apiBase = Platform.environment['ECHOBUTLER_CONTRACT_API_BASE'] ??
       'http://127.0.0.1:18080';
   final live = await _fixtureReachable(apiBase);
-  if (!live && Platform.environment['ECHOMIRROR_CONTRACT_SPEC'] != null) {
+  if (!live && Platform.environment['ECHOBUTLER_CONTRACT_SPEC'] != null) {
     throw StateError(
       'contract fixture not reachable at $apiBase — contract tests are required because '
-      'ECHOMIRROR_CONTRACT_SPEC is set',
+      'ECHOBUTLER_CONTRACT_SPEC is set',
     );
   }
   final skipReason = live ? false : 'fixture not reachable at $apiBase';
@@ -63,15 +63,15 @@ void main() async {
           as Map<String, dynamic>)['public_key'])
       .toString();
 
-  await EchoMirror.initialize(
+  await EchoButler.initialize(
     apiKey: (spec['fixture']['api_key'] as String),
     baseUrl: apiBase,
     network: StellarNetwork.testnet,
   );
 
-  group('EchoMirror contract (Flutter binding)', () {
+  group('EchoButler contract (Flutter binding)', () {
     test('fetch_mood_streak matches the contract', () async {
-      final streak = await EchoMirror.instance.mood.getStreak();
+      final streak = await EchoButler.instance.mood.getStreak();
       final body = op(spec, 'fetch_mood_streak')['response']['body']
           as Map<String, dynamic>;
       expect(streak.current, body['current']);
@@ -82,7 +82,7 @@ void main() async {
     }, skip: skipReason);
 
     test('fetch_mood_summary matches the contract', () async {
-      final summary = await EchoMirror.instance.mood.getSummary(period: 'week');
+      final summary = await EchoButler.instance.mood.getSummary(period: 'week');
       final body = op(spec, 'fetch_mood_summary')['response']['body']
           as Map<String, dynamic>;
       expect(summary.period, body['period']);
@@ -94,7 +94,7 @@ void main() async {
     }, skip: skipReason);
 
     test('log_mood matches the contract', () async {
-      final entry = await EchoMirror.instance.mood.log(
+      final entry = await EchoButler.instance.mood.log(
         score: 8,
         note: 'Great day',
         tags: const ['work', 'proud'],
@@ -111,7 +111,7 @@ void main() async {
     }, skip: skipReason);
 
     test('get_social_feed matches the contract', () async {
-      final feed = await EchoMirror.instance.social.getGlobalFeed(limit: 10);
+      final feed = await EchoButler.instance.social.getGlobalFeed(limit: 10);
       final entry = op(spec, 'get_social_feed')['response']['body']['entries']
           [0] as Map<String, dynamic>;
       expect(feed.single.id, entry['id']);
@@ -124,7 +124,7 @@ void main() async {
 
     test('get_leaderboard matches the contract', () async {
       final leaderboard =
-          await EchoMirror.instance.social.getLeaderboard(limit: 10);
+          await EchoButler.instance.social.getLeaderboard(limit: 10);
       final entry = op(spec, 'get_leaderboard')['response']['body']['entries']
           [0] as Map<String, dynamic>;
       expect(leaderboard.single.rank, entry['rank']);
@@ -152,7 +152,7 @@ void main() async {
     }, skip: skipReason);
 
     test('get_stellar_balance_api matches the contract', () async {
-      final balance = await EchoMirror.instance.stellar.getBalance(publicKey);
+      final balance = await EchoButler.instance.stellar.getBalance(publicKey);
       final body = op(spec, 'get_stellar_balance_api')['response']['body']
           as Map<String, dynamic>;
       expect(balance.xlm, body['xlm']);
@@ -161,7 +161,7 @@ void main() async {
     }, skip: skipReason);
 
     test('get_transaction_history matches the contract', () async {
-      final txs = await EchoMirror.instance.stellar
+      final txs = await EchoButler.instance.stellar
           .getTransactionHistory(publicKey, limit: 10);
       final entry = op(spec, 'get_transaction_history')['response']['body']
           ['transactions'][0] as Map<String, dynamic>;
@@ -172,8 +172,8 @@ void main() async {
 
     test('api_request_to_unknown_route_must_fail surfaces a 404 error', () {
       expect(
-        EchoMirror.instance.mood.getSummary(period: 'contract-unknown-variant'),
-        throwsA(isA<EchoMirrorError>()),
+        EchoButler.instance.mood.getSummary(period: 'contract-unknown-variant'),
+        throwsA(isA<EchoButlerError>()),
       );
     }, skip: skipReason);
   });

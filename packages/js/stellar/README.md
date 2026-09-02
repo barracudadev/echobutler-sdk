@@ -1,18 +1,18 @@
-# @echomirror/stellar
+# @echobutler/stellar
 
-Production-ready Stellar integration for the EchoMirror SDK: multi-wallet
+Production-ready Stellar integration for the EchoButler SDK: multi-wallet
 support (Freighter, xBull, Albedo), a full transaction builder (payments,
 trustlines, path payments, fee-bumps), a typed error taxonomy, and automatic
 retry with backoff for transient Horizon failures.
 
 ```bash
-npm install @echomirror/stellar
+npm install @echobutler/stellar
 ```
 
 ## Quickstart
 
 ```ts
-import { StellarClient, connectWallet } from '@echomirror/stellar'
+import { StellarClient, connectWallet } from '@echobutler/stellar'
 
 const stellar = new StellarClient({ network: 'testnet' })
 
@@ -34,7 +34,7 @@ console.log('on-chain:', result.hash)
 Server-side (Node) there is no wallet — sign with a `Keypair`:
 
 ```ts
-import { Keypair, StellarClient } from '@echomirror/stellar'
+import { Keypair, StellarClient } from '@echobutler/stellar'
 
 const stellar = new StellarClient({ network: 'testnet' })
 const tx = await stellar.buildPaymentTransaction({ source: kp.publicKey(), destination, amount: '5' })
@@ -52,7 +52,7 @@ await stellar.submitTransaction(tx)
 | Sign a transaction you built | `stellar.signAndSubmit(adapter, tx)` | Or `adapter.signTransaction(xdr, { networkPassphrase })` if you submit yourself |
 | Detect which network the user's wallet is on | `adapter.connect()` → `connection.network` | Only Freighter exposes its own network selection; xBull/Albedo use the network you pass to `connectWallet`/the adapter constructor |
 | No browser (Node/server) | none — sign with `Keypair`, then `stellar.submitTransaction(signedXdr)` | `connectWallet()` throws a `WalletNotFoundError` explaining this |
-| Legacy EchoMirror API flows (ECHO token) | `sendEcho`, `getBalance`, … | Unchanged signatures; `sendEcho` now signs with any available wallet, not just Freighter |
+| Legacy EchoButler API flows (ECHO token) | `sendEcho`, `getBalance`, … | Unchanged signatures; `sendEcho` now signs with any available wallet, not just Freighter |
 
 ## Which transaction builder for which use case?
 

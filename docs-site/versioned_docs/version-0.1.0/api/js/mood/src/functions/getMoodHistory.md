@@ -2,7 +2,7 @@
 
 > **getMoodHistory**(`client`, `options?`): `Promise`\<\{ `entries`: [`MoodEntry`](../interfaces/MoodEntry.md)[]; `total`: `number`; \}\>
 
-Defined in: [packages/js/mood/src/index.ts:45](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L45)
+Defined in: [packages/js/mood/src/index.ts:45](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L45)
 
 Get paginated mood history for the authenticated user.
 
@@ -10,7 +10,7 @@ Get paginated mood history for the authenticated user.
 
 ### client
 
-`EchoMirrorClient`
+`EchoButlerClient`
 
 ### options?
 

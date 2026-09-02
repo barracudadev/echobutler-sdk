@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitest/config'
 
 // Browser-target run (headless Chromium via Playwright): resolves
-// `#wasm-binding` -> wasm-web/echomirror_wasm.js via package.json#imports'
+// `#wasm-binding` -> wasm-web/echobutler_wasm.js via package.json#imports'
 // "browser" condition, and exercises the real fetch+instantiate path that
 // `init()` takes in an actual browser — the thing the Node-target run
 // above can't catch.

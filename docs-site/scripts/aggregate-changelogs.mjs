@@ -34,9 +34,9 @@ const repoRoot = resolve(__dirname, '..', '..');
 const JS_PACKAGES = readdirSync(join(repoRoot, 'packages', 'js'), { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => ({
-    label: `@echomirror/${d.name}`,
+    label: `@echobutler/${d.name}`,
     path: join(repoRoot, 'packages', 'js', d.name, 'CHANGELOG.md'),
-    npmName: `@echomirror/${d.name}`,
+    npmName: `@echobutler/${d.name}`,
     ecosystem: 'js',
   }));
 
@@ -52,7 +52,7 @@ const RUST_CRATES = readdirSync(join(repoRoot, 'crates'), { withFileTypes: true 
 /** @type {PackageSource[]} */
 const OTHER_PACKAGES = [
   {
-    label: 'echomirror_sdk (Flutter)',
+    label: 'echobutler_sdk (Flutter)',
     path: join(repoRoot, 'packages', 'flutter', 'CHANGELOG.md'),
     ecosystem: 'flutter',
   },
@@ -175,12 +175,12 @@ const now = new Date().toISOString().slice(0, 10);
 let output = `---
 sidebar_position: 5
 title: Changelog
-description: Aggregated changelog for all EchoMirror SDK packages — auto-generated from per-package CHANGELOG.md files.
+description: Aggregated changelog for all EchoButler SDK packages — auto-generated from per-package CHANGELOG.md files.
 ---
 
 # Changelog
 
-All notable changes across every EchoMirror SDK package are listed here in
+All notable changes across every EchoButler SDK package are listed here in
 reverse-chronological order, grouped by release date and tagged by package.
 
 This page is **auto-generated** at docs-build time from the individual
@@ -239,7 +239,7 @@ appear here automatically:
 ${missingChangelogs.map((name) => `- \`${name}\``).join('\n')}
 
 > **Rust crates** — the source of truth for versioning is \`Cargo.toml\`. Until
-> \`CHANGELOG.md\` files are added to each crate, refer to the [GitHub Releases](https://github.com/Echo-Mirror-Butler/echomirror-sdk/releases)
+> \`CHANGELOG.md\` files are added to each crate, refer to the [GitHub Releases](https://github.com/Echo-Mirror-Butler/echobutler-sdk/releases)
 > page for historical change notes.
 >
 > **Flutter** — \`pubspec.yaml\` tracks the version; a \`CHANGELOG.md\` will be

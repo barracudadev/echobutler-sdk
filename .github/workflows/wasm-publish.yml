@@ -1,4 +1,4 @@
-name: Publish @echomirror/wasm
+name: Publish @echobutler/wasm
 
 on:
   push:

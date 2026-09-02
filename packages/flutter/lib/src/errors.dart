@@ -1,19 +1,19 @@
-class EchoMirrorError implements Exception {
+class EchoButlerError implements Exception {
   final String message;
-  const EchoMirrorError(this.message);
+  const EchoButlerError(this.message);
 
   @override
-  String toString() => 'EchoMirrorError: $message';
+  String toString() => 'EchoButlerError: $message';
 }
 
-class EchoMirrorAuthError extends EchoMirrorError {
-  const EchoMirrorAuthError([super.message = 'Invalid or expired API key']);
+class EchoButlerAuthError extends EchoButlerError {
+  const EchoButlerAuthError([super.message = 'Invalid or expired API key']);
 }
 
-class EchoMirrorNetworkError extends EchoMirrorError {
-  const EchoMirrorNetworkError([super.message = 'Network request failed']);
+class EchoButlerNetworkError extends EchoButlerError {
+  const EchoButlerNetworkError([super.message = 'Network request failed']);
 }
 
-class EchoMirrorRateLimitError extends EchoMirrorError {
-  const EchoMirrorRateLimitError([super.message = 'Rate limit exceeded']);
+class EchoButlerRateLimitError extends EchoButlerError {
+  const EchoButlerRateLimitError([super.message = 'Rate limit exceeded']);
 }

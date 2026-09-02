@@ -1,5 +1,5 @@
-import type { EchoMirrorConfig, SDKEvent, SDKEventHandler } from './types'
-import { EchoMirrorError, NetworkError, AuthError, RateLimitError } from './errors'
+import type { EchoButlerConfig, SDKEvent, SDKEventHandler } from './types'
+import { EchoButlerError, NetworkError, AuthError, RateLimitError } from './errors'
 import type {
   RequestMiddleware,
   RetryConfig,
@@ -9,15 +9,15 @@ import type {
 } from './middleware'
 import { MAX_MIDDLEWARE_RETRIES, sleep } from './middleware'
 
-const DEFAULT_BASE_URL = 'https://api.echomirror.dev/v1'
+const DEFAULT_BASE_URL = 'https://api.echobutler.dev/v1'
 const DEFAULT_TIMEOUT = 10_000
 const DEFAULT_MAX_RETRIES = 3
 const DEFAULT_BASE_DELAY_MS = 100
 const DEFAULT_MAX_DELAY_MS = 5_000
 
-export class EchoMirrorClient {
+export class EchoButlerClient {
   readonly config: Required<
-    Pick<EchoMirrorConfig, 'apiKey' | 'baseUrl' | 'network' | 'timeout'>
+    Pick<EchoButlerConfig, 'apiKey' | 'baseUrl' | 'network' | 'timeout'>
   > & {
     maxRetries: number
     baseDelayMs: number
@@ -27,7 +27,7 @@ export class EchoMirrorClient {
   private _authToken: string | null = null
   private _middlewares: RequestMiddleware[] = []
 
-  constructor(config: EchoMirrorConfig) {
+  constructor(config: EchoButlerConfig) {
     this.config = {
       apiKey: config.apiKey,
       baseUrl: config.baseUrl ?? DEFAULT_BASE_URL,
@@ -69,7 +69,7 @@ export class EchoMirrorClient {
       if (result.decision === 'retry-now') {
         middlewareRetries++
         if (middlewareRetries > MAX_MIDDLEWARE_RETRIES) {
-          throw new EchoMirrorError(
+          throw new EchoButlerError(
             'middleware requested a retry too many times',
           )
         }
@@ -106,14 +106,14 @@ export class EchoMirrorClient {
       }
     }
 
-    throw new EchoMirrorError('Request failed after all retries')
+    throw new EchoButlerError('Request failed after all retries')
   }
 
   private _isRetryable(err: unknown): boolean {
     if (err instanceof RateLimitError) return true
     if (err instanceof NetworkError) return true
     if (
-      err instanceof EchoMirrorError &&
+      err instanceof EchoButlerError &&
       typeof err.statusCode === 'number' &&
       err.statusCode >= 500
     ) {
@@ -149,7 +149,7 @@ export class EchoMirrorClient {
       url,
       headers: {
         'x-api-key': this.config.apiKey,
-        'x-echomirror-network': this.config.network,
+        'x-echobutler-network': this.config.network,
       },
       body,
       attempt,
@@ -262,7 +262,7 @@ export class EchoMirrorClient {
           : `HTTP ${res.status}`
       return {
         decision: 'error',
-        error: new EchoMirrorError(message, res.status),
+        error: new EchoButlerError(message, res.status),
       }
     }
 

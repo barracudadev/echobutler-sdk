@@ -2,7 +2,7 @@
 
 > **logMood**(`client`, `payload`): `Promise`\<[`MoodEntry`](../interfaces/MoodEntry.md)\>
 
-Defined in: [packages/js/mood/src/index.ts:33](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L33)
+Defined in: [packages/js/mood/src/index.ts:33](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/mood/src/index.ts#L33)
 
 Log a mood entry for the authenticated user.
 
@@ -10,7 +10,7 @@ Log a mood entry for the authenticated user.
 
 ### client
 
-`EchoMirrorClient`
+`EchoButlerClient`
 
 ### payload
 

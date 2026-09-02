@@ -1,6 +1,6 @@
 # Interface: EchoTransfer
 
-Defined in: [packages/js/core/src/types.ts:95](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L95)
+Defined in: [packages/js/core/src/types.ts:95](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L95)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/js/core/src/types.ts:95](https://github.com/karanjadavi/ec
 
 > **amount**: `number`
 
-Defined in: [packages/js/core/src/types.ts:98](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L98)
+Defined in: [packages/js/core/src/types.ts:98](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L98)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [packages/js/core/src/types.ts:98](https://github.com/karanjadavi/ec
 
 > **from**: `string`
 
-Defined in: [packages/js/core/src/types.ts:96](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L96)
+Defined in: [packages/js/core/src/types.ts:96](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L96)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [packages/js/core/src/types.ts:96](https://github.com/karanjadavi/ec
 
 > `optional` **memo?**: `string`
 
-Defined in: [packages/js/core/src/types.ts:99](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L99)
+Defined in: [packages/js/core/src/types.ts:99](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L99)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [packages/js/core/src/types.ts:99](https://github.com/karanjadavi/ec
 
 > **to**: `string`
 
-Defined in: [packages/js/core/src/types.ts:97](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L97)
+Defined in: [packages/js/core/src/types.ts:97](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L97)

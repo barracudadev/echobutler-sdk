@@ -9,19 +9,19 @@ For server-side Rust backends - no FFI boundary, direct access to the full core.
 ## Install
 
 ```bash
-cargo add echomirror-core echomirror-stellar echomirror-sync
+cargo add echobutler-core echobutler-stellar echobutler-sync
 ```
 
 ## Full example
 
 ```rust
-use echomirror_core::{EchoMirrorClient, EchoMirrorConfig};
-use echomirror_stellar::{get_balance, fund_testnet_account};
-use echomirror_sync::{SyncEngine, SyncFilter};
+use echobutler_core::{EchoButlerClient, EchoButlerConfig};
+use echobutler_stellar::{get_balance, fund_testnet_account};
+use echobutler_sync::{SyncEngine, SyncFilter};
 
 #[tokio::main]
 async fn main() {
-    let client = EchoMirrorClient::new(EchoMirrorConfig::testnet("your_api_key")).unwrap();
+    let client = EchoButlerClient::new(EchoButlerConfig::testnet("your_api_key")).unwrap();
     client.set_auth_token(Some("user_jwt".into())).await;
 
     // Get Stellar balance (queries Horizon directly - no API round-trip)
@@ -51,14 +51,14 @@ Enable the `postgres` feature for a production-ready cursor store with
 migrations and pooling built in:
 
 ```toml
-echomirror-sync = { version = "0.1", features = ["postgres"] }
+echobutler-sync = { version = "0.1", features = ["postgres"] }
 ```
 
 ```rust
-use echomirror_sync::PgCursorStore;
+use echobutler_sync::PgCursorStore;
 use std::sync::Arc;
 
-let store = PgCursorStore::connect("postgres://user:pass@localhost/echomirror").await?;
+let store = PgCursorStore::connect("postgres://user:pass@localhost/echobutler").await?;
 
 let engine = SyncEngine::builder(&client)
     .watch("GPUBLIC_KEY")

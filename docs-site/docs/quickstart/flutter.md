@@ -8,16 +8,16 @@ sidebar_position: 3
 
 ```yaml
 dependencies:
-  echomirror_sdk: ^0.1.0
+  echobutler_sdk: ^0.1.0
 ```
 
 ## Initialize
 
 ```dart
-import 'package:echomirror_sdk/echomirror_sdk.dart';
+import 'package:echobutler_sdk/echobutler_sdk.dart';
 
 void main() async {
-  await EchoMirror.initialize(
+  await EchoButler.initialize(
     apiKey: 'your_api_key',
     network: StellarNetwork.testnet,
   );
@@ -28,14 +28,14 @@ void main() async {
 ## Query balances and mood streaks
 
 ```dart
-final balance = await EchoMirror.instance.stellar.getBalance(publicKey);
-final streak  = await EchoMirror.instance.mood.getStreak();
+final balance = await EchoButler.instance.stellar.getBalance(publicKey);
+final streak  = await EchoButler.instance.mood.getStreak();
 ```
 
 ## Real-time blockchain sync
 
 ```dart
-final sync = BlockchainSyncClient(EchoMirror.instance.config);
+final sync = BlockchainSyncClient(EchoButler.instance.config);
 sync.watch(publicKey).listen((event) {
   if (event is LedgerSyncEvent) {
     print('New ledger: ${event.ledgerSequence}');
@@ -45,6 +45,6 @@ sync.watch(publicKey).listen((event) {
 
 ## Next steps
 
-- [Core Concepts](../core-concepts) — how the sync engine and cursors work
+- [Core Concepts](../core-concepts) ï¿½ how the sync engine and cursors work
 - [Dart API Reference](pathname:///api/dart/) for the full API surface
 

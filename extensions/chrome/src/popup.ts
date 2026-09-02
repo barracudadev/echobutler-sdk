@@ -1,4 +1,4 @@
-// EchoMirror SDK Companion — popup script
+// EchoButler SDK Companion — popup script
 
 export interface StorageData {
   publicKey?: string
@@ -112,10 +112,10 @@ if (typeof document !== 'undefined') {
 
 /** Inject the lightweight mood widget into the active page. */
 export function injectMoodWidget() {
-  if (document.getElementById('echomirror-widget')) return
+  if (document.getElementById('echobutler-widget')) return
 
   const widget = document.createElement('div')
-  widget.id = 'echomirror-widget'
+  widget.id = 'echobutler-widget'
   widget.style.cssText = `
     position: fixed; bottom: 24px; right: 24px; z-index: 999999;
     display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
@@ -144,7 +144,7 @@ export function injectMoodWidget() {
     box-shadow: 0 4px 16px rgba(99,102,241,0.5);
   `
   button.textContent = '🪞'
-  button.title = 'Log your mood with EchoMirror'
+  button.title = 'Log your mood with EchoButler'
 
   button.addEventListener('click', () => {
     form.style.display = form.style.display === 'none' ? 'block' : 'none'

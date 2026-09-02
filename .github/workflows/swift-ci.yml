@@ -23,7 +23,7 @@ jobs:
         run: |
           xcodebuild -version
           swift --version
-      - name: Build EchoMirrorFFI XCFramework
-        run: bash packages/swift/EchoMirrorSDK/Scripts/build-xcframework.sh
+      - name: Build EchoButlerFFI XCFramework
+        run: bash packages/swift/EchoButlerSDK/Scripts/build-xcframework.sh
       - name: Run Swift tests
-        run: swift test --package-path packages/swift/EchoMirrorSDK
+        run: swift test --package-path packages/swift/EchoButlerSDK

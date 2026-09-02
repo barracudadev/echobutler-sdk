@@ -1,4 +1,4 @@
-import type { EchoMirrorClient } from './client'
+import type { EchoButlerClient } from './client'
 
 /** What the client should do after a middleware's `afterResponse` hook runs. */
 export type MiddlewareDecision = 'continue' | 'retry-now'
@@ -35,13 +35,13 @@ export type MiddlewareOutcome = MiddlewareResponse | MiddlewareError
 export interface RequestMiddleware {
   /** Called before each attempt is sent. Mutate `request` to add/override headers or transform the body. */
   beforeRequest?(
-    client: EchoMirrorClient,
+    client: EchoButlerClient,
     request: MiddlewareRequest,
   ): Promise<void> | void
 
   /** Called after each attempt resolves, successfully or not. */
   afterResponse?(
-    client: EchoMirrorClient,
+    client: EchoButlerClient,
     request: MiddlewareRequest,
     outcome: MiddlewareOutcome,
   ): Promise<MiddlewareDecision> | MiddlewareDecision
@@ -65,12 +65,12 @@ export interface RetryConfig {
 export class LoggingMiddleware implements RequestMiddleware {
   private _prefix: string
 
-  constructor(prefix = 'echomirror-sdk') {
+  constructor(prefix = 'echobutler-sdk') {
     this._prefix = prefix
   }
 
   async beforeRequest(
-    _client: EchoMirrorClient,
+    _client: EchoButlerClient,
     req: MiddlewareRequest,
   ): Promise<void> {
     console.debug(
@@ -79,7 +79,7 @@ export class LoggingMiddleware implements RequestMiddleware {
   }
 
   async afterResponse(
-    _client: EchoMirrorClient,
+    _client: EchoButlerClient,
     req: MiddlewareRequest,
     outcome: MiddlewareOutcome,
   ): Promise<MiddlewareDecision> {

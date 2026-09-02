@@ -1,10 +1,10 @@
 # Soroban Demo
 
-Minimal example demonstrating Soroban smart-contract interaction using the EchoMirror SDK.
+Minimal example demonstrating Soroban smart-contract interaction using the EchoButler SDK.
 
 ## Status
 
-**Blocked on #103** (Soroban invocation support). This example will be completed once Soroban contract invocation lands in `@echomirror/stellar`.
+**Blocked on #103** (Soroban invocation support). This example will be completed once Soroban contract invocation lands in `@echobutler/stellar`.
 
 ## What this demo will show
 

@@ -1,4 +1,4 @@
-import type { GlobalFeedEntry, LeaderboardEntry } from '@echomirror/core'
+import type { GlobalFeedEntry, LeaderboardEntry } from '@echobutler/core'
 
 /**
  * Time window for leaderboard queries.

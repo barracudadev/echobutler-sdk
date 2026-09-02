@@ -143,7 +143,7 @@ function toMemo(memo: string): Memo {
 // ─── Client ───────────────────────────────────────────────────────────────────
 
 /**
- * Wallet-agnostic Stellar client: builds every transaction type the EchoMirror
+ * Wallet-agnostic Stellar client: builds every transaction type the EchoButler
  * SDK supports, submits with retry/backoff on transient Horizon failures, and
  * maps every failure to a typed {@link StellarSdkError}.
  *

@@ -108,7 +108,7 @@ describe('popup mood and wallet flows', () => {
   it('injects the mood widget and provides feedback after a mood check-in', () => {
     popup.injectMoodWidget()
 
-    const widget = document.getElementById('echomirror-widget')
+    const widget = document.getElementById('echobutler-widget')
     expect(widget).not.toBeNull()
     const widgetButton = widget?.querySelector('button') as HTMLButtonElement
     widgetButton.click()

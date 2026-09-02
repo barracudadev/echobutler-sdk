@@ -3,15 +3,15 @@
 ## Classes
 
 - [AuthError](classes/AuthError.md)
-- [EchoMirrorClient](classes/EchoMirrorClient.md)
-- [EchoMirrorError](classes/EchoMirrorError.md)
+- [EchoButlerClient](classes/EchoButlerClient.md)
+- [EchoButlerError](classes/EchoButlerError.md)
 - [NetworkError](classes/NetworkError.md)
 - [RateLimitError](classes/RateLimitError.md)
 
 ## Interfaces
 
 - [AIReflection](interfaces/AIReflection.md)
-- [EchoMirrorConfig](interfaces/EchoMirrorConfig.md)
+- [EchoButlerConfig](interfaces/EchoButlerConfig.md)
 - [EchoTransfer](interfaces/EchoTransfer.md)
 - [GlobalFeedEntry](interfaces/GlobalFeedEntry.md)
 - [LeaderboardEntry](interfaces/LeaderboardEntry.md)

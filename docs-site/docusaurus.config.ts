@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'EchoMirror SDK',
+  title: 'EchoButler SDK',
   tagline: 'Mood intelligence, Stellar payments, and social wellness for any app',
   favicon: 'img/favicon.ico',
 
@@ -12,10 +12,10 @@ const config: Config = {
   },
 
   url: 'https://karanjadavi.github.io',
-  baseUrl: '/echomirror-sdk/',
+  baseUrl: '/echobutler-sdk/',
 
   organizationName: 'karanjadavi',
-  projectName: 'echomirror-sdk',
+  projectName: 'echobutler-sdk',
 
   onBrokenLinks: 'throw',
 
@@ -59,7 +59,7 @@ const config: Config = {
         docs: {
           lastVersion: 'current',
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/karanjadavi/echomirror-sdk/tree/main/docs-site/',
+          editUrl: 'https://github.com/karanjadavi/echobutler-sdk/tree/main/docs-site/',
         },
         // Changelog RSS/Atom feed — Docusaurus blog plugin used purely as a
         // feed generator. The human-readable aggregate page lives at
@@ -68,17 +68,17 @@ const config: Config = {
           id: 'changelog',
           routeBasePath: 'changelog',
           path: './changelog-feed',
-          blogTitle: 'EchoMirror SDK Changelog',
+          blogTitle: 'EchoButler SDK Changelog',
           blogDescription:
-            'Aggregated release notes for every EchoMirror SDK package — JS/TS, Rust, Flutter, Swift, and Python.',
+            'Aggregated release notes for every EchoButler SDK package — JS/TS, Rust, Flutter, Swift, and Python.',
           blogSidebarTitle: 'Recent releases',
           blogSidebarCount: 'ALL',
           feedOptions: {
             type: ['rss', 'atom'],
-            title: 'EchoMirror SDK Changelog',
+            title: 'EchoButler SDK Changelog',
             description:
-              'Aggregated release notes for every EchoMirror SDK package.',
-            copyright: `Copyright © ${new Date().getFullYear()} EchoMirror SDK`,
+              'Aggregated release notes for every EchoButler SDK package.',
+            copyright: `Copyright © ${new Date().getFullYear()} EchoButler SDK`,
             language: 'en',
             limit: 20,
           },
@@ -98,9 +98,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'EchoMirror SDK',
+      title: 'EchoButler SDK',
       logo: {
-        alt: 'EchoMirror SDK Logo',
+        alt: 'EchoButler SDK Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -121,7 +121,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/karanjadavi/echomirror-sdk',
+          href: 'https://github.com/karanjadavi/echobutler-sdk',
           label: 'GitHub',
           position: 'right',
         },
@@ -156,7 +156,7 @@ const config: Config = {
           items: [
             {
               label: 'GitHub Issues',
-              href: 'https://github.com/karanjadavi/echomirror-sdk/issues',
+              href: 'https://github.com/karanjadavi/echobutler-sdk/issues',
             },
           ],
         },
@@ -165,12 +165,12 @@ const config: Config = {
           items: [
             {
               label: 'GitHub',
-              href: 'https://github.com/karanjadavi/echomirror-sdk',
+              href: 'https://github.com/karanjadavi/echobutler-sdk',
             },
           ],
         },
       ],
-      copyright: `Copyright   ${new Date().getFullYear()} EchoMirror SDK. Built with Docusaurus.`,
+      copyright: `Copyright   ${new Date().getFullYear()} EchoButler SDK. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

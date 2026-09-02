@@ -1,4 +1,4 @@
-# @echomirror/stellar
+# @echobutler/stellar
 
 ## Unreleased
 

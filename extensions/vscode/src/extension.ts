@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import { EchoMirrorClient } from '@echomirror/core'
-import { logMood, getMoodStreak, MoodScore, MoodTag } from '@echomirror/mood'
+import { EchoButlerClient } from '@echobutler/core'
+import { logMood, getMoodStreak, MoodScore, MoodTag } from '@echobutler/mood'
 
 export let statusBarItem: vscode.StatusBarItem | undefined
 export let moodStatusBarItem: vscode.StatusBarItem | undefined
@@ -8,34 +8,34 @@ let balanceInterval: ReturnType<typeof setInterval> | undefined
 
 export async function getClient(
   context: vscode.ExtensionContext,
-): Promise<EchoMirrorClient | undefined> {
-  const apiKey = await context.secrets.get('echomirror.apiKey')
+): Promise<EchoButlerClient | undefined> {
+  const apiKey = await context.secrets.get('echobutler.apiKey')
   if (!apiKey) {
-    vscode.window.showErrorMessage('Not signed in to EchoMirror. Please sign in first.')
-    vscode.commands.executeCommand('echomirror.signIn')
+    vscode.window.showErrorMessage('Not signed in to EchoButler. Please sign in first.')
+    vscode.commands.executeCommand('echobutler.signIn')
     return undefined
   }
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   const network = config.get<'mainnet' | 'testnet'>('network') ?? 'testnet'
-  return new EchoMirrorClient({ apiKey, network })
+  return new EchoButlerClient({ apiKey, network })
 }
 
 export async function signInCommand(context: vscode.ExtensionContext) {
   const apiKey = await vscode.window.showInputBox({
-    prompt: 'Enter your EchoMirror API Key',
+    prompt: 'Enter your EchoButler API Key',
     password: true,
     placeHolder: 'em_live_...',
     ignoreFocusOut: true,
   })
   if (apiKey) {
-    await context.secrets.store('echomirror.apiKey', apiKey)
-    vscode.window.showInformationMessage('Successfully signed in to EchoMirror.')
+    await context.secrets.store('echobutler.apiKey', apiKey)
+    vscode.window.showInformationMessage('Successfully signed in to EchoButler.')
   }
 }
 
 export async function signOutCommand(context: vscode.ExtensionContext) {
-  await context.secrets.delete('echomirror.apiKey')
-  vscode.window.showInformationMessage('Signed out of EchoMirror.')
+  await context.secrets.delete('echobutler.apiKey')
+  vscode.window.showInformationMessage('Signed out of EchoButler.')
   if (moodStatusBarItem) moodStatusBarItem.text = '$(pulse) Log Mood'
 }
 
@@ -54,10 +54,10 @@ export async function validateAddressCommand() {
 }
 
 export async function fundTestnetCommand() {
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   if (config.get<string>('network') !== 'testnet') {
     vscode.window.showErrorMessage(
-      'Friendbot funding is only available on testnet. Change echomirror.network to "testnet" first.',
+      'Friendbot funding is only available on testnet. Change echobutler.network to "testnet" first.',
     )
     return
   }
@@ -85,7 +85,7 @@ export async function fundTestnetCommand() {
 }
 
 export async function checkBalanceCommand() {
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   const publicKey = config.get<string>('statusBarPublicKey')
   if (!publicKey) {
     const key = await vscode.window.showInputBox({
@@ -108,20 +108,20 @@ export async function insertMoodLogSnippetCommand() {
   const isDart = lang === 'dart'
 
   const snippet = isDart
-    ? `final entry = await EchoMirror.instance.mood.log(\n  score: \${1:7},\n  note: '\${2:How are you feeling?}',\n  tags: ['\${3:work}'],\n);\n`
+    ? `final entry = await EchoButler.instance.mood.log(\n  score: \${1:7},\n  note: '\${2:How are you feeling?}',\n  tags: ['\${3:work}'],\n);\n`
     : `const entry = await logMood(client, {\n  score: \${1:7},\n  note: '\${2:How are you feeling?}',\n  tags: ['\${3:work}'],\n})\n`
 
   editor.insertSnippet(new vscode.SnippetString(snippet))
 }
 
 export function openSyncExplorerCommand() {
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   const network = config.get<string>('network') ?? 'testnet'
   const configuredKey = config.get<string>('statusBarPublicKey') ?? ''
 
   const panel = vscode.window.createWebviewPanel(
-    'echomirrorSync',
-    'EchoMirror Sync Explorer',
+    'echobutlerSync',
+    'EchoButler Sync Explorer',
     vscode.ViewColumn.Beside,
     { enableScripts: true },
   )
@@ -278,11 +278,11 @@ export async function viewStreakCommand(context: vscode.ExtensionContext) {
 export function activate(context: vscode.ExtensionContext) {
   // ── Status bar — live ECHO balance ──────────────────────────────────────────
   statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100)
-  statusBarItem.command = 'echomirror.checkBalance'
+  statusBarItem.command = 'echobutler.checkBalance'
   context.subscriptions.push(statusBarItem)
   updateStatusBar()
 
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   if (config.get<boolean>('showStatusBar') && config.get<string>('statusBarPublicKey')) {
     statusBarItem.show()
     startBalancePolling()
@@ -290,33 +290,33 @@ export function activate(context: vscode.ExtensionContext) {
 
   // ── Status bar — Mood ───────────────────────────────────────────────────────
   moodStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 101)
-  moodStatusBarItem.command = 'echomirror.logMood'
+  moodStatusBarItem.command = 'echobutler.logMood'
   moodStatusBarItem.text = '$(pulse) Log Mood'
-  moodStatusBarItem.tooltip = 'EchoMirror SDK — click to log your mood'
+  moodStatusBarItem.tooltip = 'EchoButler SDK — click to log your mood'
   moodStatusBarItem.show()
   context.subscriptions.push(moodStatusBarItem)
 
   // ── Commands ─────────────────────────────────────────────────────────────────
   context.subscriptions.push(
-    vscode.commands.registerCommand('echomirror.checkBalance', () => checkBalanceCommand()),
-    vscode.commands.registerCommand('echomirror.validateAddress', () => validateAddressCommand()),
-    vscode.commands.registerCommand('echomirror.fundTestnet', () => fundTestnetCommand()),
-    vscode.commands.registerCommand('echomirror.insertMoodLogSnippet', () =>
+    vscode.commands.registerCommand('echobutler.checkBalance', () => checkBalanceCommand()),
+    vscode.commands.registerCommand('echobutler.validateAddress', () => validateAddressCommand()),
+    vscode.commands.registerCommand('echobutler.fundTestnet', () => fundTestnetCommand()),
+    vscode.commands.registerCommand('echobutler.insertMoodLogSnippet', () =>
       insertMoodLogSnippetCommand(),
     ),
-    vscode.commands.registerCommand('echomirror.openSyncExplorer', () => openSyncExplorerCommand()),
-    vscode.commands.registerCommand('echomirror.signIn', () => signInCommand(context)),
-    vscode.commands.registerCommand('echomirror.signOut', () => signOutCommand(context)),
-    vscode.commands.registerCommand('echomirror.logMood', () => logMoodCommand(context)),
-    vscode.commands.registerCommand('echomirror.viewStreak', () => viewStreakCommand(context)),
+    vscode.commands.registerCommand('echobutler.openSyncExplorer', () => openSyncExplorerCommand()),
+    vscode.commands.registerCommand('echobutler.signIn', () => signInCommand(context)),
+    vscode.commands.registerCommand('echobutler.signOut', () => signOutCommand(context)),
+    vscode.commands.registerCommand('echobutler.logMood', () => logMoodCommand(context)),
+    vscode.commands.registerCommand('echobutler.viewStreak', () => viewStreakCommand(context)),
   )
 
   // Watch config changes to restart/stop balance polling
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration((e) => {
-      if (e.affectsConfiguration('echomirror')) {
+      if (e.affectsConfiguration('echobutler')) {
         if (balanceInterval) clearInterval(balanceInterval)
-        const cfg = vscode.workspace.getConfiguration('echomirror')
+        const cfg = vscode.workspace.getConfiguration('echobutler')
         if (cfg.get<boolean>('showStatusBar') && cfg.get<string>('statusBarPublicKey')) {
           statusBarItem?.show()
           startBalancePolling()
@@ -335,7 +335,7 @@ export function deactivate() {
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 async function showBalance(publicKey: string) {
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   const network = config.get<string>('network') ?? 'testnet'
   const horizon = network === 'testnet'
     ? 'https://horizon-testnet.stellar.org'
@@ -370,11 +370,11 @@ async function showBalance(publicKey: string) {
 function updateStatusBar() {
   if (!statusBarItem) return
   statusBarItem.text = '$(symbol-misc) ECHO'
-  statusBarItem.tooltip = 'EchoMirror SDK — click to check balance'
+  statusBarItem.tooltip = 'EchoButler SDK — click to check balance'
 }
 
 function startBalancePolling() {
-  const config = vscode.workspace.getConfiguration('echomirror')
+  const config = vscode.workspace.getConfiguration('echobutler')
   const key = config.get<string>('statusBarPublicKey')
   if (!key) return
   showBalance(key)
@@ -386,7 +386,7 @@ function getSyncExplorerHtml(configuredKey: string, network: string): string {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>EchoMirror Sync Explorer</title>
+  <title>EchoButler Sync Explorer</title>
   <style>
     body { font-family: var(--vscode-font-family); color: var(--vscode-foreground); background: var(--vscode-editor-background); padding: 20px; }
     h2 { color: var(--vscode-textLink-foreground); }

@@ -1,24 +1,24 @@
-# @echomirror/social
+# @echobutler/social
 
-EchoMirror SDK social module — global feed, leaderboard, and real-time updates.
+EchoButler SDK social module — global feed, leaderboard, and real-time updates.
 
 ## Installation
 
 ```bash
-npm install @echomirror/social
+npm install @echobutler/social
 ```
 
-Requires `@echomirror/core` as a dependency. React hooks require `react >= 18` (optional peer).
+Requires `@echobutler/core` as a dependency. React hooks require `react >= 18` (optional peer).
 
 ## Usage
 
 ### Global Feed (paginated, infinite-scroll friendly)
 
 ```ts
-import { GlobalFeedClient } from '@echomirror/social'
-import { EchoMirrorClient } from '@echomirror/core'
+import { GlobalFeedClient } from '@echobutler/social'
+import { EchoButlerClient } from '@echobutler/core'
 
-const client = new EchoMirrorClient({ apiKey: 'your_api_key' })
+const client = new EchoButlerClient({ apiKey: 'your_api_key' })
 const feed = new GlobalFeedClient(client)
 
 // First page
@@ -30,7 +30,7 @@ const page2 = await feed.fetchFeed({ cursor: nextCursor })
 ### Leaderboard (time-windowed)
 
 ```ts
-import { LeaderboardClient } from '@echomirror/social'
+import { LeaderboardClient } from '@echobutler/social'
 
 const leaderboard = new LeaderboardClient(client)
 const weekly = await leaderboard.fetchLeaderboard()
@@ -40,11 +40,11 @@ const daily = await leaderboard.fetchLeaderboard({ window: 'daily' })
 ### React hooks
 
 ```tsx
-import { useGlobalFeed, useLeaderboard } from '@echomirror/social'
-import { useEchoMirrorClient } from '@echomirror/react'
+import { useGlobalFeed, useLeaderboard } from '@echobutler/social'
+import { useEchoButlerClient } from '@echobutler/react'
 
 function GlobalFeed() {
-  const client = useEchoMirrorClient()
+  const client = useEchoButlerClient()
   const { entries, isLoading, fetchMore, hasMore, refresh } = useGlobalFeed(client)
 
   return (
@@ -56,7 +56,7 @@ function GlobalFeed() {
 }
 
 function LeaderboardView() {
-  const client = useEchoMirrorClient()
+  const client = useEchoButlerClient()
   const { entries, isLoading } = useLeaderboard(client, 'weekly')
 
   return <div>{entries.map(e => <p key={e.userId}>#{e.rank} {e.displayName}</p>)}</div>
@@ -66,7 +66,7 @@ function LeaderboardView() {
 ### Real-time subscriptions
 
 ```ts
-import { SocialSubscription } from '@echomirror/social'
+import { SocialSubscription } from '@echobutler/social'
 
 const sub = new SocialSubscription()
 const unsubscribe = sub.subscribe((event) => {
@@ -100,7 +100,7 @@ The following aspects were **not discoverable** from the available code or docum
 | **Feed endpoint** | `GET /social/feed?cursor=...&limit=...` — assumed to return `{ entries, nextCursor }` |
 | **Leaderboard endpoint** | `GET /social/leaderboard?window=daily|weekly|all-time` — assumed to return `LeaderboardEntry[]` |
 | **Tie-break rules** | Inferred order: `weeklyScore` desc → `totalEntries` asc → `streak` desc (see `leaderboard.ts` for the inline ASSUMPTION comment) |
-| **Real-time protocol** | Assumed WebSocket at `wss://api.echomirror.dev/v1/social/ws`. The `RealtimeTransport` interface is designed so SSE (or any other transport) can be swapped in with a single-line change |
+| **Real-time protocol** | Assumed WebSocket at `wss://api.echobutler.dev/v1/social/ws`. The `RealtimeTransport` interface is designed so SSE (or any other transport) can be swapped in with a single-line change |
 | **Cache TTL** | Feed: 30s. Leaderboard: 15s. Configurable via `CacheConfig`. |
 
 Once the backend is reachable, these assumptions should be verified against actual API responses.

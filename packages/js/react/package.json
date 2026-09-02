@@ -1,7 +1,7 @@
 {
-  "name": "@echomirror/react",
+  "name": "@echobutler/react",
   "version": "0.1.0",
-  "description": "EchoMirror SDK React bindings",
+  "description": "EchoButler SDK React bindings",
   "publishConfig": {
     "access": "public"
   },
@@ -24,13 +24,13 @@
     "size-limit": "size-limit"
   },
   "keywords": [
-    "echomirror",
+    "echobutler",
     "react",
     "wellness"
   ],
   "license": "MIT",
   "dependencies": {
-    "@echomirror/core": "*"
+    "@echobutler/core": "*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -45,7 +45,7 @@
   },
   "size-limit": [
     {
-      "name": "@echomirror/react",
+      "name": "@echobutler/react",
       "path": "dist/index.js",
       "limit": "1.4 KB"
     }

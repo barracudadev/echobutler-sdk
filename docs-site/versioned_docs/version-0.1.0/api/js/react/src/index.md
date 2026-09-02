@@ -2,12 +2,12 @@
 
 ## Interfaces
 
-- [EchoMirrorProviderProps](interfaces/EchoMirrorProviderProps.md)
+- [EchoButlerProviderProps](interfaces/EchoButlerProviderProps.md)
 
 ## Functions
 
-- [EchoMirrorProvider](functions/EchoMirrorProvider.md)
-- [useEchoMirrorClient](functions/useEchoMirrorClient.md)
+- [EchoButlerProvider](functions/EchoButlerProvider.md)
+- [useEchoButlerClient](functions/useEchoButlerClient.md)
 - [useMoodStreak](functions/useMoodStreak.md)
 - [useProfile](functions/useProfile.md)
 - [useSDKEvent](functions/useSDKEvent.md)

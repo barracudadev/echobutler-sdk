@@ -9,12 +9,12 @@ type InstallTab = {
 };
 
 const INSTALL_TABS: InstallTab[] = [
-  {id: 'npm', label: 'npm', command: 'npm install @echomirror/react'},
-  {id: 'pnpm', label: 'pnpm', command: 'pnpm add @echomirror/react'},
-  {id: 'yarn', label: 'yarn', command: 'yarn add @echomirror/react'},
+  {id: 'npm', label: 'npm', command: 'npm install @echobutler/react'},
+  {id: 'pnpm', label: 'pnpm', command: 'pnpm add @echobutler/react'},
+  {id: 'yarn', label: 'yarn', command: 'yarn add @echobutler/react'},
 ];
 
-const STARTER_CODE = `import { MoodWidget } from '@echomirror/react';
+const STARTER_CODE = `import { MoodWidget } from '@echobutler/react';
 
 export default function App() {
   return <MoodWidget userId="demo-user" />;

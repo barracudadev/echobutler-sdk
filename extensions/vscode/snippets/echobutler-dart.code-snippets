@@ -1,0 +1,39 @@
+{
+  "EchoButler: Log Mood (Dart)": {
+    "prefix": "em-mood",
+    "body": [
+      "final entry = await EchoButler.instance.mood.log(",
+      "  score: ${1:7},",
+      "  note: '${2:How are you feeling?}',",
+      "  tags: ['${3:work}'],",
+      ");"
+    ],
+    "description": "Log a mood entry with EchoButler SDK (Dart)"
+  },
+  "EchoButler: Get Streak (Dart)": {
+    "prefix": "em-streak",
+    "body": [
+      "final streak = await EchoButler.instance.mood.streak()",
+      "print('${streak.current} day streak \u{1F525}')"
+    ],
+    "description": "Get the user's current mood streak (Dart)"
+  },
+  "EchoButler: Get Balance (Dart)": {
+    "prefix": "em-balance",
+    "body": [
+      "final balance = await EchoButler.instance.stellar.balance('${1:publicKey}')",
+      "print('${balance.xlm} XLM  \u{2022}  ${balance.echo} ECHO')"
+    ],
+    "description": "Get Stellar XLM and ECHO balance (Dart)"
+  },
+  "EchoButler: Initialize (Dart)": {
+    "prefix": "echobutler-init",
+    "body": [
+      "final echoButler = EchoButler.instance..init(",
+      "  apiKey: '${1:your_api_key}',",
+      "  network: EchoButlerNetwork.${2:testnet},",
+      ");"
+    ],
+    "description": "Boilerplate EchoButler setup (Dart)"
+  }
+}

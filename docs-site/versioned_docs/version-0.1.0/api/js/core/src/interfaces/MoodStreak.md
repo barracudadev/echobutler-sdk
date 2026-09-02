@@ -1,6 +1,6 @@
 # Interface: MoodStreak
 
-Defined in: [packages/js/core/src/types.ts:47](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L47)
+Defined in: [packages/js/core/src/types.ts:47](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L47)
 
 ## Properties
 
@@ -8,7 +8,7 @@ Defined in: [packages/js/core/src/types.ts:47](https://github.com/karanjadavi/ec
 
 > **current**: `number`
 
-Defined in: [packages/js/core/src/types.ts:48](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L48)
+Defined in: [packages/js/core/src/types.ts:48](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L48)
 
 ***
 
@@ -16,7 +16,7 @@ Defined in: [packages/js/core/src/types.ts:48](https://github.com/karanjadavi/ec
 
 > **isActiveToday**: `boolean`
 
-Defined in: [packages/js/core/src/types.ts:51](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L51)
+Defined in: [packages/js/core/src/types.ts:51](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L51)
 
 ***
 
@@ -24,7 +24,7 @@ Defined in: [packages/js/core/src/types.ts:51](https://github.com/karanjadavi/ec
 
 > **lastLoggedAt**: `string` \| `null`
 
-Defined in: [packages/js/core/src/types.ts:50](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L50)
+Defined in: [packages/js/core/src/types.ts:50](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L50)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [packages/js/core/src/types.ts:50](https://github.com/karanjadavi/ec
 
 > **longest**: `number`
 
-Defined in: [packages/js/core/src/types.ts:49](https://github.com/karanjadavi/echomirror-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L49)
+Defined in: [packages/js/core/src/types.ts:49](https://github.com/karanjadavi/echobutler-sdk/blob/1e86960804b3b9d6c6107f0f78b2c968a63ffa5f/packages/js/core/src/types.ts#L49)

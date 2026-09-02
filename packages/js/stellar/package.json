@@ -1,7 +1,7 @@
 {
-  "name": "@echomirror/stellar",
+  "name": "@echobutler/stellar",
   "version": "0.2.0",
-  "description": "EchoMirror SDK Stellar integration — multi-wallet (Freighter, Albedo, xBull), transaction builders, and typed errors",
+  "description": "EchoButler SDK Stellar integration — multi-wallet (Freighter, Albedo, xBull), transaction builders, and typed errors",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "size-limit": "size-limit"
   },
   "keywords": [
-    "echomirror",
+    "echobutler",
     "stellar",
     "blockchain",
     "freighter",
@@ -39,7 +39,7 @@
   "license": "MIT",
   "dependencies": {
     "@albedo-link/intent": "^0.12.0",
-    "@echomirror/core": "*",
+    "@echobutler/core": "*",
     "@ledgerhq/hw-app-str": "^7.7.7",
     "@ledgerhq/hw-transport-webhid": "^6.36.0",
     "@stellar/freighter-api": "^6.0.0",
@@ -55,7 +55,7 @@
   },
   "size-limit": [
     {
-      "name": "@echomirror/stellar",
+      "name": "@echobutler/stellar",
       "path": "dist/index.js",
       "limit": "220 KB"
     }

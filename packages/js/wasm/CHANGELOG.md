@@ -1,10 +1,10 @@
-# @echomirror/wasm
+# @echobutler/wasm
 
 ## 0.1.0 — 2026-08-19
 
 ### Added
 
-- Initial release of `@echomirror/wasm`
+- Initial release of `@echobutler/wasm`
 - Dual-target wasm-pack build: `wasm-web` (browser ESM) and `wasm-node` (CJS for Node.js)
 - `isValidStellarAddress(address)` — pure Ed25519 validation, no network call
 - `hashPublicKey(publicKey)` — SHA-256 hex digest of a Stellar public key

@@ -45,15 +45,15 @@ jobs:
       # The docs typecheck (docusaurus-plugin-typedoc) compiles the whole
       # packages/js tree against the root tsconfig — including
       # packages/js/wasm/test/wasm.test.ts, which imports the generated
-      # dist/ entry point — so build @echomirror/wasm (tsc -> dist/) first.
+      # dist/ entry point — so build @echobutler/wasm (tsc -> dist/) first.
       - name: Build JS packages
         run: |
-          npm run build --workspace=@echomirror/wasm
-          npm run build --workspace=@echomirror/analytics
-          npm run build --workspace=@echomirror/core
-          npm run build --workspace=@echomirror/mood
-          npm run build --workspace=@echomirror/react
-          npm run build --workspace=@echomirror/stellar
+          npm run build --workspace=@echobutler/wasm
+          npm run build --workspace=@echobutler/analytics
+          npm run build --workspace=@echobutler/core
+          npm run build --workspace=@echobutler/mood
+          npm run build --workspace=@echobutler/react
+          npm run build --workspace=@echobutler/stellar
 
       - name: Verify WASM package output
         run: test -f packages/js/wasm/dist/index.js

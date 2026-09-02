@@ -1,5 +1,5 @@
 /*!
- * @echomirror/wasm — EchoMirror SDK compiled to WebAssembly.
+ * @echobutler/wasm — EchoButler SDK compiled to WebAssembly.
  *
  * High-performance crypto, XDR byte handling, and sync-cursor helpers that
  * run directly in the browser or Node.js, with no server round-trip. This
@@ -8,7 +8,7 @@
  * are resolved under the hood.
  *
  * @example
- * import { init, verifyMoodScore, hashPublicKey, MoodBuffer } from '@echomirror/wasm'
+ * import { init, verifyMoodScore, hashPublicKey, MoodBuffer } from '@echobutler/wasm'
  * await init()
  *
  * const valid = verifyMoodScore(7)

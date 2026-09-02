@@ -1,5 +1,5 @@
 #!/bin/sh
-# scripts/bootstrap.sh — one-command local dev setup for the EchoMirror SDK.
+# scripts/bootstrap.sh — one-command local dev setup for the EchoButler SDK.
 #
 # POSIX sh, targets macOS and Linux. Windows contributors: run this from
 # WSL — the rest of this repo's tooling (cargo, flutter, npm) already
@@ -13,7 +13,7 @@
 #      if not already present.
 #   3. Installs/builds each ecosystem present: npm install, cargo build
 #      --workspace, flutter pub get (packages/flutter), and a venv +
-#      `maturin develop` dev install for crates/echomirror-python (a
+#      `maturin develop` dev install for crates/echobutler-python (a
 #      native PyO3 extension, so it also needs Rust).
 #   4. Runs a fast self-check per ecosystem and prints a pass/fail/skipped
 #      summary.
@@ -29,7 +29,7 @@ cd "$ROOT_DIR" || exit 1
 NODE_MIN_MAJOR=18
 PYTHON_MIN_MAJOR=3
 PYTHON_MIN_MINOR=9
-PYTHON_PKG_DIR="crates/echomirror-python"
+PYTHON_PKG_DIR="crates/echobutler-python"
 
 HAVE_NODE=no
 HAVE_RUST=no
@@ -131,11 +131,11 @@ install_wasm_pack() {
     ok "already installed ($(wasm-pack --version 2>/dev/null))"
     return 0
   fi
-  info "installing wasm-pack (needed for @echomirror/wasm / crates/echomirror-wasm)"
+  info "installing wasm-pack (needed for @echobutler/wasm / crates/echobutler-wasm)"
   if cargo install wasm-pack >/dev/null 2>&1; then
     ok "wasm-pack installed"
   else
-    warn "failed to install wasm-pack — install it manually if you plan to work on @echomirror/wasm"
+    warn "failed to install wasm-pack — install it manually if you plan to work on @echobutler/wasm"
   fi
 }
 
@@ -297,7 +297,7 @@ print_summary() {
 }
 
 main() {
-  printf 'EchoMirror SDK bootstrap — repo root: %s\n' "$ROOT_DIR"
+  printf 'EchoButler SDK bootstrap — repo root: %s\n' "$ROOT_DIR"
 
   check_node
   check_rust

@@ -7,19 +7,19 @@ sidebar_position: 2
 ## Install
 
 ```bash
-npm install @echomirror/react @echomirror/core
+npm install @echobutler/react @echobutler/core
 ```
 
 ## Wrap your app in the provider
 
 ```tsx
-import { EchoMirrorProvider } from '@echomirror/react'
+import { EchoButlerProvider } from '@echobutler/react'
 
 function App() {
   return (
-    <EchoMirrorProvider apiKey={process.env.REACT_APP_ECHOMIRROR_API_KEY}>
+    <EchoButlerProvider apiKey={process.env.REACT_APP_ECHOBUTLER_API_KEY}>
       <MoodDashboard />
-    </EchoMirrorProvider>
+    </EchoButlerProvider>
   )
 }
 ```
@@ -27,10 +27,10 @@ function App() {
 ## Use the mood hook
 
 ```tsx
-import { useEchoMirror } from '@echomirror/react'
+import { useEchoButler } from '@echobutler/react'
 
 function MoodDashboard() {
-  const { client, profile, isLoading, error } = useEchoMirror()
+  const { client, profile, isLoading, error } = useEchoButler()
 
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Something went wrong: {error.message}</p>
@@ -47,4 +47,4 @@ function MoodDashboard() {
 ## Next steps
 
 - [Core Concepts](../core-concepts) to understand how the pieces fit together
-- [Architecture and package guide](../architecture) for the full typed API surface, including `EchoMirrorConfig`, `MoodStreak`, and `UserProfile`
+- [Architecture and package guide](../architecture) for the full typed API surface, including `EchoButlerConfig`, `MoodStreak`, and `UserProfile`

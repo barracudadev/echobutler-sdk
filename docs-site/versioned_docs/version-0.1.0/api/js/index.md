@@ -1,4 +1,4 @@
-# echomirror-sdk
+# echobutler-sdk
 
 ## Modules
 

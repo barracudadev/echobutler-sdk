@@ -1,4 +1,4 @@
-# Contributing to EchoMirror SDK
+# Contributing to EchoButler SDK
 
 Welcome — we're building an open SDK for mood, wellness, and Stellar payments. Every contribution earns points on the Stellar Wave program.
 
@@ -13,8 +13,8 @@ Welcome — we're building an open SDK for mood, wellness, and Stellar payments.
 ## Setup
 
 ```bash
-git clone https://github.com/Echo-Mirror-Butler/echomirror-sdk.git
-cd echomirror-sdk
+git clone https://github.com/Echo-Mirror-Butler/echobutler-sdk.git
+cd echobutler-sdk
 ./scripts/bootstrap.sh
 ```
 
@@ -78,16 +78,16 @@ guessed:
 
 | Complexity | Package | Why |
 |---|---|---|
-| **Low** | `@echomirror/core` (JS) | 287 lines, zero runtime dependencies. Thin HTTP client wrapper — the lowest-risk, most foundational package, and the one used in the walkthrough below. |
-| **Low** | `@echomirror/mood` (JS) | 124 lines, one dependency. Also currently has **zero tests** — see [COVERAGE.md](./COVERAGE.md), a good first issue in itself. |
-| **Low-Medium** | `@echomirror/react` (JS) | 142 lines, but needs React hooks familiarity. Also has zero tests. |
-| **Medium** | `@echomirror/analytics` (JS) | 721 lines, zero runtime dependencies, but more surface area (aggregation, privacy, storage, transport as separate concerns). |
-| **Medium** | `@echomirror/social` (JS) | 739 lines. The non-realtime parts (feed, leaderboard, cache) are approachable; the WebSocket reconnect/backfill logic in `realtime.ts` is not a first-issue task. |
-| **High** | `@echomirror/stellar` (JS) | 1,778 lines, 6 dependencies (wallet adapters: Albedo, Freighter, Ledger, xBull). Needs Stellar transaction/signing domain knowledge. |
-| **Low-Medium** | `echomirror-core` (Rust) | 1,500 lines, but well-factored into small modules (`client.rs`, `config.rs`, `error.rs`, `middleware.rs`) — a good first *Rust* issue if you're new to the crate but not to Rust. |
-| **High** | `echomirror-stellar` (Rust) | Smaller (435 lines) but wraps Horizon's API surface directly — needs the same Stellar domain knowledge as the JS package. |
-| **High** | `echomirror-sync` (Rust) | 1,571 lines. SSE streaming, resumable cursors, backoff/reconnect, gap backfill — the most architecturally complex crate in the workspace. Not a first-issue package. |
-| **Medium-High** | `echomirror-wasm` (Rust + JS) | Small source, but the build pipeline (`wasm-pack`, two build targets, cross-runtime testing) has more moving parts than the code itself. |
+| **Low** | `@echobutler/core` (JS) | 287 lines, zero runtime dependencies. Thin HTTP client wrapper — the lowest-risk, most foundational package, and the one used in the walkthrough below. |
+| **Low** | `@echobutler/mood` (JS) | 124 lines, one dependency. Also currently has **zero tests** — see [COVERAGE.md](./COVERAGE.md), a good first issue in itself. |
+| **Low-Medium** | `@echobutler/react` (JS) | 142 lines, but needs React hooks familiarity. Also has zero tests. |
+| **Medium** | `@echobutler/analytics` (JS) | 721 lines, zero runtime dependencies, but more surface area (aggregation, privacy, storage, transport as separate concerns). |
+| **Medium** | `@echobutler/social` (JS) | 739 lines. The non-realtime parts (feed, leaderboard, cache) are approachable; the WebSocket reconnect/backfill logic in `realtime.ts` is not a first-issue task. |
+| **High** | `@echobutler/stellar` (JS) | 1,778 lines, 6 dependencies (wallet adapters: Albedo, Freighter, Ledger, xBull). Needs Stellar transaction/signing domain knowledge. |
+| **Low-Medium** | `echobutler-core` (Rust) | 1,500 lines, but well-factored into small modules (`client.rs`, `config.rs`, `error.rs`, `middleware.rs`) — a good first *Rust* issue if you're new to the crate but not to Rust. |
+| **High** | `echobutler-stellar` (Rust) | Smaller (435 lines) but wraps Horizon's API surface directly — needs the same Stellar domain knowledge as the JS package. |
+| **High** | `echobutler-sync` (Rust) | 1,571 lines. SSE streaming, resumable cursors, backoff/reconnect, gap backfill — the most architecturally complex crate in the workspace. Not a first-issue package. |
+| **Medium-High** | `echobutler-wasm` (Rust + JS) | Small source, but the build pipeline (`wasm-pack`, two build targets, cross-runtime testing) has more moving parts than the code itself. |
 
 If you're picking up a `good first issue` and it's not obviously scoped to
 one of the "Low" packages above, ask before starting — better to confirm
@@ -97,14 +97,14 @@ context.
 ## Your first PR
 
 A concrete, start-to-finish example: fixing something small in
-`@echomirror/core` (the package this repo is most set up to make approachable).
+`@echobutler/core` (the package this repo is most set up to make approachable).
 
-1. **Pick an issue.** Filter for [`good first issue`](https://github.com/Echo-Mirror-Butler/echomirror-sdk/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+1. **Pick an issue.** Filter for [`good first issue`](https://github.com/Echo-Mirror-Butler/echobutler-sdk/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
    — see the package ranking above before picking one outside `core`/`mood`.
    [COVERAGE.md](./COVERAGE.md#backlog-prioritized) is also a good source of
    concrete, scoped first issues if nothing in the issue tracker fits. (There's
    no dedicated issue template yet — that's tracked in
-   [#67](https://github.com/Echo-Mirror-Butler/echomirror-sdk/issues/67) —
+   [#67](https://github.com/Echo-Mirror-Butler/echobutler-sdk/issues/67) —
    so just describe what you're fixing and why in plain prose.)
 2. **Set up.** `git clone` your fork, then `./scripts/bootstrap.sh` — it
    checks your toolchains, installs dependencies, and runs a fast self-check
@@ -136,9 +136,9 @@ Opening a PR runs several GitHub Actions checks — `JS CI`, `Rust CI`
 (only if you touched Rust), the PR size guard above, and a few others
 depending on what you changed. Here's a real, fully green `JS CI` run so you
 know what "passing" looks like before you push:
-<https://github.com/Echo-Mirror-Butler/echomirror-sdk/actions/runs/33096445699>.
+<https://github.com/Echo-Mirror-Butler/echobutler-sdk/actions/runs/33096445699>.
 Most JS-only PRs finish CI in a couple of minutes; a Rust change that touches
-`echomirror-wasm` takes longer (it rebuilds the wasm-pack output twice and
+`echobutler-wasm` takes longer (it rebuilds the wasm-pack output twice and
 runs it across Node, Bun, Deno, and headless Chromium — see that package's
 [README](./packages/js/wasm/README.md#runtime-compatibility)).
 
@@ -146,4 +146,4 @@ All PRs are reviewed within 48 hours. Contributors earn Stellar Wave points for 
 
 ## Questions?
 
-Open a GitHub Discussion or join the Discord at https://discord.gg/echomirror.
+Open a GitHub Discussion or join the Discord at https://discord.gg/echobutler.

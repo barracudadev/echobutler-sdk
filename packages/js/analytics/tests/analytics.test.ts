@@ -159,7 +159,7 @@ describe('AnalyticsClient privacy', () => {
         displayName: 'Private Person',
       },
     })
-    const persistedBeforeFlush = storage.getItem('echomirror.analytics.v1') ?? ''
+    const persistedBeforeFlush = storage.getItem('echobutler.analytics.v1') ?? ''
     expect(persistedBeforeFlush).not.toContain('therapy appointment')
     expect(persistedBeforeFlush).not.toContain('family-secret')
     expect(persistedBeforeFlush).not.toContain('private@example.com')

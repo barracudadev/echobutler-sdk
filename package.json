@@ -1,7 +1,7 @@
 {
-  "name": "echomirror-sdk",
+  "name": "echobutler-sdk",
   "private": true,
-  "description": "EchoMirror SDK monorepo — mood intelligence, Stellar payments, and social wellness for any app",
+  "description": "EchoButler SDK monorepo — mood intelligence, Stellar payments, and social wellness for any app",
   "workspaces": [
     "packages/js/*",
     "extensions/vscode",

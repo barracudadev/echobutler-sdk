@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
-import '../echo_mirror.dart';
+import '../echo_butler.dart';
 import 'sync_models.dart';
 
 // ── FFI bindings ──────────────────────────────────────────────────────────────
@@ -19,7 +19,7 @@ typedef _IsValidAddressDart = int Function(Pointer<Utf8>);
 
 /// Loads the native Rust library for crypto operations.
 /// Falls back gracefully to pure-Dart implementations if not available.
-class EchoMirrorNative {
+class EchoButlerNative {
   static DynamicLibrary? _lib;
   static _HashPublicKeyDart? _hashPublicKey;
   static _FreeStringDart? _freeString;
@@ -28,26 +28,26 @@ class EchoMirrorNative {
   static void initialize() {
     try {
       if (Platform.isAndroid) {
-        _lib = DynamicLibrary.open('libechomirror_ffi.so');
+        _lib = DynamicLibrary.open('libechobutler_ffi.so');
       } else if (Platform.isIOS || Platform.isMacOS) {
         _lib = DynamicLibrary.process();
       } else if (Platform.isLinux) {
-        _lib = DynamicLibrary.open('libechomirror_ffi.so');
+        _lib = DynamicLibrary.open('libechobutler_ffi.so');
       } else if (Platform.isWindows) {
-        _lib = DynamicLibrary.open('echomirror_ffi.dll');
+        _lib = DynamicLibrary.open('echobutler_ffi.dll');
       }
 
       if (_lib != null) {
         _hashPublicKey =
             _lib!.lookupFunction<_HashPublicKeyNative, _HashPublicKeyDart>(
-          'echomirror_hash_public_key',
+          'echobutler_hash_public_key',
         );
         _freeString = _lib!.lookupFunction<_FreeStringNative, _FreeStringDart>(
-          'echomirror_free_string',
+          'echobutler_free_string',
         );
         _isValidAddress =
             _lib!.lookupFunction<_IsValidAddressNative, _IsValidAddressDart>(
-          'echomirror_is_valid_stellar_address',
+          'echobutler_is_valid_stellar_address',
         );
       }
     } catch (_) {
@@ -88,7 +88,7 @@ class EchoMirrorNative {
 /// Streams real-time Stellar transactions for one or more accounts.
 ///
 /// ```dart
-/// final sync = BlockchainSyncClient(EchoMirror.instance.config);
+/// final sync = BlockchainSyncClient(EchoButler.instance.config);
 ///
 /// sync.watch('GPUBLIC_KEY')
 ///   .listen((event) {

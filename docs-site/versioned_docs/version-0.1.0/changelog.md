@@ -1,12 +1,12 @@
 ---
 sidebar_position: 5
 title: Changelog
-description: Aggregated changelog for all EchoMirror SDK packages — auto-generated from per-package CHANGELOG.md files.
+description: Aggregated changelog for all EchoButler SDK packages — auto-generated from per-package CHANGELOG.md files.
 ---
 
 # Changelog
 
-All notable changes across every EchoMirror SDK package are listed here in
+All notable changes across every EchoButler SDK package are listed here in
 reverse-chronological order, grouped by release date and tagged by package.
 
 This page is **auto-generated** at docs-build time from the individual
@@ -22,39 +22,39 @@ _Last generated: 2026-08-29_
 
 ## 2026-08-19
 
-### @echomirror/analytics `npm` — v0.1.0
+### @echobutler/analytics `npm` — v0.1.0
 
 
 ### Added
 
-- Initial release of `@echomirror/analytics`
+- Initial release of `@echobutler/analytics`
 - `AnalyticsClient` — privacy-safe emotional UX event tracker; no PII by default
 - `track(event, properties)` — fire-and-forget event emission with local queue + flush
 - `aggregate(events)` — client-side aggregation (counts, averages, percentiles) before upload
 - Configurable transports: `HttpTransport` (batched POST) and `NoopTransport` (testing)
 - `PrivacyFilter` — strip or hash any property keys matching a configurable deny-list
 - `LocalStorageQueue` — persists unsent events across page reloads; configurable max size
-- Fully standalone — zero dependencies on other `@echomirror/*` packages
+- Fully standalone — zero dependencies on other `@echobutler/*` packages
 - ESM-only build (`"type": "module"`)
 
-### @echomirror/core `npm` — v0.1.0
+### @echobutler/core `npm` — v0.1.0
 
 
 ### Added
 
-- Initial release of `@echomirror/core`
-- `EchoMirrorClient` with API key and JWT auth, configurable base URL and network (`testnet` / `mainnet`)
-- `EchoMirrorConfig` builder with `testnet()` / `mainnet()` convenience constructors
-- Shared TypeScript types: `MoodEntry`, `StellarBalance`, `EchoUser`, `ApiResponse`, `EchoMirrorError`
+- Initial release of `@echobutler/core`
+- `EchoButlerClient` with API key and JWT auth, configurable base URL and network (`testnet` / `mainnet`)
+- `EchoButlerConfig` builder with `testnet()` / `mainnet()` convenience constructors
+- Shared TypeScript types: `MoodEntry`, `StellarBalance`, `EchoUser`, `ApiResponse`, `EchoButlerError`
 - `setAuthToken` / `clearAuthToken` for runtime JWT management
 - Full ESM + CJS dual-build via `tsconfig`
 
-### @echomirror/mood `npm` — v0.1.0
+### @echobutler/mood `npm` — v0.1.0
 
 
 ### Added
 
-- Initial release of `@echomirror/mood`
+- Initial release of `@echobutler/mood`
 - `logMood(client, entry)` — record a mood entry (score 1–10, optional note and tags)
 - `getMoodHistory(client, options)` — paginated mood history with date-range filtering
 - `getMoodStreak(client)` — current and longest daily-logging streak
@@ -62,24 +62,24 @@ _Last generated: 2026-08-29_
 - `deleteMoodEntry(client, id)` — remove a mood entry by ID
 - Full type coverage with `MoodEntry`, `MoodStreak`, `MoodHistoryOptions`
 
-### @echomirror/react `npm` — v0.1.0
+### @echobutler/react `npm` — v0.1.0
 
 
 ### Added
 
-- Initial release of `@echomirror/react`
-- `<EchoMirrorProvider>` — top-level context provider; accepts `apiKey` and `config`
-- `useEchoMirror()` — access the underlying `EchoMirrorClient` anywhere in the tree
+- Initial release of `@echobutler/react`
+- `<EchoButlerProvider>` — top-level context provider; accepts `apiKey` and `config`
+- `useEchoButler()` — access the underlying `EchoButlerClient` anywhere in the tree
 - `useMoodStreak()` — auto-fetching hook for the current user's streak with loading / error states
 - `useStellarBalance(publicKey)` — reactive hook for XLM + ECHO balance
 - React 18 and React 19 compatible; peer dependency `react >= 18.0.0`
 
-### @echomirror/social `npm` — v0.1.0
+### @echobutler/social `npm` — v0.1.0
 
 
 ### Added
 
-- Initial release of `@echomirror/social`
+- Initial release of `@echobutler/social`
 - `getGlobalFeed(client, options)` — paginated global mood feed
 - `getLeaderboard(client, period)` — weekly / monthly / all-time streak leaderboard
 - `followUser(client, userId)` / `unfollowUser(client, userId)` — social graph management
@@ -88,7 +88,7 @@ _Last generated: 2026-08-29_
 - In-memory LRU cache for leaderboard results; configurable TTL
 - Optional React helpers (`useFeed`, `useLeaderboard`) — tree-shaken, peer-dep on React
 
-### @echomirror/stellar `npm` — v0.2.0
+### @echobutler/stellar `npm` — v0.2.0
 
 
 ### Added
@@ -102,12 +102,12 @@ _Last generated: 2026-08-29_
 - Retry middleware with configurable exponential back-off
 - Playwright e2e tests for Freighter wallet flow
 
-### @echomirror/wasm `npm` — v0.1.0
+### @echobutler/wasm `npm` — v0.1.0
 
 
 ### Added
 
-- Initial release of `@echomirror/wasm`
+- Initial release of `@echobutler/wasm`
 - Dual-target wasm-pack build: `wasm-web` (browser ESM) and `wasm-node` (CJS for Node.js)
 - `isValidStellarAddress(address)` — pure Ed25519 validation, no network call
 - `hashPublicKey(publicKey)` — SHA-256 hex digest of a Stellar public key
@@ -119,7 +119,7 @@ _Last generated: 2026-08-29_
 
 ## 2026-07-01
 
-### @echomirror/stellar `npm` — v0.1.0
+### @echobutler/stellar `npm` — v0.1.0
 
 
 ### Added
@@ -128,14 +128,14 @@ _Last generated: 2026-08-29_
 
 ## Undated releases
 
-### @echomirror/social `npm` — vUnreleased
+### @echobutler/social `npm` — vUnreleased
 
 
 ### Fixed
 
 - `LeaderboardClient` now sends the canonical `limit` query parameter and unwraps leaderboard responses from `{ entries }` instead of expecting a bare array.
 
-### @echomirror/stellar `npm` — vUnreleased
+### @echobutler/stellar `npm` — vUnreleased
 
 
 ### Fixed
@@ -151,16 +151,16 @@ from this page. Once they adopt Changesets (JS) or start maintaining a
 `CHANGELOG.md` alongside their `Cargo.toml` / `pubspec.yaml`, entries will
 appear here automatically:
 
-- `echomirror-core`
-- `echomirror-ffi`
-- `echomirror-python`
-- `echomirror-stellar`
-- `echomirror-sync`
-- `echomirror-wasm`
-- `echomirror_sdk (Flutter)`
+- `echobutler-core`
+- `echobutler-ffi`
+- `echobutler-python`
+- `echobutler-stellar`
+- `echobutler-sync`
+- `echobutler-wasm`
+- `echobutler_sdk (Flutter)`
 
 > **Rust crates** — the source of truth for versioning is `Cargo.toml`. Until
-> `CHANGELOG.md` files are added to each crate, refer to the [GitHub Releases](https://github.com/Echo-Mirror-Butler/echomirror-sdk/releases)
+> `CHANGELOG.md` files are added to each crate, refer to the [GitHub Releases](https://github.com/Echo-Mirror-Butler/echobutler-sdk/releases)
 > page for historical change notes.
 >
 > **Flutter** — `pubspec.yaml` tracks the version; a `CHANGELOG.md` will be

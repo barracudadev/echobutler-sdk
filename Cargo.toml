@@ -2,20 +2,20 @@
 resolver = "2"
 
 members = [
-    "crates/echomirror-core",
-    "crates/echomirror-stellar",
-    "crates/echomirror-sync",
-    "crates/echomirror-ffi",
-    "crates/echomirror-wasm",
-    "crates/echomirror-python",
+    "crates/echobutler-core",
+    "crates/echobutler-stellar",
+    "crates/echobutler-sync",
+    "crates/echobutler-ffi",
+    "crates/echobutler-wasm",
+    "crates/echobutler-python",
 ]
 
 [workspace.package]
 version = "0.1.0"
 edition = "2021"
 license = "MIT"
-authors = ["Echo Mirror Butler <dev@echomirror.dev>"]
-repository = "https://github.com/Echo-Mirror-Butler/echomirror-sdk"
+authors = ["Echo Butler Butler <dev@echobutler.dev>"]
+repository = "https://github.com/Echo-Mirror-Butler/echobutler-sdk"
 
 [workspace.dependencies]
 # async runtime
@@ -52,9 +52,9 @@ rand = "0.10"
 eventsource-stream = "0.2"
 tokio-util = "0.7"
 tracing = "0.1"
-# postgres cursor store (optional feature of echomirror-sync)
+# postgres cursor store (optional feature of echobutler-sync)
 sqlx = { version = "0.9", default-features = false, features = ["runtime-tokio", "tls-rustls", "postgres", "chrono", "migrate", "macros"] }
-# redis cursor store (optional feature of echomirror-sync)
+# redis cursor store (optional feature of echobutler-sync)
 redis = { version = "0.26", features = ["tokio-comp", "connection-manager"] }
 # testing
 wiremock = "0.6"

@@ -1,7 +1,7 @@
 {
-  "name": "@echomirror/social",
+  "name": "@echobutler/social",
   "version": "0.1.0",
-  "description": "EchoMirror SDK social module — global feed, leaderboard, and real-time updates",
+  "description": "EchoButler SDK social module — global feed, leaderboard, and real-time updates",
   "publishConfig": {
     "access": "public"
   },
@@ -24,7 +24,7 @@
     "size-limit": "size-limit"
   },
   "keywords": [
-    "echomirror",
+    "echobutler",
     "social",
     "feed",
     "leaderboard",
@@ -32,7 +32,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@echomirror/core": "*"
+    "@echobutler/core": "*"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -55,7 +55,7 @@
   },
   "size-limit": [
     {
-      "name": "@echomirror/social",
+      "name": "@echobutler/social",
       "path": "dist/index.js",
       "limit": "1.7 KB"
     }
